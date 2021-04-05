@@ -1,4 +1,4 @@
-package com.techelevator.security.model;
+package com.techelevator.application.model;
 
 import java.util.Date;
 
