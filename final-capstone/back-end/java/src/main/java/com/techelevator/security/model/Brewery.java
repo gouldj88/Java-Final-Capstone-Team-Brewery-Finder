@@ -2,7 +2,7 @@ package com.techelevator.security.model;
 
 import java.util.Date;
 
-public class Breweries {
+public class Brewery {
 	private String odbd_id;
 	private String name;
 	private String brewery_type;
@@ -23,7 +23,7 @@ public class Breweries {
 	private String tags;
 	
 	
-	public Breweries(String odbd_id, String name, String brewery_type, String street, String address_2,
+	public Brewery(String odbd_id, String name, String brewery_type, String street, String address_2,
 			String address_3, String city, String state, String county_province, String postal_code, String website_url,
 			String phone, Date created_at, Date updated_at, String country, String longitude, String latitude,
 			String tags) {
@@ -156,6 +156,4 @@ public class Breweries {
 	public void setTags(String tags) {
 		this.tags = tags;
 	}
-	
-	
 }
