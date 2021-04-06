@@ -8,12 +8,12 @@
 
 <script>
 
-import Brewerylist from '@/components/Brewerylist.vue';
+import BreweryList from '@/components/BreweryList.vue';
 
 export default {
-  name: "home",
+  name: 'Home',
   components: {
-      Brewerylist
+      BreweryList
   }
 }
 </script>
