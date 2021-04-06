@@ -1,18 +1,18 @@
 package com.techelevator.application.dao;
 
+import java.util.List;
+
 import com.techelevator.application.model.Brewery;
 
 public interface BreweryDAO {
-	Brewery getBreweryByZipCode(String zipCode);
 	
-	Brewery getBreweryByName(String name);
+	List<Brewery> getBreweriesByZipCode(String zipCode);
 	
-	Brewery getBreweryByCityState(String city, String state);
-	
-	Brewery getBreweryByCity(String city);
-	
-	Brewery getBreweryByState(String state);
-
+	List<Brewery> getBreweriesByName(String name);
 		
+	List<Brewery> getBreweriesByCity(String city);
+	
+	List<Brewery> getBreweriesByState(String state);
+	
 }
 

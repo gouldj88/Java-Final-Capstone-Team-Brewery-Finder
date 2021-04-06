@@ -5,16 +5,49 @@
 package com.techelevator.application.controller;
 
 import java.sql.Timestamp;
+import java.util.List;
 
-public class ApiController {
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.techelevator.application.dao.BreweryDAO;
+import com.techelevator.application.model.Brewery;
 
 /**********************************************************************************************************************
 * Put your Application API Controllers here
 **********************************************************************************************************************/
+@RestController
 
+public class ApiController {
+
+	private BreweryDAO breweryDAO;
+
+	public ApiController(BreweryDAO breweryDAO) {
+		this.breweryDAO = breweryDAO;
+	}
+		
+	@RequestMapping(path = "/breweries/location/zip/{zipCode}", method = RequestMethod.GET)
+	public List<Brewery> getBreweriesByZipCode(@PathVariable String zipCode) {
+	    return breweryDAO.getBreweriesByZipCode(zipCode);
+	}
 	
+	@RequestMapping(path = "/breweries/name/{name}", method = RequestMethod.GET)
+	public List<Brewery> getBreweriesByName(@PathVariable String name) {
+	    return breweryDAO.getBreweriesByName(name);
+	}
 	
+	@RequestMapping(path = "/breweries/location/city/{city}", method = RequestMethod.GET)
+	public List<Brewery> getBreweriesByCity(@PathVariable String city) {
+	    return breweryDAO.getBreweriesByCity(city);
+	}
 	
+	@RequestMapping(path = "/breweries/location/state/{state}", method = RequestMethod.GET)
+	public List<Brewery> getBreweriesByState(@PathVariable String state) {
+	    return breweryDAO.getBreweriesByState(state);
+	}
+
 	
 /********************************************************************************************************************* 
 * Use this method if you'd like to log calls to your controllers - these message can aid in your troubleshooting

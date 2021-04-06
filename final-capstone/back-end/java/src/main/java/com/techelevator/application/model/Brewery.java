@@ -22,6 +22,8 @@ public class Brewery {
 	private String latitude;
 	private String tags;
 	
+	public Brewery() {
+	}
 	
 	public Brewery(String odbd_id, String name, String brewery_type, String street, String address_2,
 			String address_3, String city, String state, String county_province, String postal_code, String website_url,
