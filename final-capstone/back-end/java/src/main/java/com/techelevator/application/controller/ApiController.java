@@ -7,6 +7,7 @@ package com.techelevator.application.controller;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +20,7 @@ import com.techelevator.application.model.Brewery;
 * Put your Application API Controllers here
 **********************************************************************************************************************/
 @RestController
+@CrossOrigin
 
 public class ApiController {
 
