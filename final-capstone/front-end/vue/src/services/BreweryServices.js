@@ -19,7 +19,7 @@ export default {
       },
 
       getBreweriesByZipCode(zipCode) {
-        return http.get(`/breweries/name/${zipCode}`);
+        return http.get('/breweries/name/98402');
       },
 
       getBreweriesByName() {
