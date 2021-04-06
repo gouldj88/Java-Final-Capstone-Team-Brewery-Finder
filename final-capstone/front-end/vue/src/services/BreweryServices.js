@@ -19,10 +19,6 @@ export default {
       },
 
       getBreweriesByZipCode() {
-        return http.get('/breweries/name/98402');
-      },
-
-      getBreweriesByName() {
-        return http.get('/topics');
+        return http.get('/breweries/location/zip/98402');
       }
   }
