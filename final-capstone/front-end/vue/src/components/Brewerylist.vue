@@ -20,11 +20,17 @@ data () {
         results: []
     }
 },
-created() {
-        BreweryServices.getBreweriesByZipCode().then(response => {
-            this.results = response.data;
-    })
+methods: {
+    searchSubmit(){
+        BreweryServices.getBreweriesByName('92804');
+    }
 }
+
+//created() {
+//        BreweryServices.getBreweriesByZipCode().then(response => {
+ //           this.results = response.data;
+//    })
+
 
 }
 
@@ -32,12 +38,7 @@ created() {
 </script>
 
 <style scoped>
- 
-
-
-
 .brewery{
-
 padding: 30px 50px;
     max-width: 1050px;
     margin: 0 auto;
@@ -47,6 +48,10 @@ padding: 30px 50px;
     align-items: flex-start;
     position: relative;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#SearchForm {
+  display: inline
 }
 
 </style>

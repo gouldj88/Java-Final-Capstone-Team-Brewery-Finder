@@ -21,4 +21,5 @@ export default {
       getBreweriesByZipCode() {
         return http.get('/breweries/location/zip/98402');
       }
+
   }
