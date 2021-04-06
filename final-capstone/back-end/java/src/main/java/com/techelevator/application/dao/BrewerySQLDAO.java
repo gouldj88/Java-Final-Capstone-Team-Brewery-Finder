@@ -74,7 +74,7 @@ public class BrewerySQLDAO implements BreweryDAO {
     private Brewery mapRowToBrewery(SqlRowSet rs) {
        
     	Brewery brewery = new Brewery();
-        brewery.setOdbd_id(rs.getString("obdb_id"));
+        brewery.setObdb_id(rs.getString("obdb_id"));
 		brewery.setName(rs.getString("name"));
 		brewery.setBrewery_type(rs.getString("brewery_type"));
 		brewery.setStreet(rs.getString("street"));

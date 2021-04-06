@@ -3,7 +3,7 @@ package com.techelevator.application.model;
 import java.util.Date;
 
 public class Brewery {
-	private String odbd_id;
+	private String obdb_id;
 	private String name;
 	private String brewery_type;
 	private String street;
@@ -25,12 +25,12 @@ public class Brewery {
 	public Brewery() {
 	}
 	
-	public Brewery(String odbd_id, String name, String brewery_type, String street, String address_2,
+	public Brewery(String obdb_id, String name, String brewery_type, String street, String address_2,
 			String address_3, String city, String state, String county_province, String postal_code, String website_url,
 			String phone, Date created_at, Date updated_at, String country, String longitude, String latitude,
 			String tags) {
 		super();
-		this.odbd_id = odbd_id;
+		this.obdb_id = obdb_id;
 		this.name = name;
 		this.brewery_type = brewery_type;
 		this.street = street;
@@ -50,11 +50,11 @@ public class Brewery {
 		this.tags = tags;
 	}
 	
-	public String getOdbd_id() {
-		return odbd_id;
+	public String getObdb_id() {
+		return obdb_id;
 	}
-	public void setOdbd_id(String odbd_id) {
-		this.odbd_id = odbd_id;
+	public void setObdb_id(String obdb_id) {
+		this.obdb_id = obdb_id;
 	}
 	public String getName() {
 		return name;
