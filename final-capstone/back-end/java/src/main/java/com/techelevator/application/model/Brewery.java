@@ -25,6 +25,19 @@ public class Brewery {
 	public Brewery() {
 	}
 	
+	public Brewery(String obdb_id, String name, String street, String city, String state, String postal_code, String website_url,
+			String phone) {
+		super();
+		this.obdb_id = obdb_id;
+		this.name = name;
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.postal_code = postal_code;
+		this.website_url = website_url;
+		this.phone = phone;
+	}
+	
 	public Brewery(String obdb_id, String name, String brewery_type, String street, String address_2,
 			String address_3, String city, String state, String county_province, String postal_code, String website_url,
 			String phone, Date created_at, Date updated_at, String country, String longitude, String latitude,

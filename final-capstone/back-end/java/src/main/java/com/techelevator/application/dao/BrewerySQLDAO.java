@@ -71,6 +71,12 @@ public class BrewerySQLDAO implements BreweryDAO {
 		return returnedBreweries;
 	}
 	
+	@Override
+	public Brewery createNewBrewery(String obdb_id, String name, String street, String city, String state, 
+			 String postal_code, String website_url, String phone) {
+		return null;
+	}
+	
     private Brewery mapRowToBrewery(SqlRowSet rs) {
        
     	Brewery brewery = new Brewery();
