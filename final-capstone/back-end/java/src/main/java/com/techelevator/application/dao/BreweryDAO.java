@@ -14,7 +14,6 @@ public interface BreweryDAO {
 	
 	List<Brewery> getBreweriesByState(String state);
 	
-	void createNewBrewery(String name, String street, String city, String state, 
-					      String postal_code, String website_url, String phone);
+	void createNewBrewery(Brewery formData);
 }
 

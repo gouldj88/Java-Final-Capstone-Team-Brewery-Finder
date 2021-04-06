@@ -25,10 +25,8 @@ public class Brewery {
 	public Brewery() {
 	}
 	
-	public Brewery(String obdb_id, String name, String street, String city, String state, String postal_code, String website_url,
+	public Brewery(String name, String street, String city, String state, String postal_code, String website_url,
 			String phone) {
-		super();
-		this.obdb_id = obdb_id;
 		this.name = name;
 		this.street = street;
 		this.city = city;

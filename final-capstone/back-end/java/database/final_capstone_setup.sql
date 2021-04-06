@@ -1,1 +1,1 @@
-select * from breweries where lower(city) like '%tacoma%' and lower(state) like '%wa%'
+select * from breweries where street like '%Poop%'
