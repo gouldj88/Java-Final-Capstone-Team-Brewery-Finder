@@ -12,9 +12,7 @@
     </select>      
     
     <form> 
-        <span>
       <input type="text" v-model="searchText"><input type="button" value="Search" v-on:click="textSearch()" />
-      </span>
     </form>
     </div>
 
