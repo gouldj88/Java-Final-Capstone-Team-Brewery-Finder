@@ -11,15 +11,15 @@ export default {
       },
 
       getBreweriesByCity(city) {
-        return http.get(`/breweries/name/${city}`);
+        return http.get(`/breweries/location/city/${city}`);
       },
 
       getBreweriesByState(state) {
-        return http.get(`/breweries/name/${state}`);
+        return http.get(`/breweries/location/state/${state}`);
       },
 
-      getBreweriesByZipCode() {
-        return http.get('/breweries/location/zip/98402');
+      getBreweriesByZipCode(zipCode) {
+        return http.get(`/breweries/location/zip/${zipCode}`);
       }
 
   }

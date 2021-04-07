@@ -1,8 +1,31 @@
 <template>
+
     <div class='brewery-list'>
-        <div v-for="brewery in results" v-bind:key="brewery.name" class="brewery">
-                {{ brewery.name }}
-                
+    
+    <div id="SearchForm">
+    <select v-model="selectedValue" name="SearchType">
+      <option value="1">Select Search Type</option>
+      <option value="2">City</option>
+      <option value="3">State</option>
+      <option value="4">Zip Code</option>
+      <option value="5">Brewery Name</option>
+    </select>      
+    
+    <form> 
+      <input type="text" v-model="searchText"><input type="button" value="Search" v-on:click="textSearch()" />
+    </form>
+    </div>
+
+    <div v-for="brewery in results" v-bind:key="brewery.name" class="brewery">
+    {{ brewery.name }}
+    <br>{{brewery.street}}
+    <br>{{brewery.city}}, {{brewery.state}} {{brewery.postal_code}}
+    <br>{{brewery.phone}}
+    <br><a v-bind:href="brewery.website_url">{{brewery.website_url}}</a>
+    <br><a v-bind:href="'http://www.google.com/maps/place/'+brewery.street+'+'+brewery.city+'+'+brewery.state+'+USA'">View Map</a>
+
+
+     
     </div>
   </div>
 
@@ -10,28 +33,59 @@
 </template>
 
 <script>
-import BreweryServices from '@/services/BreweryServices.js';
+import BreweryServices from '@/services/BreweryServices';
 
 export default{
 name: 'brewery-list',
 
 data () {
     return {
+        searchText: "",
+        selectedValue: 1,
         results: []
     }
 },
 methods: {
-    searchSubmit(){
-        BreweryServices.getBreweriesByName('92804');
-    }
-}
 
-//created() {
-//        BreweryServices.getBreweriesByZipCode().then(response => {
- //           this.results = response.data;
-//    })
+    textSearch(){
+        if (this.selectedValue == 2){
+            this.citySearch();
+        }
+        if (this.selectedValue == 3){
+            this.stateSearch();
+        }
+        if (this.selectedValue == 4){
+            this.zipSearch();
+        }
+        if (this.selectedValue == 5){
+            this.nameSearch();
+        }
+    },
 
+    zipSearch(){
+        BreweryServices.getBreweriesByZipCode(this.searchText).then(response => {
+        this.results = response.data;
+        })
+    },
 
+    citySearch(){
+        BreweryServices.getBreweriesByCity(this.searchText).then(response => {
+        this.results = response.data;
+        })
+    },
+
+    nameSearch(){
+        BreweryServices.getBreweriesByName(this.searchText).then(response => {
+        this.results = response.data;
+        })
+    },
+
+    stateSearch(){
+        BreweryServices.getBreweriesByState(this.searchText).then(response => {
+        this.results = response.data;
+        })
+    },
+  }
 }
 
 
