@@ -13,7 +13,7 @@
     
     <form v-on:submit.prevent="textSearch()"> 
       <input type="text" v-model="searchText">
-      <input type="button" value="Search">
+      <input type="button" value="Search" v-on:click="textSearch()">
     </form>
     </div>
 
