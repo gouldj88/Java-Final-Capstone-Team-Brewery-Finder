@@ -3,18 +3,18 @@
     <div class='brewery-list'>
     
     <div id="SearchForm">
-    <select v-model="selectedValue" name="SearchType">
-      <option value="1">Select Search Type</option>
-      <option value="2">City</option>
-      <option value="3">State</option>
-      <option value="4">Zip Code</option>
-      <option value="5">Brewery Name</option>
-    </select>      
+        <select v-model="selectedValue" name="SearchType">
+            <option value="1">Select Search Type</option>
+            <option value="2">City</option>
+            <option value="3">State</option>
+            <option value="4">Zip Code</option>
+            <option value="5">Brewery Name</option>
+        </select>      
     
-    <form v-on:submit.prevent="textSearch()"> 
-      <input type="text" v-model="searchText">
-      <input type="button" value="Search" v-on:click="textSearch()">
-    </form>
+        <form v-on:submit.prevent="textSearch()"> 
+            <input type="text" v-model="searchText">
+            <input type="button" value="Search" v-on:click="textSearch()">
+        </form>
     </div>
 
     <div v-for="brewery in results" v-bind:key="brewery.name" class="brewery">
