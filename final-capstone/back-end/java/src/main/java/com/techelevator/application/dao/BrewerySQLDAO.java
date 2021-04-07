@@ -26,8 +26,8 @@ public class BrewerySQLDAO implements BreweryDAO {
 	@Override
 	public List<Brewery> getBreweriesByZipCode(String zipCode) {
 		List<Brewery> returnedBreweries = new ArrayList();
-		String sqlQuery = "select * from breweries where postal_code like ?";
-		SqlRowSet theRowSet = jdbcTemplate.queryForRowSet(sqlQuery, zipCode+"%");
+		String sqlQuery = "select * from breweries where postal_code like ? union all select * from userbreweries where postal_code like ? order by name asc";
+		SqlRowSet theRowSet = jdbcTemplate.queryForRowSet(sqlQuery, zipCode+"%", zipCode+"%");
 		while(theRowSet.next()) {
 			Brewery returnedBrewery = mapRowToBrewery(theRowSet);
 			returnedBreweries.add(returnedBrewery);
@@ -38,8 +38,8 @@ public class BrewerySQLDAO implements BreweryDAO {
 	@Override
 	public List<Brewery> getBreweriesByName(String name) {
 		List<Brewery> returnedBreweries = new ArrayList();
-		String sqlQuery = "select * from breweries where lower(name) like ?";
-		SqlRowSet theRowSet = jdbcTemplate.queryForRowSet(sqlQuery, "%"+name.toLowerCase()+"%");
+		String sqlQuery = "select * from breweries where lower(name) like ? union all select * from userbreweries where lower(name) like ? order by name asc";
+		SqlRowSet theRowSet = jdbcTemplate.queryForRowSet(sqlQuery, "%"+name.toLowerCase()+"%", "%"+name.toLowerCase()+"%");
 		while(theRowSet.next()) {
 			Brewery returnedBrewery = mapRowToBrewery(theRowSet);
 			returnedBreweries.add(returnedBrewery);
@@ -50,8 +50,8 @@ public class BrewerySQLDAO implements BreweryDAO {
 	@Override
 	public List<Brewery> getBreweriesByCity(String city) {
 		List<Brewery> returnedBreweries = new ArrayList();
-		String sqlQuery = "select * from breweries where lower(city) like ?";
-		SqlRowSet theRowSet = jdbcTemplate.queryForRowSet(sqlQuery, "%"+city.toLowerCase()+"%");
+		String sqlQuery = "select * from breweries where lower(city) like ? union all select * from userbreweries where lower(city) like ? order by name asc";
+		SqlRowSet theRowSet = jdbcTemplate.queryForRowSet(sqlQuery, "%"+city.toLowerCase()+"%", "%"+city.toLowerCase()+"%");
 		while(theRowSet.next()) {
 			Brewery returnedBrewery = mapRowToBrewery(theRowSet);
 			returnedBreweries.add(returnedBrewery);
@@ -62,8 +62,8 @@ public class BrewerySQLDAO implements BreweryDAO {
 	@Override
 	public List<Brewery> getBreweriesByState(String state) {
 		List<Brewery> returnedBreweries = new ArrayList();
-		String sqlQuery = "select * from breweries where lower(state) like ?";
-		SqlRowSet theRowSet = jdbcTemplate.queryForRowSet(sqlQuery, "%"+state.toLowerCase()+"%");
+		String sqlQuery = "select * from breweries where lower(state) like ? union all select * from userbreweries where lower(state) like ? order by name asc";
+		SqlRowSet theRowSet = jdbcTemplate.queryForRowSet(sqlQuery, "%"+state.toLowerCase()+"%", "%"+state.toLowerCase()+"%");
 		while(theRowSet.next()) {
 			Brewery returnedBrewery = mapRowToBrewery(theRowSet);
 			returnedBreweries.add(returnedBrewery);
@@ -76,8 +76,8 @@ public class BrewerySQLDAO implements BreweryDAO {
 		String obdb_id_spaces = formData.getName().replaceAll("\\s","-");
 		String obdb_id_punctuation = obdb_id_spaces.replaceAll("\\p{Punct}", "");
 		String obdb_id = obdb_id_punctuation.toLowerCase();
-		String myNewBrewery = "insert into breweries (obdb_id, name, street, city, state, postal_code, website_url, phone) values (?, ?, ?, ?, ?, ?, ?, ?)";
-		jdbcTemplate.update(myNewBrewery, obdb_id, formData.getName(), formData.getStreet(), formData.getCity(), formData.getState(), formData.getPostal_code(), formData.getWebsite_url(), formData.getPhone());
+		String myNewBrewery = "insert into userbreweries (obdb_id, name, street, city, state, postal_code, website_url, phone, username) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(myNewBrewery, obdb_id, formData.getName(), formData.getStreet(), formData.getCity(), formData.getState(), formData.getPostal_code(), formData.getWebsite_url(), formData.getPhone(), formData.getUsername());
 	}
 	
     private Brewery mapRowToBrewery(SqlRowSet rs) {
@@ -101,6 +101,7 @@ public class BrewerySQLDAO implements BreweryDAO {
 		brewery.setLongitude(rs.getString("longitude"));
 		brewery.setLatitude(rs.getString("latitude"));
 		brewery.setTags(rs.getString("tags"));
+		brewery.setUsername(rs.getString("username"));
         return brewery;
     }
 }

@@ -11,8 +11,9 @@
       <option value="5">Brewery Name</option>
     </select>      
     
-    <form> 
-      <input type="text" v-model="searchText"><input type="button" value="Search" v-on:click="textSearch()" />
+    <form v-on:submit.prevent="textSearch()"> 
+      <input type="text" v-model="searchText">
+      <input type="button" value="Search">
     </form>
     </div>
 

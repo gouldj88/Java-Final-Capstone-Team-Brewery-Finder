@@ -21,12 +21,13 @@ public class Brewery {
 	private String longitude;
 	private String latitude;
 	private String tags;
+	private String username;
 	
 	public Brewery() {
 	}
 	
 	public Brewery(String name, String street, String city, String state, String postal_code, String website_url,
-			String phone) {
+			String phone, String username) {
 		this.name = name;
 		this.street = street;
 		this.city = city;
@@ -34,6 +35,7 @@ public class Brewery {
 		this.postal_code = postal_code;
 		this.website_url = website_url;
 		this.phone = phone;
+		this.username = username;
 	}
 	
 	public Brewery(String obdb_id, String name, String brewery_type, String street, String address_2,
@@ -168,5 +170,11 @@ public class Brewery {
 	}
 	public void setTags(String tags) {
 		this.tags = tags;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 }
