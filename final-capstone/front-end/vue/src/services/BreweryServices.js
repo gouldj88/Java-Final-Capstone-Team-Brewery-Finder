@@ -20,6 +20,10 @@ export default {
 
       getBreweriesByZipCode(zipCode) {
         return http.get(`/breweries/location/zip/${zipCode}`);
+      },
+
+      addBrewery(newBrewery) {
+        return http.post('/addBrewery', newBrewery);
       }
 
   }
