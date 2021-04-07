@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <h1>BrewFinder</h1>
-    <p>Welcome to your selected list of local breweries!</p>
+    <h1>Brewery Finder</h1>
+    <p>Find breweries based on your search type</p>
     <brewery-list />
   </div>
 </template>
