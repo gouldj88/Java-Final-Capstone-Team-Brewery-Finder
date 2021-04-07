@@ -6,6 +6,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import Searchbar from '../views/Searchbar.vue'
+import AddBrewery from '../views/AddBrewery.vue'
 
 Vue.use(Router)
 
@@ -62,6 +63,14 @@ const router = new Router({
         requiresAuth: false
       }
     },
+    {
+    path: "/addBrewery",
+    name: "addBrewery",
+    component: AddBrewery,
+    meta: {
+      requiresAuth: false
+    }
+  }
   ]
 })
 
