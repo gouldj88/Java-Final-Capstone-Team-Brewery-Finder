@@ -7,6 +7,7 @@ package com.techelevator.application.controller;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.techelevator.application.dao.BeerDAO;
 import com.techelevator.application.dao.BreweryDAO;
+import com.techelevator.application.model.Beer;
 import com.techelevator.application.model.Brewery;
 
 /**********************************************************************************************************************
@@ -26,9 +29,11 @@ import com.techelevator.application.model.Brewery;
 public class ApiController {
 
 	private BreweryDAO breweryDAO;
+	private BeerDAO beerDAO;
 
-	public ApiController(BreweryDAO breweryDAO) {
+	public ApiController(BreweryDAO breweryDAO, BeerDAO beerDAO) {
 		this.breweryDAO = breweryDAO;
+		this.beerDAO = beerDAO;
 	}
 		
 	@RequestMapping(path = "/breweries/location/zip/{zipCode}", method = RequestMethod.GET)
@@ -55,7 +60,28 @@ public class ApiController {
 	public void createNewBrewery(@RequestBody Brewery formBrewery) {
 	    breweryDAO.createNewBrewery(formBrewery);
 	}
+	
+	// Beer Bits
+	
+	@RequestMapping(path = "/breweries/{obdbId}/beerlist", method = RequestMethod.GET)
+	public List<Beer> getBeerListByBrewery(@PathVariable String obdbId) {
+	    return beerDAO.getBeerListByBrewery(obdbId);
+	}
+	
+	@RequestMapping(path = "/beers/{beerId}", method = RequestMethod.GET)
+	public List<Beer> getSingleBeerInfo(@PathVariable String beerId) {
+	    return beerDAO.getSingleBeerInfo(beerId);
+	}
 
+	@RequestMapping(path = "/beers/maintenance/addBeer", method = RequestMethod.POST)
+	public void addABeer(@RequestBody Beer formData) {
+	    beerDAO.addABeer(formData);
+	}
+	
+	@RequestMapping(path = "/beers/maintenance/deleteBeer/{beerId}", method = RequestMethod.POST)
+	public void deleteABeer(@PathVariable String beerId) {
+	    beerDAO.deleteABeer(beerId);
+	}
 	
 /********************************************************************************************************************* 
 * Use this method if you'd like to log calls to your controllers - these message can aid in your troubleshooting
