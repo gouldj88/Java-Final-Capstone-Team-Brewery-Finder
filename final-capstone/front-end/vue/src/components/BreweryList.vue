@@ -43,7 +43,9 @@ data () {
     return {
         searchText: "",
         selectedValue: 1,
-        results: []
+        results: [],
+        pageNumber: 1,
+        amountOfPages: ""
     }
 },
 methods: {
