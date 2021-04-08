@@ -1,4 +1,5 @@
 <template>
+<body>
   <div id="app">
     <header>
         <div id="nav">
@@ -8,11 +9,13 @@
         
         </div>
         </header>
-        <router-view />
+      
 
     
 
     <article class="container">
+       <router-view />
+       <h1>HI</h1>
     </article>
 
     <aside class="sidebar-left">
@@ -20,36 +23,56 @@
     </aside>
 
     <aside class="sidebar-right">
+       <h1>HI</h1>
     </aside>
 
 
     <footer>
     </footer>
   </div>
-
+</body>
 </template>
 
 <style scoped>
+body{
+  display: grid;
+    grid-template-columns: 100% 100% 100% ;
 
+ grid-template-areas:
+ "header header header"
+ "sidebar-left  container sidebar-right"
+ "footer footer footer"
+}
 header {
+  grid-area: header;
     background-color: rgb(138, 106, 0);
+    width: 100%;
 }
 
 .container {
-  background-color: rgb(138, 106, 0);
+  grid-area: container;
+  background-color: rgb(175, 44, 34);
+  justify-content: center;
+  width: 66%;
   
 }
 
 .sidebar-left {
-  background-color: rgb(138, 106, 0);
-  width: 20%;
+  grid-area: sidebar-left;
+  background-color: rgb(39, 138, 0);
+  width: 10%;
+  float: left;
+  height: 236%;
   
   
 }
 
 .sidebar-right {
+  grid-area: sidebar-right;
   background-color: rgb(138, 106, 0);
-  width: 20%;
+  width: 10%;
+  float: right;
+  height: 236%;
 }
 
 footer {
