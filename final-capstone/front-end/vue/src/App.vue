@@ -2,9 +2,6 @@
 
   <div id="app">
     <body>
-
-        <div id="nav">        
-        </div>
         <div class="theHeader">
     <the-header></the-header>
     </div>
@@ -51,7 +48,9 @@ body{
   display: grid;  
   grid-gap: 20px;
   grid-template-columns: 15% 67.5% 15% ;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 15% auto 15%;
+  justify-content:flex-start;
+  align-items: flex-start;
   height: 100vh;
 
  grid-template-areas:
@@ -59,6 +58,7 @@ body{
     "sidebar-left   container     sidebar-right"
     "footer         footer        footer";
 }
+
 .theHeader {
     grid-area: header;
     background-color: rgb(145, 88, 3);   
@@ -67,16 +67,14 @@ body{
     display: flex;
     align-items: center;
     max-height: 90px;
-
 }
+
 .container {
   grid-area: container;
   background-color: rgb(255, 255, 255);
-  justify-content: center;
+  justify-content: top;
   align-items: top;
   text-align: center;
-  grid-row-start: 2;
-
 }
 
 .sidebar-left {
@@ -100,9 +98,8 @@ footer {
   margin-bottom: 0px;
   grid-row-start: 3;
   grid-row-end: 3;
-  max-height: 90px;
+  max-height: 50px;
 }
-
 
 img {
   align-items: center;
@@ -112,7 +109,5 @@ a:active, a:visited {
   color: white;
   text-decoration: none;
 }
-
-
 </style>
 
