@@ -3,13 +3,23 @@
     <div class='brewery-list'>
     
     <div id="SearchForm">
-        <select v-model="selectedValue" name="SearchType">
-            <option value="1">Select Search Type</option>
-            <option value="2">City</option>
-            <option value="3">State</option>
-            <option value="4">Zip Code</option>
-            <option value="5">Brewery Name</option>
-        </select>      
+
+    <v-container fluid>
+  
+        <v-col cols="6">
+          <v-select
+            v-model="dropdown"
+            :hint="`${dropdown.type}`"
+            :items="ddItems"
+            item-text="type"
+            item-value="ddValue"
+            label="Select"
+            persistent-hint
+            return-object
+            single-line
+          ></v-select>
+        </v-col>
+    </v-container>
     
         <v-form v-on:submit.prevent="textSearch()"> 
             <v-text-field type="text" v-model="searchText" label="Please enter your search information here."></v-text-field>
@@ -61,20 +71,27 @@ data () {
         { text: 'State', value: 'state' },
         { text: 'Zip Code', value: 'postal_code' },
       ],
+        dropdown: { type: 'Select Search Type', ddValue: '1' },
+        ddItems: [
+        { type: 'City', ddValue: '2' },
+        { type: 'State', ddValue: '3' },
+        { type: 'Zip Code', ddValue: '4' },
+        { type: 'Brewery Name', ddValue: '5' },
+      ],
     }
 },
 methods: {
     textSearch(){
-        if (this.selectedValue == 2){
+        if (this.dropdown.ddValue == 2){
             this.citySearch();
         }
-        if (this.selectedValue == 3){
+        if (this.dropdown.ddValue == 3){
             this.stateSearch();
         }
-        if (this.selectedValue == 4){
+        if (this.dropdown.ddValue == 4){
             this.zipSearch();
         }
-        if (this.selectedValue == 5){
+        if (this.dropdown.ddValue == 5){
             this.nameSearch();
         }
     },
