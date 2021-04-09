@@ -1,71 +1,69 @@
 <template>
 
-    <div class='brewery-list'>
+    <div id='brewery-list'>
     
-    <div id="SearchForm">
-
     <v-container fluid>
-      <v-row align="center">
-        <v-col cols="6">
-          <v-subheader>
-            Custom items
-          </v-subheader>
-        </v-col>
-  
-        <v-col cols="6">
           <v-select
             v-model="dropdown"
-            :hint="`${dropdown.type}`"
             :items="ddItems"
             item-text="type"
             item-value="ddValue"
-            label="Select"
+            label="Please Select Search Type"
+            filled
             persistent-hint
             return-object
             single-line
           ></v-select>
-        </v-col>
-      </v-row>
-
-        
-
-
-
-
+    </v-container>
     
-        <form v-on:submit.prevent="textSearch()"> 
-            <input type="text" v-model="searchText">
-            <input type="button" value="Search" v-on:click="textSearch()">
-        </form>
+    <div v-if="this.dropdown.ddValue > 1">
+        <v-form v-on:submit.prevent="textSearch()"> 
+            <v-text-field type="text" v-model="searchText" label="Please enter your search information here."></v-text-field>
+            <v-btn v-on:click="textSearch()">Search</v-btn>
+        </v-form>
     </div>
-
-    <div v-for="brewery in results" v-bind:key="brewery.name" class="brewery">
-    {{ brewery.name }}
-    <br>{{brewery.street}}
-    <br>{{brewery.city}}, {{brewery.state}} {{brewery.postal_code}}
-    <br>{{brewery.phone}}
-    <br><a v-bind:href="brewery.website_url">{{brewery.website_url}}</a>
-    <br><a v-bind:href="'http://www.google.com/maps/place/'+brewery.street+'+'+brewery.city+'+'+brewery.state+'+USA'">View Map</a>
-
-    </div>
-    
-  </div>
-
+  <v-app id="inspire">
+    <v-data-table v-if="resultsNotHidden"
+      :headers="headers"
+      :items="results"
+      :items-per-page="5"
+      class="elevation-1"
+    >
+    </v-data-table>
+  </v-app>
+  
+</div>
 
 </template>
 
 <script>
 import BreweryServices from '@/services/BreweryServices';
 
+
+
 export default{
 name: 'brewery-list',
 
 data () {
     return {
+        resultsNotHidden: false,
+        searchBarNotHidden: false,
         searchText: "",
         selectedValue: 1,
         results: [],
-        dropdown: { type: 'Select Search Type', ddValue: '1' },
+        headers: [
+        {
+          text: 'Brewery',
+          align: 'start',
+          sortable: false,
+          value: 'name'
+        },
+        { text: 'Address', value: 'street' },
+        { text: 'City', value: 'city' },
+        { text: 'State', value: 'state' },
+        { text: 'Zip Code', value: 'postal_code' },
+      ],
+        dropdown: { type: '', ddValue: '1' },
         ddItems: [
         { type: 'City', ddValue: '2' },
         { type: 'State', ddValue: '3' },
@@ -76,16 +74,17 @@ data () {
 },
 methods: {
     textSearch(){
-        if (this.selectedValue == 2){
+        this.resultsNotHidden = !this.resultsNotHidden;
+        if (this.dropdown.ddValue == 2){
             this.citySearch();
         }
-        if (this.selectedValue == 3){
+        if (this.dropdown.ddValue == 3){
             this.stateSearch();
         }
-        if (this.selectedValue == 4){
+        if (this.dropdown.ddValue == 4){
             this.zipSearch();
         }
-        if (this.selectedValue == 5){
+        if (this.dropdown.ddValue == 5){
             this.nameSearch();
         }
     },
@@ -113,27 +112,21 @@ methods: {
         this.results = response.data;
         })
     },
-}
+    }
 }
 
 
 </script>
 
 <style scoped>
-.brewery{
-padding: 30px 50px;
-    max-width: 1050px;
-    margin: 0 auto;
-    border-top: 1px solid #d8d8d8;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    position: relative;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
 
 #SearchForm {
   display: inline
+}
+
+.v-text-field{
+      width: 400px;
+      justify-content: center;
 }
 
 </style>

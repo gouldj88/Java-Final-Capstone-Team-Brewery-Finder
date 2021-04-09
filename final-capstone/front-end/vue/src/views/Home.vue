@@ -2,13 +2,13 @@
   <div class="home">
     <h1>Search For a Brewery</h1>
     <p>Find breweries based on your search type</p>
-    <brewery-list-test />
+    <brewery-list />
   </div>
 </template>
 
 <script>
 
-import BreweryListTest from '@/components/BreweryListTest';
+import BreweryList from '@/components/BreweryList';
 
 export default {
   name: 'Home',
@@ -17,7 +17,7 @@ export default {
     };
   },
   components: {
-      BreweryListTest
+      BreweryList
   }
 }
 </script>
