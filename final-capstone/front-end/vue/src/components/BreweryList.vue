@@ -2,7 +2,8 @@
 
     <div id='brewery-list'>
     
-    <v-container fluid>
+    <v-container >
+        <div class="dropdown-and-search">
           <v-select
             v-model="dropdown"
             :items="ddItems"
@@ -14,14 +15,15 @@
             return-object
             single-line
           ></v-select>
-    </v-container>
+ 
     
-    <div v-if="this.dropdown.ddValue > 1">
+    <div  v-if="this.dropdown.ddValue > 1">
         <v-form v-on:submit.prevent="textSearch()"> 
             <v-text-field type="text" v-model="searchText" label="Please enter your search information here."></v-text-field>
             <v-btn v-on:click="textSearch()">Search</v-btn>
         </v-form>
     </div>
+        </div>
   <v-app id="inspire">
     <v-data-table v-if="resultsNotHidden"
       :headers="headers"
@@ -31,7 +33,7 @@
     >
     </v-data-table>
   </v-app>
-  
+   </v-container>
 </div>
 
 </template>
@@ -124,9 +126,11 @@ methods: {
   display: inline
 }
 
-.v-text-field{
-      width: 400px;
-      justify-content: center;
+.dropdown-and-search{
+margin: 0 auto;
+width: 40%;
+font-size: ;
 }
+
 
 </style>

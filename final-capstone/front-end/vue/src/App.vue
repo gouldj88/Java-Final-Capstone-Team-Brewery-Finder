@@ -11,7 +11,7 @@
     </article>
 
     <aside class="sidebar-left">
-      <h1>HI</h1>
+      
     </aside>
 
     <aside class="sidebar-right">
