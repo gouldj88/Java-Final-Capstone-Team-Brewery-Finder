@@ -26,6 +26,7 @@
     <br><a v-bind:href="'http://www.google.com/maps/place/'+brewery.street+'+'+brewery.city+'+'+brewery.state+'+USA'">View Map</a>
 
     </div>
+    
   </div>
 
 
