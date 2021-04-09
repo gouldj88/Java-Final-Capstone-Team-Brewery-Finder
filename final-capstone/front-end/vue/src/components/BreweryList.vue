@@ -3,7 +3,7 @@
     <div class='brewery-list'>
     
     <div id="SearchForm">
-        <select class ="select-value" v-model="selectedValue" name="SearchType">
+        <select v-model="selectedValue" name="SearchType">
             <option value="1">Select Search Type</option>
             <option value="2">City</option>
             <option value="3">State</option>
@@ -11,7 +11,7 @@
             <option value="5">Brewery Name</option>
         </select>      
     
-        <form v-on:submit.prevent="textSearch()" id="searchBar"> 
+        <form v-on:submit.prevent="textSearch()"> 
             <input type="text" v-model="searchText">
             <input type="button" value="Search" v-on:click="textSearch()">
         </form>
@@ -47,25 +47,18 @@ data () {
     }
 },
 methods: {
-//    hideSearchBar() {
-//        ('searchBar').hide();
-    },
     textSearch(){
         if (this.selectedValue == 2){
             this.citySearch();
-//            ('searchBar').show();
         }
         if (this.selectedValue == 3){
             this.stateSearch();
-//            ('searchBar').show();
         }
         if (this.selectedValue == 4){
             this.zipSearch();
-//            ('searchBar').show();
         }
         if (this.selectedValue == 5){
             this.nameSearch();
-//            ('searchBar').show();
         }
     },
 
@@ -92,6 +85,7 @@ methods: {
         this.results = response.data;
         })
     },
+}
 }
 
 

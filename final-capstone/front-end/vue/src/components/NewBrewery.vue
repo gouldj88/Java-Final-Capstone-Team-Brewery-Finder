@@ -30,7 +30,9 @@
 </template>
 
 <script>
-
+import Vue from "vue";
+import VueSimpleAlert from 'vue-simple-alert';
+Vue.use(VueSimpleAlert);
 import breweryService from '../services/BreweryServices';
 
 export default {
@@ -51,9 +53,13 @@ export default {
   methods: {
     addBrewery(){
       breweryService.addBrewery(this.newBrewery).then(response => {  // send the API response to a function 
-      if(response.status === 201) { // if post was successful (HTTP status 201)
-          console.log("This worked wonderfully! Hurrah!");
+      if(response.status === 200) { // if post was successful (HTTP status 201)
+          this.$router.push("/")
     }
+    if (response.status === 500) {
+      this.$alert("OH NO! Brewery details are incorrect.")
+    }
+    
   })
 }
 }

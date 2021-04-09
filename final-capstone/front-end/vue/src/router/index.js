@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import Searchbar from '../views/Searchbar.vue'
 import AddBrewery from '../views/AddBrewery.vue'
+import NewBeer from '../views/AddBeer.vue'
 
 Vue.use(Router)
 
@@ -70,7 +71,15 @@ const router = new Router({
     meta: {
       requiresAuth: false
     }
-  }
+    },
+    {
+      path: "/addBeer",
+      name: "addBeer",
+      component: NewBeer,
+      meta: {
+        requiresAuth: false
+      }
+    },
   ]
 })
 
