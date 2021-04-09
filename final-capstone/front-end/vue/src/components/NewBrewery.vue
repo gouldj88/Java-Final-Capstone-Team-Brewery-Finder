@@ -56,7 +56,7 @@ export default {
           title: "Success!",
           text: "Your brewery has been added to our database.",
           type: "success",
-          timer: 3000
+          timer: 300000
             }).then(r => {
              console.log(r);
              this.$router.push("/");
@@ -68,7 +68,7 @@ export default {
           title: "Brewery details are incorrect!",
           text: "Please double-check your brewery information.",
           type: "error",
-          timer: 3000
+          timer: 300000
         })
       }
     )}
