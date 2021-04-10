@@ -1,5 +1,5 @@
 <template>
-  <div class="brewery-info">
+  <div class="breweryInfo">
     <h1>Brewery Information</h1>
     <brewery-info />
   </div>
@@ -10,7 +10,7 @@
 import BreweryInfo from '@/components/BreweryInfo.vue';
 
 export default {
-  name: 'brewery-info',
+  name: 'goofyGoober',
   data() {
     return {
     };

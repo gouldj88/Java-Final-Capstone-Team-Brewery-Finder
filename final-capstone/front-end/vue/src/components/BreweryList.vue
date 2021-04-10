@@ -48,7 +48,7 @@
               </div>
 
               <div v-if="item.username !== null">
-                <router-link>
+                <router-link :to="{ name: 'breweryinfo', params: { id: item.obdb_id }}">
                   {{ item.name }}
                 </router-link>
               </div>

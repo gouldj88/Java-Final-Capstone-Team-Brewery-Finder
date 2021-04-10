@@ -35,7 +35,12 @@ public class ApiController {
 		this.breweryDAO = breweryDAO;
 		this.beerDAO = beerDAO;
 	}
-		
+	
+	@RequestMapping(path = "/breweries/{obdbId}", method = RequestMethod.GET)
+	public List<Brewery> getSingleBreweryInfo(@PathVariable String obdbId) {
+	    return breweryDAO.getSingleBreweryInfo(obdbId);
+	}
+	
 	@RequestMapping(path = "/breweries/location/zip/{zipCode}", method = RequestMethod.GET)
 	public List<Brewery> getBreweriesByZipCode(@PathVariable String zipCode) {
 	    return breweryDAO.getBreweriesByZipCode(zipCode);

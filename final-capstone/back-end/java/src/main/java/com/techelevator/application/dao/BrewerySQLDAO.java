@@ -23,6 +23,18 @@ public class BrewerySQLDAO implements BreweryDAO {
         this.jdbcTemplate = new JdbcTemplate(aDataSource);
     } 
 
+    @Override
+	public List<Brewery> getSingleBreweryInfo(String obdbId) {
+		List<Brewery> returnedBreweries = new ArrayList();
+		String sqlQuery = "select * from userbreweries where obdb_id = ?";
+		SqlRowSet theRowSet = jdbcTemplate.queryForRowSet(sqlQuery, obdbId);
+		while(theRowSet.next()) {
+			Brewery returnedBrewery = mapRowToBrewery(theRowSet);
+			returnedBreweries.add(returnedBrewery);
+		}
+		return returnedBreweries;
+	}
+    
 	@Override
 	public List<Brewery> getBreweriesByZipCode(String zipCode) {
 		List<Brewery> returnedBreweries = new ArrayList();

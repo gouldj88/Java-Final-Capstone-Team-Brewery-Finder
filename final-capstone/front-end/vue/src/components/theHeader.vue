@@ -2,6 +2,7 @@
     <div>
         <img src="../assets/hops.png" style="width: 40px">
         <span> Brewery Finder </span>
+
         <button type="button">LOGIN</button>
     </div>
 </template>

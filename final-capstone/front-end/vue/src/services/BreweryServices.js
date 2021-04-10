@@ -6,6 +6,10 @@ const http = axios.create({
 
 export default {
 
+      getSingleBreweryInfo(obdbId){
+        return http.get(`/breweries/${obdbId}`)
+      },
+
       getBreweriesByName(name) {
         return http.get(`/breweries/name/${name}`);
       },

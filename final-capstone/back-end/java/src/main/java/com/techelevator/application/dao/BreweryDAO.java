@@ -14,6 +14,8 @@ public interface BreweryDAO {
 	
 	List<Brewery> getBreweriesByState(String state);
 	
+	List<Brewery> getSingleBreweryInfo(String obdbId);
+	
 	void createNewBrewery(Brewery formData);
 }
 
