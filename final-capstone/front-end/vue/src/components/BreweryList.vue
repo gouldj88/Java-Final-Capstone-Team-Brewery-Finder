@@ -151,8 +151,6 @@ methods: {
 .dropdown-and-search{
 margin: 0 auto;
 width: 40%;
-font-size: ;
 }
-
 
 </style>
