@@ -61,8 +61,6 @@
 <script>
 import BreweryServices from '@/services/BreweryServices';
 
-
-
 export default{
 name: 'brewery-list',
 

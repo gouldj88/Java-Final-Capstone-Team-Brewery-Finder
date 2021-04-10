@@ -83,7 +83,8 @@ public class BrewerySQLDAO implements BreweryDAO {
     private Brewery mapRowToBrewery(SqlRowSet rs) {
        
     	Brewery brewery = new Brewery();
-        brewery.setObdb_id(rs.getString("obdb_id"));
+        
+    	brewery.setObdb_id(rs.getString("obdb_id"));
 		brewery.setName(rs.getString("name"));
 		brewery.setBrewery_type(rs.getString("brewery_type"));
 		brewery.setStreet(rs.getString("street"));
@@ -92,9 +93,33 @@ public class BrewerySQLDAO implements BreweryDAO {
 		brewery.setCity(rs.getString("city"));
 		brewery.setState(rs.getString("state"));
 		brewery.setCounty_province(rs.getString("county_province"));
-		brewery.setPostal_code(rs.getString("postal_code"));
+		
+		String ogZipCode = rs.getString("postal_code");
+		
+		String zipFixed;
+		if (ogZipCode == null) {
+			zipFixed = null;
+		} else
+		if (ogZipCode.length() <= 4) {
+			zipFixed = ogZipCode;
+		}
+		else {
+			zipFixed = ogZipCode.substring(0,5);
+		}
+		
+		brewery.setPostal_code(zipFixed);
 		brewery.setWebsite_url(rs.getString("website_url"));
-		brewery.setPhone(rs.getString("phone"));
+		
+		String ogPhone = rs.getString("phone");
+		
+    	String phoneFixed;
+		if (ogPhone == null) {
+			phoneFixed = null;
+		} else {
+			phoneFixed = "(" + ogPhone.substring(0,3) + ") " + ogPhone.substring(3,6) + "-" + ogPhone.substring(6);
+		}
+    
+    	brewery.setPhone(phoneFixed);
 		brewery.setCreated_at(rs.getDate("created_at"));
 		brewery.setUpdated_at(rs.getDate("updated_at"));
 		brewery.setCountry(rs.getString("country"));
