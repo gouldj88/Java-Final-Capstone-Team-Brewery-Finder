@@ -1,68 +1,85 @@
 <template>
-
-    <div id='brewery-list'>
-    
-    <v-container >
-        <div class="dropdown-and-search">
-          <v-select
-            v-model="dropdown"
-            :items="ddItems"
-            item-text="type"
-            item-value="ddValue"
-            label="Please Select Search Type"
-            filled
-            persistent-hint
-            return-object
-            single-line
-          ></v-select>
+   <div id='brewery-list'>
+     <v-container >
+       <div class="dropdown-and-search">
+           <v-select
+             v-model="dropdown"
+             :items="ddItems"
+             item-text="type"
+              item-value="ddValue"
+              label="Please Select Search Type"
+              filled
+              persistent-hint
+              return-object
+              single-line
+           ></v-select>
  
     
-    <div v-if="this.dropdown.ddValue > 1">
-        <v-form v-on:submit.prevent="textSearch()"> 
-            <v-text-field type="text" v-model="searchText" label="Please enter your search information here."></v-text-field>
-            <v-btn v-on:click="textSearch()">Search</v-btn>
-        </v-form>
+              <div v-if="this.dropdown.ddValue > 1">
+                <v-form v-on:submit.prevent="textSearch()"> 
+                  <v-text-field type="text" v-model="searchText" label="Please enter your search information here."></v-text-field>
+                  <v-btn v-on:click="textSearch()">Search</v-btn>
+                </v-form>
+              </div>
     </div>
-    </div>
 
-<template>     
-     
-  <v-app id="inspire">
-    <v-data-table v-if="resultsNotHidden"
-      :headers="headers"
-      :items="results"
-      :single-expand="singleExpand"
-      :items-per-page="10"
-      item-key="name"
-      show-expand
-      class="elevation-1"
-    >
-    <template v-slot:expanded-item="{ headers, item }">
-      <td :colspan="headers.length">
-        <iframe
-            width=100%
-            height="250"
-            style="border:0"
-            loading="lazy"
-            allowfullscreen
-            v-bind:src="googleMapsAPI + item.street + '+' + item.city + '+' + item.state + '+' + item.postal_code + '+USA'">
-</iframe>
-      </td>
-    </template>
+    <template>      
+      <v-app id="inspire">
+        <v-data-table v-if="resultsNotHidden"
+          :headers="headers"
+          :items="results"
+          :single-expand="singleExpand"
+          :items-per-page="10"
+          item-key="name"
+          show-expand
+          class="elevation-1"
+          >
 
-    </v-data-table>
-  </v-app>
-</template>  
-   </v-container>
-</div>
+            <template v-slot:[`item.name`]="{ item }">
 
+              <div v-if="item.website_url !== null && item.username == null">  
+               <a target="_blank" :href="item.website_url"> 
+                {{ item.name }}
+              </a>
+              </div>
+
+              <div v-if="item.website_url == null && item.username == null">  
+                {{ item.name }}
+              </div>
+
+              <div v-if="item.username !== null">
+                <router-link>
+                  {{ item.name }}
+                </router-link>
+              </div>
+
+            </template>
+
+
+          <template v-slot:expanded-item="{ headers, item }">
+            <td :colspan="headers.length">
+              <iframe
+                width=100%
+                height="250"
+                style="border:0"
+                loading="lazy"
+                allowfullscreen
+                v-bind:src="googleMapsAPI + item.street + '+' + item.city + '+' + item.state + '+' + item.postal_code + '+USA'">
+              </iframe>
+            </td>
+          </template>
+        </v-data-table>
+      </v-app>
+    </template>  
+  </v-container>
+  </div>
 </template>
 
 <script>
 import BreweryServices from '@/services/BreweryServices';
 
 export default{
-name: 'brewery-list',
+name: 'brewery-info',
 
 data () {
     return {
@@ -97,6 +114,7 @@ data () {
     }
 },
 methods: {
+
     textSearch(){
         this.resultsNotHidden = !this.resultsNotHidden;
         if (this.dropdown.ddValue == 2){
@@ -138,8 +156,6 @@ methods: {
     },
     }
 }
-
-
 </script>
 
 <style scoped>
