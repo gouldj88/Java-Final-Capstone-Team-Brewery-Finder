@@ -17,22 +17,42 @@
           ></v-select>
  
     
-    <div  v-if="this.dropdown.ddValue > 1">
+    <div v-if="this.dropdown.ddValue > 1">
         <v-form v-on:submit.prevent="textSearch()"> 
             <v-text-field type="text" v-model="searchText" label="Please enter your search information here."></v-text-field>
             <v-btn v-on:click="textSearch()">Search</v-btn>
         </v-form>
     </div>
-        </div>
+    </div>
+
+<template>     
+     
   <v-app id="inspire">
     <v-data-table v-if="resultsNotHidden"
       :headers="headers"
       :items="results"
-      :items-per-page="5"
+      :single-expand="singleExpand"
+      :items-per-page="10"
+      item-key="name"
+      show-expand
       class="elevation-1"
     >
+    <template v-slot:expanded-item="{ headers, item }">
+      <td :colspan="headers.length">
+        <iframe
+            width=100%
+            height="250"
+            style="border:0"
+            loading="lazy"
+            allowfullscreen
+            v-bind:src="googleMapsAPI + item.street + '+' + item.city + '+' + item.state + '+' + item.postal_code + '+USA'">
+</iframe>
+      </td>
+    </template>
+
     </v-data-table>
   </v-app>
+</template>  
    </v-container>
 </div>
 
@@ -48,10 +68,13 @@ name: 'brewery-list',
 
 data () {
     return {
+        googleMapsAPI: "https://www.google.com/maps/embed/v1/place?key=AIzaSyCA0ZsJtAez-gVSYp1Z8Blv5N1iFiLu1Ug&q=",
+        singleExpand: true,
         resultsNotHidden: false,
         searchBarNotHidden: false,
         searchText: "",
         selectedValue: 1,
+        expanded: [],
         results: [],
         headers: [
         {
@@ -64,6 +87,7 @@ data () {
         { text: 'City', value: 'city' },
         { text: 'State', value: 'state' },
         { text: 'Zip Code', value: 'postal_code' },
+        { text: 'Phone', value: 'phone'}
       ],
         dropdown: { type: '', ddValue: '1' },
         ddItems: [
