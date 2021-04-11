@@ -121,8 +121,8 @@
 body{
   display: grid;  
   grid-gap: 20px;
-  grid-template-columns: 10% 80% 10% ;
-  grid-template-rows: 10% 80% 10%;
+  grid-template-columns: 15% 67.5% 15% ;
+  grid-template-rows: 15% auto 15%;
   justify-content:flex-start;
   align-items: flex-start;
   height: 100vh;
