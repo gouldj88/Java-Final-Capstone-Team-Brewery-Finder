@@ -4,7 +4,7 @@
     <body>
      <link href='https://fonts.googleapis.com/css?family=Fira Sans' rel='stylesheet'>
     <img src="@/assets/brewery-front.jpg" id="bg" alt="">
-
+    
 
     <div class="theHeader">
     <the-header></the-header>
