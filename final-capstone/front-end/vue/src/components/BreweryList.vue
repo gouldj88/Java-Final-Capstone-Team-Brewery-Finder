@@ -63,6 +63,7 @@
                 height="250"
                 style="border:0"
                 loading="lazy"
+                id="google-maps"
                 allowfullscreen
                 v-bind:src="googleMapsAPI + item.street + '+' + item.city + '+' + item.state + '+' + item.postal_code + '+USA'">
               </iframe>
@@ -162,6 +163,11 @@ methods: {
 
 #SearchForm {
   display: inline
+}
+
+#google-maps {
+  margin-top: 15px;
+  margin-bottom: 9px;
 }
 
 .dropdown-and-search{

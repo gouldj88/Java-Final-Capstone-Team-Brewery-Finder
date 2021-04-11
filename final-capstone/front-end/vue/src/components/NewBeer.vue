@@ -7,6 +7,8 @@
     <input type="text" v-model="newBeer.obdb_id"> <br>
     <p> Beer Name: </p>
     <input type="text" v-model="newBeer.name"> <br>
+    <p> Beer Brewery: </p>
+    <input type="text" v-model="newBeer.brewery"> <br>
     <p> Description: </p>
     <input type="text" v-model="newBeer.description"> <br>
     <p> Image: </p>
@@ -33,6 +35,7 @@ export default {
        newBeer: {
         obdb_id: "",
         name: "",
+        brewery: "",
         description: "",
         image: "",
         abv: "",

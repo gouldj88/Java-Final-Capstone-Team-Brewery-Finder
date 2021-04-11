@@ -29,6 +29,7 @@ CREATE TABLE beers (
 beer_id serial PRIMARY KEY,
 obdb_id character varying(255) not null,
 beer_name character varying(255) not null,
+brewery character varying(255) not null,
 description character varying(255) default null,
 image character varying(255) default null,
 abv character varying(255) default null,

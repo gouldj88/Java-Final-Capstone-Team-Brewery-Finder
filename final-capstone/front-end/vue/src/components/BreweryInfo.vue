@@ -23,14 +23,14 @@
           hide-default-footer
           class="elevation-1"
           >
-
+  
           <template v-slot:expanded-item="{ headers, item }">
             <td :colspan="headers.length">
            {{item.name}}
            {{item.description}}
            {{item.abv}}
            {{item.type}}
-           <img v-bind:src="item.image">
+           <img v-bind:src="item.image" id="beer-image">
 
 
             </td>
@@ -82,5 +82,12 @@ import BeerService from '@/services/BeerService';
 </script>
 
 <style scoped>
+
+#beer-image {
+  margin-top: 20px;
+  margin-bottom: 15px;
+  height: 200px;
+  float: left;
+}
  
 </style>

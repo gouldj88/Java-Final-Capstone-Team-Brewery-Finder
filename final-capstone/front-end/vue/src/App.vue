@@ -122,7 +122,7 @@ body{
   display: grid;  
   grid-gap: 20px;
   grid-template-columns: 10% 80% 10% ;
-  grid-template-rows: 10% auto 10%;
+  grid-template-rows: 10% 80% 10%;
   justify-content:flex-start;
   align-items: flex-start;
   height: 100vh;

@@ -50,8 +50,8 @@ public class BeerSQLDAO implements BeerDAO {
 	}
 	
 	public void addABeer(Beer formData) {
-		String myNewBeer = "insert into beers (obdb_id, beer_name, description, image, abv, beer_type) values (?, ?, ?, ?, ?, ?)";
-		jdbcTemplate.update(myNewBeer, formData.getObdb_id(), formData.getName(), formData.getDescription(), formData.getImage(), formData.getAbv(), formData.getType());
+		String myNewBeer = "insert into beers (obdb_id, beer_name, brewery, description, image, abv, beer_type) values (?, ?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(myNewBeer, formData.getObdb_id(), formData.getName(), formData.getBrewery(), formData.getDescription(), formData.getImage(), formData.getAbv(), formData.getType());
 	}
 	
 	public void deleteABeer(String beerId) {
@@ -65,6 +65,7 @@ public class BeerSQLDAO implements BeerDAO {
 		beer.setBeer_id(rs.getString("beer_id"));
 		beer.setObdb_id(rs.getString("obdb_id"));
 		beer.setName(rs.getString("beer_name"));
+		beer.setBrewery(rs.getString("brewery"));
 		beer.setDescription(rs.getString("description"));
 		beer.setImage(rs.getString("image"));
 		beer.setAbv(rs.getString("abv"));

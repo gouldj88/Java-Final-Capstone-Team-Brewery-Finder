@@ -5,6 +5,7 @@ public class Beer {
 	private String beer_id;
 	private String obdb_id;
 	private String name;
+	private String brewery;
 	private String description;
 	private String image;
 	private String abv;
@@ -13,19 +14,21 @@ public class Beer {
 	public Beer() {
 	}
 	
-	public Beer(String obdb_id, String name, String description, String image, String abv, String type) {
+	public Beer(String obdb_id, String name, String brewery, String description, String image, String abv, String type) {
 		this.obdb_id = obdb_id;
 		this.name = name;
+		this.brewery = brewery;
 		this.description = description;
 		this.image = image;
 		this.abv = abv;
 		this.type = type;
 	}
 	
-	public Beer(String beer_id, String obdb_id, String name, String description, String image, String abv, String type) {
+	public Beer(String beer_id, String obdb_id, String name, String brewery, String description, String image, String abv, String type) {
 		this.beer_id = beer_id;
 		this.obdb_id = obdb_id;
 		this.name = name;
+		this.brewery = brewery;
 		this.description = description;
 		this.image = image;
 		this.abv = abv;
@@ -54,6 +57,14 @@ public class Beer {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getBrewery() {
+		return brewery;
+	}
+
+	public void setBrewery(String brewery) {
+		this.brewery = brewery;
 	}
 
 	public String getDescription() {
