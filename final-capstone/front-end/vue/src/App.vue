@@ -2,7 +2,7 @@
 
   <div id="app">
     <body>
-
+     <link href='https://fonts.googleapis.com/css?family=Fira Sans' rel='stylesheet'>
     <img src="@/assets/brewery-front.jpg" id="bg" alt="">
 
 
@@ -89,8 +89,8 @@
 body{
   display: grid;  
   grid-gap: 20px;
-  grid-template-columns: 15% 67.5% 15% ;
-  grid-template-rows: 15% auto 15%;
+  grid-template-columns: 10% 80% 10% ;
+  grid-template-rows: 10% auto 10%;
   height: 100vh;
 
  grid-template-areas:

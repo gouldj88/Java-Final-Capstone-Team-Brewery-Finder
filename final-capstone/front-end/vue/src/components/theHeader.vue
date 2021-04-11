@@ -17,6 +17,7 @@
           dark
           v-bind="attrs"
           v-on="on"
+          id="sexyfont"
         >
           Log In
         </v-btn>
@@ -34,7 +35,7 @@
             outlined
         ></v-text-field>
 
-        <v-btn rounded color="primary" @click="login">
+        <v-btn rounded color="primary" @click="login" id="sexyfont">
             LOG IN
         </v-btn>
         <div
@@ -103,19 +104,12 @@ export default {
 <style scoped>
     @import url('https://fonts.googleapis.com/css2?family=Chango&display=swap');
 
-span {
-    font-family: chango;
-    font-size: 40px;
-    position: absolute;
-    left: 33%;
-    top: 4%;
-}
-
 #theentireheader{
   width: 100%;
 }
 
 #loginoutbuttons{
+  font-family: "Fira Sans";
   position: absolute;
   top: 5.5%;
   right: 3%;
@@ -125,10 +119,6 @@ span {
   position: absolute;
   top: 3%;
   left: 3%;
-}
-
-#whoareyou {
-  color: white;
 }
 
 #userpwmenu{
