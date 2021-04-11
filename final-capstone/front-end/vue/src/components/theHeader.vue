@@ -50,7 +50,7 @@
     </form>
   </div>
 
-  <v-btn
+  <v-btn v-if="this.$store.state.token"
   elevation="2"
   @click="logout"
   >LOG OUT</v-btn>
