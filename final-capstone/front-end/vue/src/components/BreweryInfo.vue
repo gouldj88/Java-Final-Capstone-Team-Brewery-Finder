@@ -30,7 +30,7 @@
            {{item.description}}
            {{item.abv}}
            {{item.type}}
-           <img src="i.imgur.com/2hMxmo8.jpg"/>
+           <img v-bind:src="item.image">
 
 
             </td>
