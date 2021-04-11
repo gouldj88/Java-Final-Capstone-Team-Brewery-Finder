@@ -1,17 +1,15 @@
 <template>
-    <div>
-        <div>
-        <img src="../assets/hops.png" style="width: 40px">
-        <span>BreweryFinder </span>
+    <div id="theentireheader">
+        <div class="headerstuffminusdropdown">
+        <!-- <img id="hopimg" src="../assets/hops.png" style="width: 40px">
+        <span>BreweryFinder </span> -->
         <div id="whoareyou" v-if="this.$store.state.token">
             Logged in as {{this.$store.state.user.username}}.
             Your role is {{ this.$store.state.user.authorities[0].name }}</div>
         </div>
         <template>
-            
-  <div id="loginbutton">
-    
-    <form class="form-signin" v-if="!this.$store.state.token">
+                
+    <form id="loginoutbuttons" v-if="!this.$store.state.token">
     <v-menu offset-y :close-on-content-click="false" transition="slide-y-transition">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -23,8 +21,8 @@
           Log In
         </v-btn>
       </template>
-        <br>
-        <v-text-field
+        <div id="userpwmenu">
+          <v-text-field
             label="User"
             v-model="user.username"
             outlined
@@ -36,21 +34,20 @@
             outlined
         ></v-text-field>
 
-        <v-btn rounded color="primary" @click="login" dark>
+        <v-btn rounded color="primary" @click="login">
             LOG IN
         </v-btn>
-
         <div
         class="alert alert-danger"
         role="alert"
         v-if="invalidCredentials"
         >Invalid username and password!</div>
+        </div>
 
     </v-menu>
     </form>
-  </div>
 
-  <v-btn v-if="this.$store.state.token" 
+  <v-btn id="loginoutbuttons" v-if="this.$store.state.token" 
   elevation="2"
   @click="logout"
   >LOG OUT</v-btn>
@@ -109,14 +106,40 @@ export default {
 span {
     font-family: chango;
     font-size: 40px;
-    margin: 0 auto;
-
+    position: absolute;
+    left: 33%;
+    top: 4%;
 }
 
-#loginbutton {
-  float: right;
-  position: relative;
-  
+#theentireheader{
+  width: 100%;
 }
+
+#loginoutbuttons{
+  position: absolute;
+  top: 5.5%;
+  right: 3%;
+}
+
+#hopimg{
+  position: absolute;
+  top: 3%;
+  left: 3%;
+}
+
+#whoareyou {
+  color: white;
+}
+
+#userpwmenu{
+  background: #FFFFFF;
+  padding-top: 15px;
+  padding-left: 10px;
+  padding-bottom: 15px;
+  padding-right: 10px;
+  margin-right: 5%;
+  color: white;
+}
+
 
 </style>

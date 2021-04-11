@@ -1,14 +1,21 @@
 <template>
    <div id='brewery-list'>
-     <v-container >
-       <div class="dropdown-and-search">
+     
+     <img id="hopimg" src="../assets/hops.png" style="width: 40px"><br>
+     <span>BreweryFinder</span>
+     <br>
+     <br>
+
+     <v-container>
+       <div id="dropdown-and-search">
            <v-select
              v-model="dropdown"
              :items="ddItems"
-             item-text="type"
+              item-text="type"
               item-value="ddValue"
               label="Please Select Search Type"
               filled
+              background-color="#FFFFFF"
               persistent-hint
               return-object
               single-line
@@ -17,8 +24,10 @@
     
               <div v-if="this.dropdown.ddValue > 1">
                 <v-form v-on:submit.prevent="textSearch"> 
-                  <v-text-field type="text" v-model="searchText" label="Please enter your search information here."></v-text-field>
+                  <v-text-field background-color="#FFFFFF" type="text" v-model="searchText" filled label="Please enter your search information here."></v-text-field>
                   <v-btn v-on:click="textSearch">Search</v-btn>
+                  <br>
+                  <br>
                 </v-form>
               </div>
     </div>
@@ -170,9 +179,22 @@ methods: {
   margin-bottom: 9px;
 }
 
-.dropdown-and-search{
+#dropdown-and-search{
 margin: 0 auto;
 width: 40%;
+}
+
+span {
+    font-family: chango;
+    font-size: 40px;
+    position: relative;
+    margin: auto;
+    color: white;
+}
+
+#hopimg{
+  position: relative;
+  margin: auto;
 }
 
 </style>

@@ -2,7 +2,11 @@
 
   <div id="app">
     <body>
-        <div class="theHeader">
+
+    <img src="@/assets/brewery-front.jpg" id="bg" alt="">
+
+
+    <div class="theHeader">
     <the-header></the-header>
     </div>
 
@@ -87,14 +91,29 @@ body{
   grid-gap: 20px;
   grid-template-columns: 15% 67.5% 15% ;
   grid-template-rows: 15% auto 15%;
-  justify-content:flex-start;
-  align-items: flex-start;
   height: 100vh;
 
  grid-template-areas:
     "header         header        header"
     "sidebar-left   container     sidebar-right"
     "footer         footer        footer";
+}
+
+#bg {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+	
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+
+  user-drag: none; 
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 .theHeader {
@@ -104,7 +123,6 @@ body{
     color: white;
     display: flex;
     align-items: center;
-    max-height: 90px;
 }
 
 .container {
