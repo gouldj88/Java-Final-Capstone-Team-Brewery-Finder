@@ -50,7 +50,7 @@
     </form>
   </div>
 
-  <v-btn v-if="this.$store.state.token"
+  <v-btn v-if="this.$store.state.token" 
   elevation="2"
   @click="logout"
   >LOG OUT</v-btn>
@@ -110,5 +110,13 @@ span {
     font-family: chango;
     font-size: 40px;
     margin: 0 auto;
+
 }
+
+#loginbutton {
+  float: right;
+  position: relative;
+  
+}
+
 </style>
