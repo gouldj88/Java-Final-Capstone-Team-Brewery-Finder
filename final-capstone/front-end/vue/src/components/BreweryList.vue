@@ -16,9 +16,9 @@
  
     
               <div v-if="this.dropdown.ddValue > 1">
-                <v-form v-on:submit.prevent="textSearch()"> 
+                <v-form v-on:submit.prevent="textSearch"> 
                   <v-text-field type="text" v-model="searchText" label="Please enter your search information here."></v-text-field>
-                  <v-btn v-on:click="textSearch()">Search</v-btn>
+                  <v-btn v-on:click="textSearch">Search</v-btn>
                 </v-form>
               </div>
     </div>

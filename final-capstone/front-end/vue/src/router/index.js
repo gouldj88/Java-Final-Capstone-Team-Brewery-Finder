@@ -5,7 +5,6 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
-import Searchbar from '../views/Searchbar.vue'
 import AddBrewery from '../views/AddBrewery.vue'
 import NewBeer from '../views/AddBeer.vue'
 /*import beerList from '../views/DisplayBeer.vue' */
@@ -55,14 +54,6 @@ const router = new Router({
       path: "/register",
       name: "register",
       component: Register,
-      meta: {
-        requiresAuth: false
-      }
-    },
-    {
-      path: "/search",
-      name: "search",
-      component: Searchbar,
       meta: {
         requiresAuth: false
       }

@@ -32,6 +32,25 @@
         v-model="user.confirmPassword"
         required
       />
+
+      <v-container
+    class="px-0"
+    fluid
+  >
+    <v-radio-group row v-model="user.role">
+      <v-radio
+      label="Beer Lover"
+      value="user"
+      ></v-radio>
+      <v-radio
+      label="Brewer"
+      value="brewer"
+      >
+        
+      </v-radio>
+    </v-radio-group>
+    </v-container>
+
       <router-link :to="{ name: 'login' }">Have an account?</router-link>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
@@ -47,11 +66,13 @@ export default {
   name: 'register',
   data() {
     return {
+      column: null,
+      row: null,
       user: {
         username: '',
         password: '',
         confirmPassword: '',
-        role: 'user',
+        role: '',
       },
       registrationErrors: false,
       registrationErrorMsg: 'There were problems registering this user.',
