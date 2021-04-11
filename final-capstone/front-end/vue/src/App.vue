@@ -4,7 +4,7 @@
     <body>
 
     <img src="@/assets/brewery-front.jpg" id="bg" alt="">
-
+    
 
     <div class="theHeader">
     <the-header></the-header>
