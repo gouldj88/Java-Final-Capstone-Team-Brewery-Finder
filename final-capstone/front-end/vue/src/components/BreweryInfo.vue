@@ -26,6 +26,13 @@
 
           <template v-slot:expanded-item="{ headers, item }">
             <td :colspan="headers.length">
+           {{item.name}}
+           {{item.description}}
+           {{item.abv}}
+           {{item.type}}
+           <img src="i.imgur.com/2hMxmo8.jpg"/>
+
+
             </td>
           </template>
         </v-data-table>
