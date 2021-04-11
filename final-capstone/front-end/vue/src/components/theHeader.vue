@@ -49,6 +49,11 @@
     </v-menu>
     </form>
   </div>
+
+  <v-btn
+  elevation="2"
+  @click="logout"
+  >LOG OUT</v-btn>
 </template>
 
 
@@ -73,6 +78,9 @@ export default {
     },
 
     methods: {
+    logout(){
+      this.$store.commit("LOGOUT");
+    },
     login() {
       authService
         .login(this.user)
@@ -80,7 +88,7 @@ export default {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
-            this.$router.push("/addBeer");
+            this.$router.push("/");
           }
         })
         .catch(error => {
@@ -103,9 +111,4 @@ span {
     font-size: 40px;
     margin: 0 auto;
 }
-
-#whoareyou {
-    float: right;
-}
-
 </style>
