@@ -26,12 +26,17 @@
   
           <template v-slot:expanded-item="{ headers, item }">
             <td :colspan="headers.length">
-           {{item.name}}
+              <div>
+                 <p class="text-right">
+                   {{item.name}} 
+                  </p>
+              
+              </div>
            {{item.description}}
            {{item.abv}}
            {{item.type}}
            <img v-bind:src="item.image" id="beer-image">
-
+          
 
             </td>
           </template>
@@ -89,5 +94,10 @@ import BeerService from '@/services/BeerService';
   height: 200px;
   float: left;
 }
- 
+
+#text-center {
+  height: 30px;
+  float: center;
+  margin-top: 15px;
+}
 </style>
