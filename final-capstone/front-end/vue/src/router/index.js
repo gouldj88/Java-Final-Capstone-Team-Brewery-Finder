@@ -10,6 +10,8 @@ import NewBeer from '../views/AddBeer.vue'
 /*import beerList from '../views/DisplayBeer.vue' */
 /*import SingleBeerInformation from '../views/SingleBeerInformation.vue' */
 import DisplayBreweryInfo from '../views/DisplayBreweryInfo.vue'
+import AddReview from '../views/AddReview.vue'
+import ReviewList from '../views/ReviewList.vue'
 
 Vue.use(Router)
 
@@ -83,7 +85,7 @@ const router = new Router({
     }
     },
     {
-      path: '/product/:id/add-review', 
+      path: '/product/add-review', 
       name: 'add-review',              
       component: AddReview,
       meta: {
@@ -91,9 +93,9 @@ const router = new Router({
       }   
     },
     {
-    path: "/reviews/:id",
+    path: "/reviews",
     name: "reviewlist",
-    component: ReivewList,
+    component: ReviewList,
 
     }
 

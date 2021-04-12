@@ -36,7 +36,7 @@ export default {
     return {
       newReview: {
         id: 0,
-        reviewer: "",
+        reviewer: this.$store.state.user.username,
         title: "",
         rating: 0,
         review: ""
@@ -61,27 +61,5 @@ export default {
 </script>
 
 <style scoped>
-form {
-  width: 500px;
-  margin: 20px;
-}
-.form-element label {
-  width: 100px;
-  vertical-align: top;
-}
-.form-element input,
-select,
-textarea {
-  width: 400px;
-  font-size: 1.1rem;
-}
-.form-element textarea {
-  height: 150px;
-}
-.actions {
-  float: right;
-}
-.actions button {
-  margin-left: 10px;
-}
+
 </style>
