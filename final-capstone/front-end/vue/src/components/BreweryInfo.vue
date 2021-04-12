@@ -36,6 +36,23 @@
  </div>
 
 
+<!-- NEW CODE WENT HERE -->
+
+<div v-for="details in detailResults" v-bind:key="details.obdb_id" class="brewery-information">
+  <h1>{{details.history.toUpperCase()}}</h1>
+  <h1>{{details.hour_open.toUpperCase()}}</h1>
+  <h1>{{details.hour_closed.toUpperCase()}}</h1>
+  <h1>{{details.open_sun}}</h1>
+  <h1>{{details.open_mon}}</h1>
+  <h1>{{details.open_tue}}</h1>
+  <h1>{{details.open_wed}}</h1>
+  <h1>{{details.open_thu}}</h1>
+  <h1>{{details.open_fri}}</h1>
+  <h1>{{details.open_sat}}</h1>
+  <img v-bind:src="details.image_url" id="bar-image">
+
+</div>
+
 
 
 <br>
@@ -111,16 +128,12 @@ import BeerService from '@/services/BeerService';
 
 
  export default{  
-   
-   data: () => ({
-      items: ['Monday', 'Bar', 'Fizz', 'Buzz'],
-    }),
-
 
     data (){
         return{
             results: [],
             beerResults: [],
+            detailResults:[],
             headers: [
         {
           text: 'Beer',
@@ -137,6 +150,9 @@ import BeerService from '@/services/BeerService';
     created() {
         BreweryServices.getSingleBreweryInfo(this.$route.params.id).then(response => {
         this.results = response.data;
+        })
+        BreweryServices.getBreweryDetailsById(this.$route.params.id).then(response => {
+        this.detailResults = response.data;
         })
         BeerService.getBeersByBrewery(this.$route.params.id).then(response => {
         this.beerResults = response.data;

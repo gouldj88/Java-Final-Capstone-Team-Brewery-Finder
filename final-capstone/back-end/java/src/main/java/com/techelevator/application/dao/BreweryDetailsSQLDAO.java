@@ -113,6 +113,7 @@ public class BreweryDetailsSQLDAO implements BreweryDetailsDAO {
     	BreweryDetails details = new BreweryDetails();
     	details.setObdb_id(rs.getString("obdb_id"));
     	details.setHistory(rs.getString("history"));
+    	details.setImage_url(rs.getString("image_url"));
     	details.setHour_open(rs.getString("hour_open"));
     	details.setHour_closed(rs.getString("hour_closed"));
     	details.setOpen_sun(rs.getBoolean("open_sun"));
