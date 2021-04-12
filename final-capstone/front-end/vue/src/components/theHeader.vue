@@ -22,9 +22,7 @@
 
 
 
-
-
-    <form id="registerbutton" v-if="$route.name =='home' && userCheck == 'ROLE_ADMIN'">
+       <form id="registerbutton-admin" v-if="tokenCheck && $route.name =='home' && userCheck == 'ROLE_ADMIN'">
     <v-menu offset-y :close-on-content-click="false" :close-on-click="true" transition="slide-y-transition">
       <template v-slot:activator="{ on, attrs }">
      <v-btn
@@ -85,6 +83,9 @@
     </form>
 
 
+
+
+    
 
 
 
@@ -152,7 +153,7 @@
     </form>
 
 
-    <form id="loginoutbuttons" v-if="!this.$store.state.token">
+    <form id="loginoutbuttons" v-if="!tokenCheck">
     <v-menu offset-y :close-on-content-click="false" :close-on-click="true" transition="slide-y-transition">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -251,11 +252,7 @@ export default {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
-              if (this.$store.state.user.authorities[0].name == "ROLE_ADMIN"){
-                this.$router.push("/admin");
-              } else {
             this.$router.push("/");
-              }
           }
         })
         .catch(error => {
