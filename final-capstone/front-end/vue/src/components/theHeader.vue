@@ -18,7 +18,7 @@
     <v-menu offset-y :close-on-content-click="false" transition="slide-y-transition">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-          color="primary"
+          color="#1B5E20"
           dark
           v-bind="attrs"
           v-on="on"
@@ -41,7 +41,7 @@
             outlined
         ></v-text-field>
 
-        <v-btn rounded color="primary" @click="login" id="sexyfont">
+        <v-btn rounded color="#33691E" @click="login" id="sexyfont">
             LOG IN
         </v-btn>
         <div
@@ -56,7 +56,7 @@
 
   <v-btn id="loginoutbuttons" v-if="this.$store.state.token" 
   elevation="2"
-  color="error"
+  color="#B71C1C"
   @click="logout"
   >LOG OUT</v-btn>
 </template>

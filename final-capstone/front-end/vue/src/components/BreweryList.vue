@@ -33,7 +33,7 @@
     </div>
 
     <template>      
-      <v-app id="inspire">
+      <v-app id="inspire" app>
         <v-data-table v-if="resultsNotHidden"
           :headers="headers"
           :items="results"

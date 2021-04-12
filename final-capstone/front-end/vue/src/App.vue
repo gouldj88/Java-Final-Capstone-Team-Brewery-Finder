@@ -133,30 +133,25 @@ body{
   justify-content: top;
   align-items: top;
   text-align: center;
-}
+  height: auto;
+  }
 
-.sidebar-left {
-  grid-area: sidebar-left;
-  background-color: white;
-  align-items: center;
-  text-align: center;
-}
-
-.sidebar-right {
-  grid-area: sidebar-right;
-  background-color: white;
-  align-items: center;
-  text-align: center;
-}
-
-footer {
+/*footer {
   grid-area: footer;
   background-color: rgb(145, 88, 3);  
   padding: 10px;
   margin-bottom: 0px;
   grid-row-start: 3;
   grid-row-end: 3;
-  max-height: 50px;
+  max-height: 50px;*/
+  footer {
+    bottom: 0;
+    color: #707070;
+    height: 2em;
+    left: 0;
+    position: relative;
+    font-size: small;
+    width: 100%;
 }
 
 img {
