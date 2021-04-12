@@ -7,15 +7,77 @@
         <span>BreweryFinder </span>
           </div>
           </router-link>
-          
-        <div id="whoareyou" v-if="this.$store.state.token">
-            Logged in as {{this.$store.state.user.username}}.
-            Your role is {{ this.$store.state.user.authorities[0].name }}</div>
+
+        <div id="whoareyou" v-if="this.$store.state.token && $route.name =='home'">
+            Welcome back, {{this.$store.state.user.username}}.
+        </div>
+
         </div>
         <template>
-                
+
+    <form id="registerbutton" v-if="!this.$store.state.token && $route.name =='home'">
+    <v-menu offset-y :close-on-content-click="false" :close-on-click="true" transition="slide-y-transition">
+      <template v-slot:activator="{ on, attrs }">
+     <v-btn
+          color="#1B5E20"
+          dark
+          v-bind="attrs"
+          v-on="on"
+          id="register"
+        >
+          REGISTER
+        </v-btn>
+
+     </template>
+        <div id="userpwmenu">
+          <v-text-field
+            label="Username"
+            v-model="user.username"
+            outlined
+        ></v-text-field>
+
+        <v-text-field
+            label="Password"
+            type="password"
+            v-model="user.password"
+            outlined
+        ></v-text-field>
+
+        <v-text-field
+            label="Confirm Password"
+            type="password"
+            v-model="user.confirmPassword"
+            outlined
+        ></v-text-field>
+
+      <v-radio-group col v-model="user.role">
+      <v-radio
+      label="Beer Lover"
+      value="user"
+      ></v-radio>
+      <v-radio
+      label="Brewer"
+      value="brewer"
+      >
+        
+      </v-radio>
+      </v-radio-group>
+
+        <div class="register-alert-danger" role="alert" v-if="registrationErrors">
+        {{ registrationErrorMsg }}
+        </div>
+
+        <v-btn rounded color="#33691E" @click="register" id="registersubmitbutton">
+          CREATE ACCOUNT
+        </v-btn>
+        </div>
+
+    </v-menu>
+    </form>
+
+
     <form id="loginoutbuttons" v-if="!this.$store.state.token">
-    <v-menu offset-y :close-on-content-click="false" transition="slide-y-transition">
+    <v-menu offset-y :close-on-content-click="false" :close-on-click="true" transition="slide-y-transition">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
           color="#1B5E20"
@@ -29,7 +91,7 @@
       </template>
         <div id="userpwmenu">
           <v-text-field
-            label="User"
+            label="Username"
             v-model="user.username"
             outlined
         ></v-text-field>
@@ -41,14 +103,15 @@
             outlined
         ></v-text-field>
 
-        <v-btn rounded color="#33691E" @click="login" id="sexyfont">
-            LOG IN
-        </v-btn>
         <div
         class="alert alert-danger"
         role="alert"
         v-if="invalidCredentials"
-        >Invalid username and password!</div>
+        >Invalid username or password</div>
+
+        <v-btn rounded color="#33691E" @click="login" id="submitbutton">
+          LOG IN
+        </v-btn>
         </div>
 
     </v-menu>
@@ -60,7 +123,6 @@
   @click="logout"
   >LOG OUT</v-btn>
 </template>
-
 
     </div>
 </template>
@@ -74,18 +136,23 @@ export default {
 
     data() {
       return {
-        user: {
+      invalidCredentials: false,
+      registrationErrors: false,
+      registrationErrorMsg: 'There were problems registering this user.',
+      user: {
           username: "",
           password: ""
       },
-      invalidCredentials: false
-    };
-    },
+      regUser: {
+          username: '',
+          password: '',
+          confirmPassword: '',
+          role: '',
+      },
+    }
+  },
 
     methods: {
-     
-     
-
     logout(){
       this.$store.commit("LOGOUT");
       this.$router.push("/");
@@ -98,7 +165,11 @@ export default {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
+              if (this.$store.state.user.authorities[0].name == "ROLE_ADMIN"){
+                this.$router.push("/admin");
+              } else {
             this.$router.push("/");
+              }
           }
         })
         .catch(error => {
@@ -108,7 +179,35 @@ export default {
             this.invalidCredentials = true;
           }
         });
-    }
+    },
+    register() {
+      if (this.user.password != this.user.confirmPassword) {
+        this.registrationErrors = true;
+        this.registrationErrorMsg = 'Password & Confirm Password do not match.';
+      } else {
+        authService
+          .register(this.user)
+          .then((response) => {
+            if (response.status == 201) {
+              this.$router.push("/");
+              location.reload();
+              this.registered == !this.registered;
+
+            }
+          })
+          .catch((error) => {
+            const response = error.response;
+            this.registrationErrors = true;
+            if (response.status === 400) {
+              this.registrationErrorMsg = 'Bad Request: Validation Errors';
+            }
+          });
+      }
+    },
+    clearErrors() {
+      this.registrationErrors = false;
+      this.registrationErrorMsg = 'There were problems registering this user.';
+    },
    } 
 }
 </script>
@@ -120,11 +219,26 @@ export default {
   width: 100%;
 }
 
+#whoareyou{
+  font-family: "Fira Sans";
+  position: absolute;
+  top: 6%;
+  left: 3%;
+  color: white;
+}
+
 #loginoutbuttons{
   font-family: "Fira Sans";
   position: absolute;
   top: 5.5%;
   right: 3%;
+}
+
+#register{
+  font-family: "Fira Sans";
+  position: absolute;
+  top: 5.5%;
+  left: 3%;
 }
 
 #hopimg{
@@ -154,5 +268,30 @@ span {
     color: white;
 }
 
+.alert-danger {
+  font-family: "Fira Sans";
+  color: red;
+  font-size: 140%;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.register-alert-danger {
+  font-family: "Fira Sans";
+  color: red;
+  font-size: 140%;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+#registersubmitbutton {
+  margin-left: 10%;
+  color: white;
+}
+
+#submitbutton {
+  margin-left: 28%;
+  color: white;
+}
 
 </style>

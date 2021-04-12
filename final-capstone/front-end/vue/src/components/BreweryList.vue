@@ -1,6 +1,11 @@
 <template>
    <div id='brewery-list'>
-
+     <br>
+     <br>
+     <br>
+     <br>
+     <br>
+     <br>
      <img id="hopimg" src="../assets/hops.png" style="width: 40px"><br>
      <span>BreweryFinder</span>
      <br>
