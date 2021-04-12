@@ -2,20 +2,96 @@
     <div id="theentireheader">
         <div>
           <router-link to="/"> 
-          <div v-show="$route.name !=='home'">
-        <img id="hopimg" src="../assets/hops.png" width="20px">
-        <span>BreweryFinder </span>
-          </div>
+            <div v-show="$route.name !=='home'">
+            <img id="hopimg" src="../assets/hops.png" width="20px">
+            <span>BreweryFinder </span>
+           </div>
           </router-link>
 
-        <div id="whoareyou" v-if="this.$store.state.token && $route.name =='home'">
+        <div id="whoareyou" v-if="tokenCheck && $route.name =='home' && userCheck !== 'ROLE_ADMIN'">
             Welcome back, {{this.$store.state.user.username}}.
         </div>
+
+        <div id="whoareyou-admin" v-if="tokenCheck && $route.name =='home' && userCheck == 'ROLE_ADMIN'">
+            * * ADMINISTRATOR MODE  * *
+        </div>
+
 
         </div>
         <template>
 
-    <form id="registerbutton" v-if="!this.$store.state.token && $route.name =='home'">
+
+
+
+
+    <form id="registerbutton" v-if="$route.name =='home' && userCheck == 'ROLE_ADMIN'">
+    <v-menu offset-y :close-on-content-click="false" :close-on-click="true" transition="slide-y-transition">
+      <template v-slot:activator="{ on, attrs }">
+     <v-btn
+          color="#1B5E20"
+          dark
+          v-bind="attrs"
+          v-on="on"
+          id="register"
+        >
+          NEW BREWERY
+        </v-btn>
+
+     </template>
+        <div id="userpwmenu">
+          <v-text-field
+            label="Username"
+            v-model="user.username"
+            outlined
+        ></v-text-field>
+
+        <v-text-field
+            label="Password"
+            type="password"
+            v-model="user.password"
+            outlined
+        ></v-text-field>
+
+        <v-text-field
+            label="Confirm Password"
+            type="password"
+            v-model="user.confirmPassword"
+            outlined
+        ></v-text-field>
+
+      <v-radio-group col v-model="user.role">
+      <v-radio
+      label="Beer Lover"
+      value="user"
+      ></v-radio>
+      <v-radio
+      label="Brewer"
+      value="brewer"
+      >
+        
+      </v-radio>
+      </v-radio-group>
+
+        <div class="register-alert-danger" role="alert" v-if="registrationErrors">
+        {{ registrationErrorMsg }}
+        </div>
+
+        <v-btn rounded color="#33691E" @click="register" id="registersubmitbutton">
+          CREATE ACCOUNT
+        </v-btn>
+        </div>
+
+    </v-menu>
+    </form>
+
+
+
+
+
+
+
+
+    <form id="registerbutton" v-if="!tokenCheck && $route.name =='home'">
     <v-menu offset-y :close-on-content-click="false" :close-on-click="true" transition="slide-y-transition">
       <template v-slot:activator="{ on, attrs }">
      <v-btn
@@ -152,6 +228,16 @@ export default {
     }
   },
 
+  computed: {
+    userCheck() {
+      return this.$store.state.user.authorities[0].name;
+    },
+
+    tokenCheck() {
+      return this.$store.state.token;
+    }
+  },
+
     methods: {
     logout(){
       this.$store.commit("LOGOUT");
@@ -224,6 +310,14 @@ export default {
   position: absolute;
   top: 6%;
   left: 3%;
+  color: white;
+}
+
+#whoareyou-admin{
+  font-family: "Fira Sans";
+  position: absolute;
+  top: 7%;
+  left: 43.75%;
   color: white;
 }
 
