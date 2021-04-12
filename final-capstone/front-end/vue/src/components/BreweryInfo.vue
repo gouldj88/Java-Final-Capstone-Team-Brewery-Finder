@@ -40,7 +40,7 @@
         <v-data-table
           :headers="headers"
           :items="beerResults"
-          :single-expand="singleExpand"
+          :single-expand="true"
           :items-per-page="10"
           item-key="name"
           show-expand

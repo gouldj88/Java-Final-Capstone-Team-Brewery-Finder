@@ -40,3 +40,5 @@ constraint fk_obdb_id foreign key (obdb_id) references userbreweries(obdb_id)
 insert into userbreweries (obdb_id, name, street, city, state, postal_code, website_url, phone, username) values ('jeffs-tavern', 'Jeff''s Tavern', '1 Cedar Point Drive', 'Sandusky', 'Ohio', '44870', null, '4405551234', 'tester');
 insert into userbreweries (obdb_id, name, street, city, state, postal_code, website_url, phone, username) values ('pub-louis', 'Pub Louis', '1250 Pacific Ave #101', 'Tacoma', 'Washington', '98402', null, '4405551234', 'tester');
 insert into userbreweries (obdb_id, name, street, city, state, postal_code, website_url, phone, username) values ('briannas-wing-and-dance', 'Brianna''s Wing & Dance', '300 Parkside Ave', 'Buffalo', 'New York', '14214', null, '4405551234', 'tester');
+
+insert into beers (obdb_id, beer_name, brewery, description, image, abv, beer_type) values ('jeffs-tavern', 'Blue Moon', 'Blue Moon Brewing', 'It''s a smooth and tasty belgian ale.', 'https://www.bluemoonbrewingcompany.com/sites/bluemoon/files/2018-05/OurBeers.png', '7%', 'Belgian Ale');
