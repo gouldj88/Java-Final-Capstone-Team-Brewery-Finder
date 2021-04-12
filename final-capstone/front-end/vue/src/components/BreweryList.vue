@@ -29,8 +29,11 @@
     
               <div v-if="this.dropdown.ddValue > 1">
                 <v-form v-on:submit.prevent="textSearch"> 
-                  <v-text-field background-color="#FFFFFF" type="text" v-model="searchText" filled label="Enter search information"></v-text-field>
-                  <v-btn v-on:click="textSearch">Search</v-btn>
+                  
+                  <v-text-field id="searchField" background-color="#FFFFFF" type="text" v-model="searchText" filled label="Enter search information"></v-text-field>
+                  
+                  <v-btn v-on:click="textSearch" color="#9CCC65">{{buttonText}}</v-btn>
+                  <br>
                   <br>
                   <br>
                 </v-form>
@@ -102,6 +105,7 @@ data () {
         singleExpand: true,
         resultsNotHidden: false,
         searchBarNotHidden: false,
+        buttonText: "Search",
         searchText: "",
         selectedValue: 1,
         expanded: [],
@@ -130,7 +134,18 @@ data () {
 },
 methods: {
 
+    buttonToggle(){
+      if (this.buttonText == "Search"){
+        this.buttonText = "Reset"
+      } else
+      if (this.buttonText == "Reset")  {
+        this.searchText = "";
+        this.buttonText = "Search"
+      }
+    },
+
     textSearch(){
+        this.buttonToggle();
         this.resultsNotHidden = !this.resultsNotHidden;
         if (this.dropdown.ddValue == 2){
             this.citySearch();
