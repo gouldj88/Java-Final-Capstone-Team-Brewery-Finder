@@ -29,17 +29,17 @@ username character varying(30)
 CREATE TABLE userbrewerydetails
 (
 obdb_id character varying(255) primary key unique,
-history character varying(255),
-image_url character varying(255),
-hour_open character varying(255),
-hour_closed character varying(255),
-open_sun boolean default false,
-open_mon boolean default false,
-open_tue boolean default false,
-open_wed boolean default false,
-open_thu boolean default false,
-open_fri boolean default false,
-open_sat boolean default false,
+history character varying(255) not null,
+image_url character varying(255) not null,
+hour_open character varying(255) not null,
+hour_closed character varying(255) not null,
+open_sun boolean default false not null,
+open_mon boolean default false not null,
+open_tue boolean default false not null,
+open_wed boolean default false not null,
+open_thu boolean default false not null,
+open_fri boolean default false not null,
+open_sat boolean default false not null,
 constraint fk_obdb_id foreign key (obdb_id) references userbreweries(obdb_id)
 
 );
@@ -54,13 +54,13 @@ description character varying(255) default null,
 image character varying(255) default null,
 abv character varying(255) default null,
 beer_type character varying(255) default null,
-active character varying(1) default null,
+active character varying(1) not null,
 constraint fk_obdb_id foreign key (obdb_id) references userbreweries(obdb_id)
 );
 
 insert into userbreweries (obdb_id, name, street, city, state, postal_code, website_url, phone, username) values ('jeffs-tavern', 'Jeff''s Tavern', '1 Cedar Point Drive', 'Sandusky', 'Ohio', '44870', null, '4405551234', 'tester');
 insert into userbreweries (obdb_id, name, street, city, state, postal_code, website_url, phone, username) values ('pub-louis', 'Pub Louis', '1250 Pacific Ave #101', 'Tacoma', 'Washington', '98402', null, '4405551234', 'tester');
-insert into userbreweries (obdb_id, name, street, city, state, postal_code, website_url, phone, username) values ('briannas-wing-and-dance', 'Brianna''s Wing & Dance', '300 Parkside Ave', 'Buffalo', 'New York', '14214', null, '4405551234', 'tester');
+insert into userbreweries (obdb_id, name, street, city, state, postal_code, website_url, phone, username) values ('briannas-wing-and-dance', 'Brianna''s Wings & Dancehall', '300 Parkside Ave', 'Buffalo', 'New York', '14214', null, '4405551234', 'tester');
 
 insert into beers (obdb_id, beer_name, brewery, description, image, abv, beer_type, active) values ('jeffs-tavern', 'Blue Moon', 'Blue Moon Brewing', 'It''s a smooth and tasty belgian ale.', 'https://www.bluemoonbrewingcompany.com/sites/bluemoon/files/2018-05/OurBeers.png', '7%', 'Belgian Ale', 'Y');
 

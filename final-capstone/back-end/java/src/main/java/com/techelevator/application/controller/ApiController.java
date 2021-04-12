@@ -100,52 +100,52 @@ public class ApiController {
 	}
 	
 	@RequestMapping(path = "/breweries/addDetails", method = RequestMethod.POST)
-	public void addBreweryDetails(BreweryDetails formData) {
+	public void addBreweryDetails(@RequestBody BreweryDetails formData) {
 	    breweryDetailsDAO.addBreweryDetails(formData);
 	}
 	
 	@RequestMapping(path = "/breweries/addDetails/history", method = RequestMethod.POST)
-	public void updateBreweryHistory(BreweryDetails formData) {
+	public void updateBreweryHistory(@RequestBody BreweryDetails formData) {
 	    breweryDetailsDAO.updateBreweryHistory(formData);
 	}
 	
 	@RequestMapping(path = "/breweries/addDetails/image", method = RequestMethod.POST)
-	public void updateBreweryImage(BreweryDetails formData) {
+	public void updateBreweryImage(@RequestBody BreweryDetails formData) {
 	    breweryDetailsDAO.updateBreweryImage(formData);
 	}
 
 	@RequestMapping(path = "/breweries/addDetails/hourOpen", method = RequestMethod.POST)
-	public void updateBreweryHourOpen(BreweryDetails formData) {
+	public void updateBreweryHourOpen(@RequestBody BreweryDetails formData) {
 	    breweryDetailsDAO.updateBreweryHourOpen(formData);
 	}
 
 	@RequestMapping(path = "/breweries/addDetails/hourClosed", method = RequestMethod.POST)
-	public void updateBreweryHourClosed(BreweryDetails formData) {
+	public void updateBreweryHourClosed(@RequestBody BreweryDetails formData) {
 	    breweryDetailsDAO.updateBreweryHourClosed(formData);
 	}
 
 	@RequestMapping(path = "/breweries/addDetails/openSun", method = RequestMethod.POST)
-	public void updateBreweryOpenSun(BreweryDetails formData) {
+	public void updateBreweryOpenSun(@RequestBody BreweryDetails formData) {
 	    breweryDetailsDAO.updateBreweryOpenSun(formData);
 	}
 
 	@RequestMapping(path = "/breweries/addDetails/openMon", method = RequestMethod.POST)
-	public void updateBreweryOpenMon(BreweryDetails formData) {
+	public void updateBreweryOpenMon(@RequestBody BreweryDetails formData) {
 	    breweryDetailsDAO.updateBreweryOpenMon(formData);
 	}
 
 	@RequestMapping(path = "/breweries/addDetails/openTue", method = RequestMethod.POST)
-	public void updateBreweryOpenTue(BreweryDetails formData) {
+	public void updateBreweryOpenTue(@RequestBody BreweryDetails formData) {
 	    breweryDetailsDAO.updateBreweryOpenTue(formData);
 	}
 
 	@RequestMapping(path = "/breweries/addDetails/openWed", method = RequestMethod.POST)
-	public void updateBreweryOpenWed(BreweryDetails formData) {
+	public void updateBreweryOpenWed(@RequestBody BreweryDetails formData) {
 	    breweryDetailsDAO.updateBreweryOpenWed(formData);
 	}
 
 	@RequestMapping(path = "/breweries/addDetails/openThu", method = RequestMethod.POST)
-	public void updateBreweryOpenThu(BreweryDetails formData) {
+	public void updateBreweryOpenThu(@RequestBody BreweryDetails formData) {
 	    breweryDetailsDAO.updateBreweryOpenThu(formData);
 	}
 
@@ -155,7 +155,7 @@ public class ApiController {
 	}
 	
 	@RequestMapping(path = "/breweries/addDetails/openSat", method = RequestMethod.POST)
-	public void updateBreweryOpenSat(BreweryDetails formData){
+	public void updateBreweryOpenSat(@RequestBody BreweryDetails formData){
 	    breweryDetailsDAO.updateBreweryOpenSat(formData);
 	}
 	
