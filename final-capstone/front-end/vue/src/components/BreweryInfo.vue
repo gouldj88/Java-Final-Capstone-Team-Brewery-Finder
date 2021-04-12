@@ -102,9 +102,10 @@ import BeerService from '@/services/BeerService';
 }
 #beer-image {
   margin-bottom: 15px;
-  height: 175px;
+  height: 110px;
   float: left;
   position: relative;
+  margin-top: 15px;
 }
 
 #text-center {
@@ -137,7 +138,7 @@ import BeerService from '@/services/BeerService';
 }
 .text-info{
   font-family: "Archivo Narrow";
-  font-size: 20px;
+  font-size: 15px;
   float: right;
   padding-top: 40px;
 }
