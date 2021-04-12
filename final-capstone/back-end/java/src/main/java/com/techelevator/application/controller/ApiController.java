@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.techelevator.application.dao.BeerDAO;
 import com.techelevator.application.dao.BreweryDAO;
+import com.techelevator.application.dao.BreweryDetailsDAO;
 import com.techelevator.application.model.Beer;
 import com.techelevator.application.model.Brewery;
+import com.techelevator.application.model.BreweryDetails;
 
 /**********************************************************************************************************************
 * Put your Application API Controllers here
@@ -30,10 +32,12 @@ public class ApiController {
 
 	private BreweryDAO breweryDAO;
 	private BeerDAO beerDAO;
+	private BreweryDetailsDAO breweryDetailsDAO;
 
-	public ApiController(BreweryDAO breweryDAO, BeerDAO beerDAO) {
+	public ApiController(BreweryDAO breweryDAO, BeerDAO beerDAO, BreweryDetailsDAO breweryDetailsDAO) {
 		this.breweryDAO = breweryDAO;
 		this.beerDAO = beerDAO;
+		this.breweryDetailsDAO = breweryDetailsDAO;
 	}
 	
 	@RequestMapping(path = "/breweries/{obdbId}", method = RequestMethod.GET)
@@ -86,6 +90,73 @@ public class ApiController {
 	@RequestMapping(path = "/beers/maintenance/deleteBeer/{beerId}", method = RequestMethod.POST)
 	public void deleteABeer(@PathVariable String beerId) {
 	    beerDAO.deleteABeer(beerId);
+	}
+	
+	// Brewery Details bit
+	
+	@RequestMapping(path = "/breweries/{obdbId}/details", method = RequestMethod.GET)
+	public List<BreweryDetails> getBreweryDetailsById(@PathVariable String obdbId) {
+	    return breweryDetailsDAO.getBreweryDetailsById(obdbId);
+	}
+	
+	@RequestMapping(path = "/breweries/addDetails", method = RequestMethod.POST)
+	public void addBreweryDetails(BreweryDetails formData) {
+	    breweryDetailsDAO.addBreweryDetails(formData);
+	}
+	
+	@RequestMapping(path = "/breweries/addDetails/history", method = RequestMethod.POST)
+	public void updateBreweryHistory(BreweryDetails formData) {
+	    breweryDetailsDAO.updateBreweryHistory(formData);
+	}
+	
+	@RequestMapping(path = "/breweries/addDetails/image", method = RequestMethod.POST)
+	public void updateBreweryImage(BreweryDetails formData) {
+	    breweryDetailsDAO.updateBreweryImage(formData);
+	}
+
+	@RequestMapping(path = "/breweries/addDetails/hourOpen", method = RequestMethod.POST)
+	public void updateBreweryHourOpen(BreweryDetails formData) {
+	    breweryDetailsDAO.updateBreweryHourOpen(formData);
+	}
+
+	@RequestMapping(path = "/breweries/addDetails/hourClosed", method = RequestMethod.POST)
+	public void updateBreweryHourClosed(BreweryDetails formData) {
+	    breweryDetailsDAO.updateBreweryHourClosed(formData);
+	}
+
+	@RequestMapping(path = "/breweries/addDetails/openSun", method = RequestMethod.POST)
+	public void updateBreweryOpenSun(BreweryDetails formData) {
+	    breweryDetailsDAO.updateBreweryOpenSun(formData);
+	}
+
+	@RequestMapping(path = "/breweries/addDetails/openMon", method = RequestMethod.POST)
+	public void updateBreweryOpenMon(BreweryDetails formData) {
+	    breweryDetailsDAO.updateBreweryOpenMon(formData);
+	}
+
+	@RequestMapping(path = "/breweries/addDetails/openTue", method = RequestMethod.POST)
+	public void updateBreweryOpenTue(BreweryDetails formData) {
+	    breweryDetailsDAO.updateBreweryOpenTue(formData);
+	}
+
+	@RequestMapping(path = "/breweries/addDetails/openWed", method = RequestMethod.POST)
+	public void updateBreweryOpenWed(BreweryDetails formData) {
+	    breweryDetailsDAO.updateBreweryOpenWed(formData);
+	}
+
+	@RequestMapping(path = "/breweries/addDetails/openThu", method = RequestMethod.POST)
+	public void updateBreweryOpenThu(BreweryDetails formData) {
+	    breweryDetailsDAO.updateBreweryOpenThu(formData);
+	}
+
+	@RequestMapping(path = "/breweries/addDetails/openFri", method = RequestMethod.POST)
+	public void updateBreweryOpenFri(BreweryDetails formData){
+	    breweryDetailsDAO.updateBreweryOpenFri(formData);
+	}
+	
+	@RequestMapping(path = "/breweries/addDetails/openSat", method = RequestMethod.POST)
+	public void updateBreweryOpenSat(BreweryDetails formData){
+	    breweryDetailsDAO.updateBreweryOpenSat(formData);
 	}
 	
 /********************************************************************************************************************* 

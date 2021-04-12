@@ -10,11 +10,12 @@ public class Beer {
 	private String image;
 	private String abv;
 	private String type;
+	private String active;
 	
 	public Beer() {
 	}
 	
-	public Beer(String obdb_id, String name, String brewery, String description, String image, String abv, String type) {
+	public Beer(String obdb_id, String name, String brewery, String description, String image, String abv, String type, String active) {
 		this.obdb_id = obdb_id;
 		this.name = name;
 		this.brewery = brewery;
@@ -22,9 +23,10 @@ public class Beer {
 		this.image = image;
 		this.abv = abv;
 		this.type = type;
+		this.active = active;
 	}
 	
-	public Beer(String beer_id, String obdb_id, String name, String brewery, String description, String image, String abv, String type) {
+	public Beer(String beer_id, String obdb_id, String name, String brewery, String description, String image, String abv, String type, String active) {
 		this.beer_id = beer_id;
 		this.obdb_id = obdb_id;
 		this.name = name;
@@ -33,6 +35,7 @@ public class Beer {
 		this.image = image;
 		this.abv = abv;
 		this.type = type;
+		this.active = active;
 	}
 	
 	public String getBeer_id() {
@@ -97,5 +100,13 @@ public class Beer {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+	
+	public String getActive() {
+		return active;
+	}
+
+	public void setActive(String active) {
+		this.active = active;
 	}
 }
