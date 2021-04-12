@@ -35,16 +35,17 @@
           <template v-slot:expanded-item="{ headers, item }">
             <td :colspan="headers.length">
               <div>
-                 <p class="text-right">
+              <div>
+                 <p class="text-info">
                    {{item.name}} 
+                   {{item.type}} <br>
+                   {{item.description}}
                   </p>
-              
               </div>
-           {{item.description}}
-           {{item.abv}}
-           {{item.type}}
+            <div class="beer-image">
            <img v-bind:src="item.image" id="beer-image">
-          
+            </div>
+          </div>
 
             </td>
           </template>
@@ -95,12 +96,15 @@ import BeerService from '@/services/BeerService';
 </script>
 
 <style scoped>
+#inspire {
+  font-family: "Archivo Narrow";
 
+}
 #beer-image {
-  margin-top: 20px;
   margin-bottom: 15px;
-  height: 200px;
+  height: 175px;
   float: left;
+  position: relative;
 }
 
 #text-center {
@@ -131,4 +135,24 @@ import BeerService from '@/services/BeerService';
   font-size: 60%
 
 }
+.text-info{
+  font-family: "Archivo Narrow";
+  font-size: 20px;
+  float: right;
+  padding-top: 40px;
+}
+
+/*.text-desc {
+  font-family: "Verdana";
+  font-size: 15px
+}
+
+.text-type {
+  font-family: "Verdana";
+  font-size: 15px
+  float right;
+  
+}
+*/
+
 </style>
