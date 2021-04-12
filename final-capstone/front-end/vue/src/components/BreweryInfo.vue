@@ -1,6 +1,23 @@
 <template>
  <div class="brewery-info">
-
+    <v-btn
+          color="#1B5E20"
+          dark
+          v-bind="attrs"
+          v-on="on"
+          id="register"
+        >
+          ADD A BEER
+        </v-btn>
+            <v-btn
+          color="#1B5E20"
+          dark
+          v-bind="attrs"
+          v-on="on"
+          id="register"
+        >
+          UPDATE BREWERY INFORMATION
+        </v-btn> 
  <div v-for="brewery in results" v-bind:key="brewery.name" class="brewery-information">
   <div class="brewery-name"> 
   <h1>{{brewery.name.toUpperCase()}}</h1>
@@ -52,9 +69,6 @@
         </v-data-table>
       </v-app>
     </template>
- 
- 
- 
  
  </div>
 </template>
