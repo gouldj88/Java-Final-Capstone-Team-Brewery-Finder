@@ -1,8 +1,13 @@
 <template>
     <div id="theentireheader">
-        <div class="headerstuffminusdropdown">
-        <!-- <img id="hopimg" src="../assets/hops.png" style="width: 40px">
-        <span>BreweryFinder </span> -->
+        <div>
+          <router-link to="/"> 
+          <div v-show="$route.name !=='home'">
+        <img id="hopimg" src="../assets/hops.png" width="20px">
+        <span>BreweryFinder </span>
+          </div>
+          </router-link>
+          
         <div id="whoareyou" v-if="this.$store.state.token">
             Logged in as {{this.$store.state.user.username}}.
             Your role is {{ this.$store.state.user.authorities[0].name }}</div>
@@ -31,6 +36,7 @@
 
         <v-text-field
             label="Password"
+            type="password"
             v-model="user.password"
             outlined
         ></v-text-field>
@@ -50,6 +56,7 @@
 
   <v-btn id="loginoutbuttons" v-if="this.$store.state.token" 
   elevation="2"
+  color="error"
   @click="logout"
   >LOG OUT</v-btn>
 </template>
@@ -76,8 +83,13 @@ export default {
     },
 
     methods: {
+     
+     
+
     logout(){
       this.$store.commit("LOGOUT");
+      this.$router.push("/");
+      location.reload();
     },
     login() {
       authService
@@ -117,7 +129,8 @@ export default {
 
 #hopimg{
   position: absolute;
-  top: 3%;
+  size: 10px;
+  top: 5%;
   left: 3%;
 }
 
@@ -129,6 +142,16 @@ export default {
   padding-right: 10px;
   margin-right: 5%;
   color: white;
+}
+
+span {
+    top: 5.5%;
+    left: 6%;
+    font-family: chango;
+    font-size: 20px;
+    position: absolute;
+    margin: auto;
+    color: white;
 }
 
 
