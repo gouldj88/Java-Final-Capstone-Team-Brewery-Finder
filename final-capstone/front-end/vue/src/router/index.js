@@ -81,7 +81,22 @@ const router = new Router({
     meta: {
       requiresAuth: false
     }
-  }
+    },
+    {
+      path: '/product/:id/add-review', 
+      name: 'add-review',              
+      component: AddReview,
+      meta: {
+        requiresAuth: false
+      }   
+    },
+    {
+    path: "/reviews/:id",
+    name: "reviewlist",
+    component: ReivewList,
+
+    }
+
   ]
 })
 
