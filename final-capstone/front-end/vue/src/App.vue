@@ -2,7 +2,9 @@
 
   <div id="app">
     <body>
-     <link href='https://fonts.googleapis.com/css?family=Fira Sans' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Fira Sans' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Syncopate' rel='stylesheet'>
+
     <img src="@/assets/brewery-front.jpg" id="bg" alt="">
     
 

@@ -1,15 +1,23 @@
 <template>
  <div class="brewery-info">
+
  <div v-for="brewery in results" v-bind:key="brewery.name" class="brewery-information">
-  <h1>{{brewery.name}}</h1>
-  <h1>{{brewery.street}}</h1>
-  <h1>{{brewery.city}}</h1>
-  <h1>{{brewery.state}}</h1>
-  <h1>{{brewery.postal_code}}</h1>
+  <div class="brewery-name"> 
+  <h1>{{brewery.name.toUpperCase()}}</h1>
+  </div>
+  <div class="brewery-address-etc">
+  <h1>{{brewery.street.toUpperCase()}}</h1>
+  <h1>{{brewery.city.toUpperCase()}}, 
+      {{brewery.state.toUpperCase()}}
+      {{brewery.postal_code.toUpperCase()}}</h1>
   <h1>{{brewery.website_url}}</h1>
+  </div>
+  <div class="brewery-phone">
   <h1>{{brewery.phone}}</h1>
+  <br>
  </div>
- 
+ </div>
+
  <template>      
       <v-app id="inspire">
         <v-data-table
@@ -99,5 +107,28 @@ import BeerService from '@/services/BeerService';
   height: 30px;
   float: center;
   margin-top: 15px;
+}
+
+.brewery-information{
+    color: white;
+    font-size: 15px;
+    position: relative;
+    margin: auto;
+}
+
+.brewery-address-etc{
+  font-family: "Abel";
+  font-size: 60%;
+}
+
+.brewery-name {
+  font-family: "Syncopate";
+  font-size: 200%;
+
+}
+.brewery-phone {
+  font-family: "Syncopate";
+  font-size: 60%
+
 }
 </style>
