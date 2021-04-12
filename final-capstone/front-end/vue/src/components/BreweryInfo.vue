@@ -35,6 +35,30 @@
  </div>
  </div>
 
+
+
+
+<br>
+
+<template>
+  <v-row align="center">
+    <v-col cols="12">
+    
+      <div class="hours-of">
+      <v-select
+        :items="hours"
+        :menu-props="{ top: true, offsetY: true }"
+        label="Hours of Operation" 
+         background-color="#FFFFFF"
+      ></v-select>
+      </div>
+    </v-col>
+  </v-row>
+  <br>
+  
+</template>
+
+
  <template>      
       <v-app id="inspire">
         <v-data-table
@@ -72,13 +96,26 @@
  
  </div>
 </template>
+
+
+
+
+
 <script>
 
 import BreweryServices from '@/services/BreweryServices';
 import BeerService from '@/services/BeerService';
 
 
- export default{    
+ 
+
+
+ export default{  
+   
+   data: () => ({
+      items: ['Monday', 'Bar', 'Fizz', 'Buzz'],
+    }),
+
 
     data (){
         return{
@@ -157,6 +194,13 @@ import BeerService from '@/services/BeerService';
   padding-top: 40px;
 }
 
+.hours-of {
+  font-family: "Archivo Narrow";
+  padding-top: 45px;
+  font-size: 15px;
+  color: green;
+
+}
 /*.text-desc {
   font-family: "Verdana";
   font-size: 15px
