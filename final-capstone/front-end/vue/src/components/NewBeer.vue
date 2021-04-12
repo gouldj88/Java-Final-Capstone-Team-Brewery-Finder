@@ -17,6 +17,8 @@
     <input type="text" v-model="newBeer.abv"><br>
     <p> Type: </p>
     <input type="text" v-model="newBeer.type"><br>
+    <p> Active (Y/N): </p>
+    <input type="text" v-model="newBeer.active"><br>
 
     <input type="button" value="Add Beer" v-on:click="addBeer()" />
  </form>
@@ -39,7 +41,8 @@ export default {
         description: "",
         image: "",
         abv: "",
-        type: ""
+        type: "",
+        active: ""
        }
     };
   },
