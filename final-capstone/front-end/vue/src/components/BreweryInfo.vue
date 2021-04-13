@@ -260,7 +260,7 @@ margin: auto;
   font-size: 12px;
   color: white;
   max-width: 700px;
-  margin-left: 204px;
+  margin: auto;
 
 }
 
