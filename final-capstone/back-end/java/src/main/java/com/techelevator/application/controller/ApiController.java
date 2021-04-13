@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.techelevator.application.dao.BeerDAO;
 import com.techelevator.application.dao.BreweryDAO;
 import com.techelevator.application.dao.BreweryDetailsDAO;
+import com.techelevator.application.dao.ReviewsDAO;
 import com.techelevator.application.model.Beer;
 import com.techelevator.application.model.Brewery;
 import com.techelevator.application.model.BreweryDetails;
+import com.techelevator.application.model.Reviews;
 
 /**********************************************************************************************************************
 * Put your Application API Controllers here
@@ -33,6 +35,8 @@ public class ApiController {
 	private BreweryDAO breweryDAO;
 	private BeerDAO beerDAO;
 	private BreweryDetailsDAO breweryDetailsDAO;
+	private ReviewsDAO reviewsDAO;
+	
 
 	public ApiController(BreweryDAO breweryDAO, BeerDAO beerDAO, BreweryDetailsDAO breweryDetailsDAO) {
 		this.breweryDAO = breweryDAO;
@@ -158,6 +162,13 @@ public class ApiController {
 	public void updateBreweryOpenSat(@RequestBody BreweryDetails formData){
 	    breweryDetailsDAO.updateBreweryOpenSat(formData);
 	}
+	
+	@RequestMapping(path = "/reviews/{beerId}", method = RequestMethod.GET)
+	public List<Reviews> getReviewsbyBeerId(@PathVariable String beerId) {
+	    return reviewsDAO.getReviewbyBeerId(beerId);
+	}
+	
+	
 	
 /********************************************************************************************************************* 
 * Use this method if you'd like to log calls to your controllers - these message can aid in your troubleshooting
