@@ -13,7 +13,7 @@
         </div>
 
         <div id="whoareyou-admin" v-if="tokenCheck && $route.name =='home' && userCheck == 'ROLE_ADMIN'">
-            * * ADMINISTRATOR MODE  * *
+        * * * ADMINISTRATOR MODE * * *
         </div>
 
 
@@ -22,7 +22,7 @@
 
 
 
-       <form id="registerbutton-admin" v-if="tokenCheck && $route.name =='home' && userCheck == 'ROLE_ADMIN'">
+    <form id="registerbutton-admin" v-if="tokenCheck && $route.name =='home' && userCheck == 'ROLE_ADMIN'">
     <v-menu offset-y :close-on-content-click="false" :close-on-click="true" transition="slide-y-transition">
       <template v-slot:activator="{ on, attrs }">
      <v-btn
@@ -32,49 +32,68 @@
           v-on="on"
           id="register"
         >
-          NEW BREWERY
+          ADD BREWERY
         </v-btn>
 
      </template>
+
         <div id="userpwmenu">
+
           <v-text-field
-            label="Username"
-            v-model="user.username"
+            label="Brewery Name"
+            v-model="newBrewery.name"
             outlined
-        ></v-text-field>
+          ></v-text-field>
 
-        <v-text-field
-            label="Password"
-            type="password"
-            v-model="user.password"
+          <v-text-field
+            label="Street Address"
+            v-model="newBrewery.street"
             outlined
-        ></v-text-field>
+          ></v-text-field>
 
-        <v-text-field
-            label="Confirm Password"
-            type="password"
-            v-model="user.confirmPassword"
+          <v-text-field
+            label="City"
+            v-model="newBrewery.city"
             outlined
-        ></v-text-field>
+          ></v-text-field>
 
-      <v-radio-group col v-model="user.role">
-      <v-radio
-      label="Beer Lover"
-      value="user"
-      ></v-radio>
-      <v-radio
-      label="Brewer"
-      value="brewer"
-      >
-        
-      </v-radio>
-      </v-radio-group>
+          <v-text-field
+            label="State"
+            v-model="newBrewery.state"
+            outlined
+          ></v-text-field>
+
+          <v-text-field
+            label="Zip Code"
+            v-model="newBrewery.postal_code"
+            maxlength="5"
+            outlined
+          ></v-text-field>
+
+          <v-text-field
+            label="Website URL"
+            v-model="newBrewery.website_url"
+            outlined
+          ></v-text-field>
+
+          <v-text-field
+            label="Phone Number"
+            v-model="newBrewery.phone"
+            maxlength="10"
+            outlined
+          ></v-text-field>
+
+          <v-text-field
+            label="Brewer Username"
+            v-model="newBrewery.username"
+            outlined
+          ></v-text-field>
 
         <div class="register-alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
         </div>
 
-        <v-btn rounded color="#33691E" @click="register" id="registersubmitbutton">
+        <v-btn rounded color="#33691E" @click="addBrewery" id="registersubmitbutton">
           CREATE ACCOUNT
         </v-btn>
         </div>
@@ -207,6 +226,8 @@
 <script>
 
 import authService from '@/services/AuthService';
+import breweryService from '@/services/BreweryServices';
+
 
 export default {
     name: 'theHeader',
@@ -226,6 +247,16 @@ export default {
           confirmPassword: '',
           role: '',
       },
+      newBrewery: {
+        name: "",
+        street: "",
+        city: "",
+        state: "",
+        postal_code: "",
+        website_url: "",
+        phone: "",
+        username: ""
+       },
     }
   },
 
@@ -240,6 +271,32 @@ export default {
   },
 
     methods: {
+
+    addBrewery(){
+      breweryService.addBrewery(this.newBrewery).then(response => {
+        console.log(response);
+        this.$fire({
+          title: "Success!",
+          text: "Your brewery has been added to our database.",
+          type: "success",
+          timer: 300000
+            }).then(r => {
+             console.log(r);
+             location.reload();
+
+            })
+            })
+        .catch((error) => {
+        console.log(error);
+        this.$fire({
+          title: "Brewery details are incorrect!",
+          text: "Please double-check your brewery information.",
+          type: "error",
+          timer: 300000
+        })
+      }
+    )},
+
     logout(){
       this.$store.commit("LOGOUT");
       this.$router.push("/");
@@ -312,9 +369,9 @@ export default {
 
 #whoareyou-admin{
   font-family: "Fira Sans";
-  position: absolute;
-  top: 7%;
-  left: 43.75%;
+  position: relative;
+  text-align: center;
+  padding-top: 52px;
   color: white;
 }
 
