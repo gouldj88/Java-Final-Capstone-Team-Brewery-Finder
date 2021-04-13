@@ -31,49 +31,43 @@
   </div>
   <div class="brewery-phone">
   <h1>{{brewery.phone}}</h1>
-  <br>
  </div>
  </div>
 
 
 <!-- NEW CODE WENT HERE -->
 
-<div v-for="details in detailResults" v-bind:key="details.obdb_id" class="brewery-information">
-  <h1>{{details.history.toUpperCase()}}</h1>
-  <h1>{{details.hour_open.toUpperCase()}}</h1>
-  <h1>{{details.hour_closed.toUpperCase()}}</h1>
-  <h1>{{details.open_sun}}</h1>
-  <h1>{{details.open_mon}}</h1>
-  <h1>{{details.open_tue}}</h1>
-  <h1>{{details.open_wed}}</h1>
-  <h1>{{details.open_thu}}</h1>
-  <h1>{{details.open_fri}}</h1>
-  <h1>{{details.open_sat}}</h1>
-  <img v-bind:src="details.image_url" id="bar-image">
 
+<div v-for="details in detailResults" v-bind:key="details.obdb_id" class="brewery-information">
+<div class="history">
+      <h1>{{details.history.toUpperCase()}}</h1>
+  </div>
+  </div>
+
+
+
+<div v-for="details in detailResults" v-bind:key="details.obdb_id" class="brewery-information">
+  
+    <div class="week-hours">
+      <h1>{{details.hour_open.toUpperCase()}}</h1>
+      <h1>{{details.hour_closed.toUpperCase()}}</h1>
+      <h1>{{details.open_sun}}</h1>
+      <h1>{{details.open_mon}}</h1>
+      <h1>{{details.open_tue}}</h1>
+      <h1>{{details.open_wed}}</h1>
+      <h1>{{details.open_thu}}</h1>
+      <h1>{{details.open_fri}}</h1>
+      <h1>{{details.open_sat}}</h1>
+  </div>
 </div>
 
-
-
+<div v-for="details in detailResults" v-bind:key="details.obdb_id" class="brewery-information">
+<div class="jeffs-pic">
+  <img v-bind:src="details.image_url" id="bar-image">
+  </div>
+  </div>
 <br>
 
-<template>
-  <v-row align="center">
-    <v-col cols="12">
-    
-      <div class="hours-of">
-      <v-select
-        :items="hours"
-        :menu-props="{ top: true, offsetY: true }"
-        label="Hours of Operation" 
-         background-color="#FFFFFF"
-      ></v-select>
-      </div>
-    </v-col>
-  </v-row>
-  <br>
-  
-</template>
 
 
  <template>      
@@ -210,24 +204,31 @@ import BeerService from '@/services/BeerService';
   padding-top: 40px;
 }
 
-.hours-of {
-  font-family: "Archivo Narrow";
-  padding-top: 45px;
-  font-size: 15px;
-  color: green;
 
-}
-/*.text-desc {
-  font-family: "Verdana";
-  font-size: 15px
+.week-hours {
+  font-family: "Archivo";
+  font-size: 12px;
+  height: 40px;
+  left: 87.75%;
+  position: absolute;
 }
 
-.text-type {
-  font-family: "Verdana";
-  font-size: 15px
-  float right;
+.jeffs-pic {
+
+  width: 70%;
+  height: 20%;
+  margin: auto;
+}
   
+.history {
+  font-family: "archivo";
+  position: absolute;
+  font-size: 12px;
+  width: 20%;
+  padding-right: 40px;
+
+
 }
-*/
+
 
 </style>
