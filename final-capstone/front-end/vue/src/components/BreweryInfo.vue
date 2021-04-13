@@ -102,7 +102,7 @@
               </div>
 
               <v-divider></v-divider>
-
+<div id="review-container">
 <template>
   <v-simple-table>
     <template v-slot:default>
@@ -111,14 +111,22 @@
           v-for="review in reviewResults"
           :key="review.username"
           >
-                  <td> {{review.username}}</td>
-                  <td>{{review.review_text}}</td>
-                  <td>{{review.star_rating}}</td>
+                <td>{{review.username}} said "{{review.review_text}}"</td>
+
+                    <td><v-rating
+                :value='review.star_rating'
+                :readonly="true"
+                background-color="green lighten-3"
+                color="green"
+                size="20"
+        ></v-rating></td>
+
         </tr>
       </tbody>
     </template>
   </v-simple-table>
 </template>
+</div>
 
 
             </td>
@@ -303,4 +311,10 @@ margin: auto;
   margin: auto;
   padding-right: 100px;
 }
+
+#review-container {
+ position: relative;
+ padding: 9px;
+}
+
 </style>

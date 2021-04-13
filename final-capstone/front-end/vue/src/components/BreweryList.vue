@@ -67,7 +67,7 @@
 
 
           <template v-slot:[`item.username`]="{ item }">
-            <router-link :to="{ name: 'breweryinfo', params: { id: item.obdb_id }}">
+            <router-link :to="{ name: 'breweryinfo', params: { id: item.obdb_id }}" @click.native="scrollToTop">
               <v-btn
               v-if="item.username !== null"
               small
@@ -164,6 +164,10 @@ data () {
     }
 },
 methods: {
+
+  scrollToTop() {
+      window.scrollTo(0,0);
+           },
 
     buttonToggle(){
       if (this.buttonText == "Search"){
