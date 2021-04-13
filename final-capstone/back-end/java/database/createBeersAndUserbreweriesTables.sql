@@ -91,4 +91,8 @@ insert into beers (obdb_id, beer_name, brewery, description, image, abv, beer_ty
 
 insert into userbrewerydetails (obdb_id, history, image_url, hour_open, hour_closed, open_sun, open_mon, open_tue, open_wed, open_thu, open_fri, open_sat) values ('jeffs-tavern-and-brewhouse', 'Jeff''s Tavern & Brewhouse has been a Sandusky staple for over a century. Come try the tasty Woodstock Express cocktail. Or the Corkscrew, if you''re into pain.', 'https://meltbarandgrilled.com/wp-content/gallery/gallery-location-melt-cedar-point/MELT_LOCATION_CEDAR_POINT_004.jpg', '11:00 AM', '11:00 PM', true, false, false, true, true, true, true);
 
+insert into userbrewerydetails (obdb_id, history, image_url, hour_open, hour_closed, open_sun, open_mon, open_tue, open_wed, open_thu, open_fri, open_sat) values ('pub-louis', 'Pub-Louis is the staple of modern society, come get a buzz and regurgitate Gorden Wood with your friends', 'https://i.imgur.com/xrlvaac.jpg', '11:00 AM', '11:00 PM', true, false, false, true, true, true, true);
+
+insert into userbrewerydetails (obdb_id, history, image_url, hour_open, hour_closed, open_sun, open_mon, open_tue, open_wed, open_thu, open_fri, open_sat) values ('briannas-wing-and-dancehall', 'Home-brewed beers and home-grown women, come get a beer and a dance!', 'https://i.imgur.com/Kd5UGMb.jpg', '11:00 AM', '02:00 AM', true, false, false, true, true, true, true);
+
 insert into reviews (beer_id, review_text, star_rating, username) values (1, 'This was a very tasty beer.', 4, 'mistertester');
