@@ -76,7 +76,7 @@
           :headers="headers"
           :items="beerResults"
           :single-expand="true"
-          :items-per-page="10"
+          :items-per-page="10"      
           item-key="name"
           show-expand
           hide-default-header
@@ -121,7 +121,10 @@ import BeerService from '@/services/BeerService';
  
 
 
- export default{  
+ export default{ 
+
+
+   name: "brewery-informazione",
 
     data (){
         return{
@@ -137,10 +140,25 @@ import BeerService from '@/services/BeerService';
         },
         { text: 'Brewery', value: 'brewery' },
         { text: 'ABV', value: 'abv' },
-        { text: 'Type', value: 'type'}
-      ],
+        { text: 'Type', value: 'type'},   
+            ]
         }
     },
+
+    methods: {
+      userCheck() {
+      return this.$store.state.user.authorities[0].name;
+      },
+
+     usernameCheck(){
+      return this.$store.state.user.username;
+      },
+
+      breweryOwnerCheck(){
+      return this.results[0].username;
+      }
+    },
+
     created() {
         BreweryServices.getSingleBreweryInfo(this.$route.params.id).then(response => {
         this.results = response.data;
@@ -202,6 +220,10 @@ import BeerService from '@/services/BeerService';
   font-size: 15px;
   float: right;
   padding-top: 40px;
+}
+
+#maPetiteLemke {
+  float: right;
 }
 
 
