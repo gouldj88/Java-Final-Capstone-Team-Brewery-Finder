@@ -169,6 +169,11 @@ public class ApiController {
 	    return reviewsDAO.getReviewsByBeerId(beerId);
 	}
 	
+	@RequestMapping(path = "/reviews/maintenance/addReview", method = RequestMethod.POST)
+	public void addReview(@RequestBody Reviews formData) {
+		reviewsDAO.addReview(formData);
+	}
+	
 	
 /********************************************************************************************************************* 
 * Use this method if you'd like to log calls to your controllers - these message can aid in your troubleshooting

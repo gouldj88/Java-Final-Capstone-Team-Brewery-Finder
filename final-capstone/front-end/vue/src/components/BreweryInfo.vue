@@ -103,6 +103,62 @@
 
               <v-divider></v-divider>
 <div id="review-container">
+
+    <v-row justify="center">
+      <v-dialog
+        v-model="dialog"
+        persistent
+        max-width="600px"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            color="primary"
+            dark
+            v-bind="attrs"
+            v-on="on"
+          >
+            ADD REVIEW
+          </v-btn>
+        </template>
+        <v-card>
+          <v-card-text>
+            <v-container>
+                <v-col cols="12">
+                  <v-text-field
+                    label="Write your review*"
+                    v-model="newReview.review_text"
+                    required
+                  ></v-text-field>
+                </v-col>
+                <v-rating
+      v-model="newReview.star_rating"
+      background-color="green lighten-3"
+      color="green"
+      large
+    ></v-rating>
+            </v-container>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="blue darken-1"
+              text
+              @click="dialog = false"
+            >
+              Close
+            </v-btn>
+            <v-btn
+              color="blue darken-1"
+              text
+              @click="addReview"
+            >
+              Save
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-row>
+
 <template>
   <v-simple-table>
     <template v-slot:default>
@@ -177,6 +233,14 @@ import BeerService from '@/services/BeerService';
 
     data (){
         return{
+          currentBeerId: 0,
+          newReview: {
+            beer_id: "",
+            review_text: "",
+            star_rating: "",
+            username: this.$store.state.user.username,
+       },
+            dialog: false,
             results: [],
             beerResults: [],
             detailResults:[],
@@ -197,6 +261,33 @@ import BeerService from '@/services/BeerService';
     },
 
     methods: {
+
+          addReview(){            
+          this.dialog = false;
+      BeerService.addBeerReview(this.newReview).then(response => {
+        console.log(response);
+        this.$fire({
+          title: "Success!",
+          text: "Your review has been added.",
+          type: "success",
+          timer: 300000
+            }).then(r => {
+             console.log(r);
+            location.reload();
+            })
+            })
+        .catch((error) => {
+        console.log(error);
+        this.$fire({
+          title: "Something went wrong!",
+          text: "Please double-check your review or try again later.",
+          type: "error",
+          timer: 300000
+        })
+      }
+    )},
+
+
       userCheck() {
       return this.$store.state.user.authorities[0].name;
       },
@@ -210,6 +301,7 @@ import BeerService from '@/services/BeerService';
       },
 
       getBeerReviews({item}){
+        this.newReview.beer_id = item.beer_id;
         BeerService.getBeerReviewsById(item.beer_id).then(response => {
         this.reviewResults = response.data;
         })
