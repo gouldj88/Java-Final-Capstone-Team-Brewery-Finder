@@ -12,12 +12,9 @@
       {{brewery.state.toUpperCase()}}
       {{brewery.postal_code.toUpperCase()}}</h1>
   <h1>{{brewery.website_url}}</h1>
-  </div>
-  <div class="brewery-phone">
   <h1>{{brewery.phone}}</h1>
+  </div>
   <br>
-  <br>
- </div>
  </div>
 
 
@@ -25,18 +22,16 @@
 
 <div>
 
-
-<div v-for="details in detailResults" v-bind:key="details.obdb_id" id="history">
-      <h1>{{details.history.toUpperCase()}}</h1>
-      <br>
-  </div>
-
-
 <div v-for="details in detailResults" v-bind:key="details.obdb_id">
-  <v-img v-bind:src="details.image_url" max-height="200"
+  <v-img v-bind:src="details.image_url" max-height="175"
   max-width="900" id="bar-image"></v-img>
   </div>
+  <br>
 
+<div v-for="details in detailResults" v-bind:key="details.obdb_id" id="history">
+      <h1>{{details.history}}</h1>
+      <br>
+  </div>
 
 
 
@@ -77,10 +72,24 @@
           hide-default-footer
           class="elevation-1"
           >
+
+          <template v-slot:[`item.active`]="{ item }">
+
+              <div v-if="item.active == 'Y'">  
+                Active
+              </div>
+
+              <div v-if="item.active == 'N'">  
+                Inactive
+              </div>
+
+          </template>
   
           <template v-slot:expanded-item="{ headers, item }">
             <td :colspan="headers.length" id="expander">
-              <div>
+            <div class="beer-image">
+                <img v-bind:src="item.image" id="beer-image">
+            </div>
               <div>
                  <p class="text-info">
                    {{item.name}} 
@@ -88,10 +97,6 @@
                    {{item.description}}
                   </p>
               </div>
-            <div class="beer-image">
-           <img v-bind:src="item.image" id="beer-image">
-            </div>
-          </div>
 
             </td>
           </template>
@@ -153,7 +158,8 @@ import BeerService from '@/services/BeerService';
         },
         { text: 'Brewery', value: 'brewery' },
         { text: 'ABV', value: 'abv' },
-        { text: 'Type', value: 'type'},   
+        { text: 'Type', value: 'type'},
+        { text: 'Active', value: 'active'},    
             ]
         }
     },
@@ -190,11 +196,12 @@ import BeerService from '@/services/BeerService';
 <style scoped>
 #inspire {
   font-family: "Archivo Narrow";
-  max-width: 450px;
+  max-width: 675px;
   margin: auto;
 
 }
 #beer-image {
+  margin-left: 20px;
   margin-bottom: 15px;
   height: 110px;
   float: left;
@@ -252,6 +259,8 @@ margin: auto;
   position: relative;
   font-size: 12px;
   color: white;
+  max-width: 700px;
+  margin-left: 204px;
 
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="reviewlist">
+  <div class="review-list">
     <h1>Beer Reviews</h1>
     <review-list/>
   </div>
