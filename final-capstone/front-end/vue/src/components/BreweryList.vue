@@ -7,7 +7,7 @@
      <br>
      <br>
      <img id="hopimg" src="../assets/hops.png" style="width: 40px"><br>
-     <span>BreweryFinder</span>
+     <div id="breweryfinderlogo">BreweryFinder</div>
      <br>
      <br>
 
@@ -54,23 +54,53 @@
 
             <template v-slot:[`item.name`]="{ item }">
 
-              <div v-if="item.website_url !== null && item.username == null">  
+              <div v-if="item.website_url !== null">  
                <a target="_blank" :href="item.website_url"> 
                 {{ item.name }}
               </a>
               </div>
 
-              <div v-if="item.website_url == null && item.username == null">  
+              <div v-if="item.website_url == null">  
                 {{ item.name }}
               </div>
-
-              <div v-if="item.username !== null">
-                <router-link :to="{ name: 'breweryinfo', params: { id: item.obdb_id }}">
-                  {{ item.name }}
-                </router-link>
-              </div>
-
             </template>
+
+
+          <template v-slot:[`item.username`]="{ item }">
+            <router-link :to="{ name: 'breweryinfo', params: { id: item.obdb_id }}">
+              <v-btn
+              v-if="item.username !== null"
+              small
+              color="#1B5E20"
+              width="85"
+              dark
+              >
+              <img id="buttonicon" src="../assets/hops.png"><br> 
+              <div id="profilebuttontext">PROFILE</div>
+            </v-btn>
+            </router-link>
+
+    <v-tooltip top color="#212121" nudge-right="326" nudge-bottom="10">
+      <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              v-if="item.username == null"
+              small
+              outlined
+              color="#616161"
+              width="85"
+              v-on="on"
+              v-bind="attrs"
+              dark
+              >
+              UNCLAIMED
+            </v-btn>
+      </template>
+      <span>Is this your brewery? Sign up for a Brewer account and claim your Brewery Profile.</span>
+      </v-tooltip>
+
+
+          </template>
+     
 
 
           <template v-slot:expanded-item="{ headers, item }">
@@ -117,6 +147,7 @@ data () {
           sortable: false,
           value: 'name'
         },
+        { text: '', value: 'username'},
         { text: 'Address', value: 'street' },
         { text: 'City', value: 'city' },
         { text: 'State', value: 'state' },
@@ -207,18 +238,29 @@ margin: 0 auto;
 width: 40%;
 }
 
+#buttonicon {
+  width: 11px;
+}
+
 #inspire {
   text-align: left;
   font-family: "Fira Sans";
   font-size: 60%;
 }
 
-span {
+#breweryfinderlogo {
     font-family: chango;
     font-size: 40px;
     position: relative;
     margin: auto;
     color: white;
+}
+
+#profilebuttontext{
+  padding-top: 3px;
+  padding-left: 2px;
+  text-decoration: none;
+
 }
 
 #hopimg{
