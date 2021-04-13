@@ -12,6 +12,7 @@ import BreweryInfo from '@/components/BreweryInfo.vue';
 export default {
   name: 'goofyGoober',
   data() {
+    message: 'message';
     return {
     };
   },

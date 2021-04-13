@@ -71,11 +71,23 @@ constraint fk_beer_id foreign key (beer_id) references beers(beer_id)
 
 insert into userbreweries (obdb_id, name, street, city, state, postal_code, website_url, phone, username) values ('jeffs-tavern-and-brewhouse', 'Jeff''s Tavern & Brewhouse', '1 Cedar Point Drive', 'Sandusky', 'Ohio', '44870', null, '4405551234', 'tester');
 insert into userbreweries (obdb_id, name, street, city, state, postal_code, website_url, phone, username) values ('pub-louis', 'Pub Louis', '1250 Pacific Ave #101', 'Tacoma', 'Washington', '98402', null, '4405551234', 'tester');
-insert into userbreweries (obdb_id, name, street, city, state, postal_code, website_url, phone, username) values ('briannas-wing-and-dance', 'Brianna''s Wings & Dancehall', '300 Parkside Ave', 'Buffalo', 'New York', '14214', null, '4405551234', 'tester');
+insert into userbreweries (obdb_id, name, street, city, state, postal_code, website_url, phone, username) values ('briannas-wing-and-dancehall', 'Brianna''s Wings & Dancehall', '300 Parkside Ave', 'Buffalo', 'New York', '14214', null, '4405551234', 'tester');
 
 insert into beers (obdb_id, beer_name, brewery, description, image, abv, beer_type, active) values ('jeffs-tavern-and-brewhouse', 'Nitro Coconut Truffle', 'Southern Tier Brewing Company', 'Ale with sea salt, dark chocolate, and natural chocolate & coconut flavors.', 'https://i.imgur.com/ygrWulF.png', '10%', 'Imperial Milk Stout', 'Y');
 insert into beers (obdb_id, beer_name, brewery, description, image, abv, beer_type, active) values ('jeffs-tavern-and-brewhouse', 'Blueberry Maple Stout', 'Saugatuck Brewing Company', 'Rich, sweet stout with classic malt characteristics with a bold, unique twist of blueberry and maple.', 'https://i.imgur.com/UXQrafg.png', '4.3%', 'Sour Ale', 'Y');
 insert into beers (obdb_id, beer_name, brewery, description, image, abv, beer_type, active) values ('jeffs-tavern-and-brewhouse', 'Who Cooks For You', 'Jackie O''s Pub & Brewery', 'Double dry hopped pale ale with fruity, juicy flavors.', 'https://i.imgur.com/hakv1XA.jpg', '5.5%', 'Hazy Pale Ale', 'Y');
+
+insert into beers (obdb_id, beer_name, brewery, description, image, abv, beer_type, active) values ('pub-louis', 'Ottermelon Hefeweizen', 'Odd Otter', 'This Pale Ale is heavily dosed with Mosaic hops, the 2018 Washington Brewers Awards Gold medalist, boasts tropical and berry aromas.', 'https://imgur.com/6uK8LNa', '5%', 'Hefeweizen', 'Y');
+insert into beers (obdb_id, beer_name, brewery, description, image, abv, beer_type, active) values ('pub-louis', 'Hazy Ipa', '7 Seas Brewery', 'A soft, rounded mouthfeel asserts itself in this unfiltered IPA, loaded with newfangled hop varieties, for lots of juicy flavor and aroma.', 'https://i.imgur.com/twM3ZDn.png', '6.2%', 'New England IPA', 'Y');
+insert into beers (obdb_id, beer_name, brewery, description, image, abv, beer_type, active) values ('pub-louis', 'New Cleveland Palesner', 'Platform', 'This Pilsner/Pale Ale Hybrid is a clear straw color with a crisp German malt body', 'https://i.imgur.com/Cf7U0pA.jpg', '5%', 'Pilsner\Pale', 'Y');
+
+insert into beers (obdb_id, beer_name, brewery, description, image, abv, beer_type, active) values ('briannas-wing-and-dancehall', 'Giant Pacific Octopus', 'Narrows Brewing Company', 'Imagine yourself walking in the woods on a bright, sunny day. If that experience can be tasted, the hops in this IPA are its delivery mechanism.', 'https://i.imgur.com/LaIDnbk.jpg', '7.2%', 'IPA', 'Y');
+insert into beers (obdb_id, beer_name, brewery, description, image, abv, beer_type, active) values ('briannas-wing-and-dancehall', 'Delicious IPA', 'Stone','An IPA that lives up to the name', 'https://i.imgur.com/2SkZFng.png', '7.7%', 'IPA', 'Y');
+insert into beers (obdb_id, beer_name, brewery, description, image, abv, beer_type, active) values ('briannas-wing-and-dancehall', 'Rose', 'Urban Artifact', 'Brut Fruit Tart Ale', 'https://i.imgur.com/gzRuSXD.jpg', '12%', 'Grape Ale', 'Y');
+
+
+
+
 
 insert into userbrewerydetails (obdb_id, history, image_url, hour_open, hour_closed, open_sun, open_mon, open_tue, open_wed, open_thu, open_fri, open_sat) values ('jeffs-tavern-and-brewhouse', 'Jeff''s Tavern & Brewhouse has been a Sandusky staple for over a century. Come try the tasty Woodstock Express cocktail. Or the Corkscrew, if you''re into pain.', 'https://meltbarandgrilled.com/wp-content/gallery/gallery-location-melt-cedar-point/MELT_LOCATION_CEDAR_POINT_004.jpg', '11:00 AM', '11:00 PM', true, false, false, true, true, true, true);
 
