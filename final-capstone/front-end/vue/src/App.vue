@@ -106,6 +106,7 @@ body{
   position: fixed; 
   top: 0; 
   left: 0; 
+  position: absolute;
 	
   /* Preserve aspet ratio */
   min-width: 100%;

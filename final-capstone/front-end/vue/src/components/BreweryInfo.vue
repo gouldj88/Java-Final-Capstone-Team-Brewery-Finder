@@ -37,18 +37,24 @@
 
 <!-- NEW CODE WENT HERE -->
 
+<div>
 
-<div v-for="details in detailResults" v-bind:key="details.obdb_id" class="brewery-information">
-<div class="history">
+
+<div v-for="details in detailResults" v-bind:key="details.obdb_id" id="history">
       <h1>{{details.history.toUpperCase()}}</h1>
   </div>
+
+
+<div v-for="details in detailResults" v-bind:key="details.obdb_id">
+  <img v-bind:src="details.image_url" id="jeffs-pic">
   </div>
 
 
 
-<div v-for="details in detailResults" v-bind:key="details.obdb_id" class="brewery-information">
+
+
+<div v-for="details in detailResults" v-bind:key="details.obdb_id">
   
-    <div class="week-hours">
       <h1>{{details.hour_open.toUpperCase()}}</h1>
       <h1>{{details.hour_closed.toUpperCase()}}</h1>
       <h1>{{details.open_sun}}</h1>
@@ -58,15 +64,9 @@
       <h1>{{details.open_thu}}</h1>
       <h1>{{details.open_fri}}</h1>
       <h1>{{details.open_sat}}</h1>
-  </div>
-</div>
 
-<div v-for="details in detailResults" v-bind:key="details.obdb_id" class="brewery-information">
-<div class="jeffs-pic">
-  <img v-bind:src="details.image_url" id="bar-image">
-  </div>
-  </div>
-<br>
+</div>
+</div>
 
 
 
@@ -228,27 +228,22 @@ import BeerService from '@/services/BeerService';
 
 
 .week-hours {
-  font-family: "Archivo";
+  font-family: "Archivo Narrow";
   font-size: 12px;
   height: 40px;
   left: 87.75%;
   position: absolute;
 }
 
-.jeffs-pic {
-
-  width: 70%;
-  height: 20%;
-  margin: auto;
+#jeffs-pic {
+  position:absolute;
 }
   
-.history {
-  font-family: "archivo";
+#history {
+  font-family: "Archivo Narrow";
   position: absolute;
   font-size: 12px;
-  width: 20%;
-  padding-right: 40px;
-
+  color: white;
 
 }
 
