@@ -20,6 +20,11 @@ export default {
 
       deleteBeer(beerId) {
           return http.post(`/beers/maintenance/deleteBeer/${beerId}`)
-      }
+      },
+
+      getBeerReviewsById(beerId) {
+        return http.get(`/reviews/${beerId}`)
+    },
+
 
   }

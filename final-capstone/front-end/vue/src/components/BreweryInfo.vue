@@ -65,11 +65,12 @@
           :headers="headers"
           :items="beerResults"
           :single-expand="true"
-          :items-per-page="10"      
+          :items-per-page="10"
           item-key="name"
           show-expand
           hide-default-header
           hide-default-footer
+          @item-expanded="getBeerReviews"
           class="elevation-1"
           >
 
@@ -87,6 +88,7 @@
   
           <template v-slot:expanded-item="{ headers, item }">
             <td :colspan="headers.length" id="expander">
+              <div id="beerimageandinfo">
             <div class="beer-image">
                 <img v-bind:src="item.image" id="beer-image">
             </div>
@@ -97,6 +99,27 @@
                    {{item.description}}
                   </p>
               </div>
+              </div>
+
+              <v-divider></v-divider>
+
+<template>
+  <v-simple-table>
+    <template v-slot:default>
+      <tbody>
+        <tr
+          v-for="review in reviewResults"
+          :key="review.username"
+          >
+                  <td> {{review.username}}</td>
+                  <td>{{review.review_text}}</td>
+                  <td>{{review.star_rating}}</td>
+        </tr>
+      </tbody>
+    </template>
+  </v-simple-table>
+</template>
+
 
             </td>
           </template>
@@ -149,6 +172,7 @@ import BeerService from '@/services/BeerService';
             results: [],
             beerResults: [],
             detailResults:[],
+            reviewResults:[],
             headers: [
         {
           text: 'Beer',
@@ -175,6 +199,12 @@ import BeerService from '@/services/BeerService';
 
       breweryOwnerCheck(){
       return this.results[0].username;
+      },
+
+      getBeerReviews({item}){
+        BeerService.getBeerReviewsById(item.beer_id).then(response => {
+        this.reviewResults = response.data;
+        })
       }
     },
 
@@ -264,4 +294,13 @@ margin: auto;
 
 }
 
+#beerimageandinfo {
+  padding-bottom: 30px;
+}
+
+#reviewbutton {
+  position: relative;
+  margin: auto;
+  padding-right: 100px;
+}
 </style>
