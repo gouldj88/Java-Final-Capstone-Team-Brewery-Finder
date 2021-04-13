@@ -4,7 +4,7 @@
           <router-link to="/"> 
             <div v-show="$route.name !=='home'">
             <img id="hopimg" src="../assets/hops.png" width="20px">
-            <span>BreweryFinder </span>
+            <div id="breweryfindertitle">BreweryFinder </div>
            </div>
           </router-link>
 
@@ -146,17 +146,35 @@
             outlined
         ></v-text-field>
 
-      <v-radio-group col v-model="user.role">
+      <v-radio-group col v-model="user.role" id="radio-buttons">
+
+      <v-tooltip top color="#212121" nudge-right="110" nudge-bottom="10">
+      <template v-slot:activator="{ on, attrs }">
       <v-radio
       label="Beer Lover"
       value="user"
+      v-bind="attrs"
+      v-on="on"
       ></v-radio>
+      </template>
+      <span>Love drinking beer? Leave beer reviews as a Beer Lover.</span>
+      </v-tooltip>
+
+      
+      <v-tooltip top color="#212121" nudge-right="190" nudge-bottom="10">
+      <template v-slot:activator="{ on, attrs }">
       <v-radio
       label="Brewer"
       value="brewer"
-      >
-        
+      v-bind="attrs"
+      v-on="on"
+      >  
       </v-radio>
+      </template>
+      <span>Own your own brewery? Take control of your information with a Brewer account.</span>
+      </v-tooltip>
+      
+      
       </v-radio-group>
 
         <div class="register-alert-danger" role="alert" v-if="registrationErrors">
@@ -406,7 +424,7 @@ export default {
   color: white;
 }
 
-span {
+#breweryfindertitle {
     top: 5.5%;
     left: 6%;
     font-family: chango;
