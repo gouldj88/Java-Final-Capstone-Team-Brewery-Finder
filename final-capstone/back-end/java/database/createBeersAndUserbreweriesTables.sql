@@ -58,10 +58,10 @@ active character varying(1) not null,
 constraint fk_obdb_id foreign key (obdb_id) references userbreweries(obdb_id)
 );
 
-insert into userbreweries (obdb_id, name, street, city, state, postal_code, website_url, phone, username) values ('jeffs-tavern', 'Jeff''s Tavern', '1 Cedar Point Drive', 'Sandusky', 'Ohio', '44870', null, '4405551234', 'tester');
+insert into userbreweries (obdb_id, name, street, city, state, postal_code, website_url, phone, username) values ('jeffs-tavern-and-brewhouse', 'Jeff''s Tavern & Brewhouse', '1 Cedar Point Drive', 'Sandusky', 'Ohio', '44870', null, '4405551234', 'tester');
 insert into userbreweries (obdb_id, name, street, city, state, postal_code, website_url, phone, username) values ('pub-louis', 'Pub Louis', '1250 Pacific Ave #101', 'Tacoma', 'Washington', '98402', null, '4405551234', 'tester');
 insert into userbreweries (obdb_id, name, street, city, state, postal_code, website_url, phone, username) values ('briannas-wing-and-dance', 'Brianna''s Wings & Dancehall', '300 Parkside Ave', 'Buffalo', 'New York', '14214', null, '4405551234', 'tester');
 
-insert into beers (obdb_id, beer_name, brewery, description, image, abv, beer_type, active) values ('jeffs-tavern', 'Blue Moon', 'Blue Moon Brewing', 'It''s a smooth and tasty belgian ale.', 'https://www.bluemoonbrewingcompany.com/sites/bluemoon/files/2018-05/OurBeers.png', '7%', 'Belgian Ale', 'Y');
+insert into beers (obdb_id, beer_name, brewery, description, image, abv, beer_type, active) values ('jeffs-tavern-and-brewhouse', 'Blue Moon', 'Blue Moon Brewing', 'It''s a smooth and tasty belgian ale.', 'https://www.bluemoonbrewingcompany.com/sites/bluemoon/files/2018-05/OurBeers.png', '7%', 'Belgian Ale', 'Y');
 
 insert into userbrewerydetails (obdb_id, history, image_url, hour_open, hour_closed, open_sun, open_mon, open_tue, open_wed, open_thu, open_fri, open_sat) values ('jeffs-tavern', 'Jeff''s Tavern has been a Sandusky staple for over a century. Come try the tasty Woodstock Express cocktail. Or the Corkscrew, if you''re into pain.', 'https://meltbarandgrilled.com/wp-content/gallery/gallery-location-melt-cedar-point/MELT_LOCATION_CEDAR_POINT_004.jpg', '11:00 AM', '11:00 PM', true, false, false, true, true, true, true);

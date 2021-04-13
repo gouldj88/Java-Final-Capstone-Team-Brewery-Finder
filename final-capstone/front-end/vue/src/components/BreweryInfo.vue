@@ -1,24 +1,8 @@
 <template>
  <div class="brewery-info">
-    <v-btn
-          color="#1B5E20"
-          dark
-          v-bind="attrs"
-          v-on="on"
-          id="register"
-        >
-          ADD A BEER
-        </v-btn>
-            <v-btn
-          color="#1B5E20"
-          dark
-          v-bind="attrs"
-          v-on="on"
-          id="register"
-        >
-          UPDATE BREWERY INFORMATION
-        </v-btn> 
+  
  <div v-for="brewery in results" v-bind:key="brewery.name" class="brewery-information">
+  
   <div class="brewery-name"> 
   <h1>{{brewery.name.toUpperCase()}}</h1>
   </div>
@@ -31,6 +15,8 @@
   </div>
   <div class="brewery-phone">
   <h1>{{brewery.phone}}</h1>
+  <br>
+  <br>
  </div>
  </div>
 
@@ -42,35 +28,43 @@
 
 <div v-for="details in detailResults" v-bind:key="details.obdb_id" id="history">
       <h1>{{details.history.toUpperCase()}}</h1>
+      <br>
   </div>
 
 
 <div v-for="details in detailResults" v-bind:key="details.obdb_id">
-  <img v-bind:src="details.image_url" id="jeffs-pic">
+  <v-img v-bind:src="details.image_url" max-height="200"
+  max-width="900" id="bar-image"></v-img>
   </div>
 
 
 
 
 
-<div v-for="details in detailResults" v-bind:key="details.obdb_id">
+<div v-for="details in detailResults" v-bind:key="details.obdb_id" id="history">
   
-      <h1>{{details.hour_open.toUpperCase()}}</h1>
-      <h1>{{details.hour_closed.toUpperCase()}}</h1>
-      <h1>{{details.open_sun}}</h1>
-      <h1>{{details.open_mon}}</h1>
-      <h1>{{details.open_tue}}</h1>
-      <h1>{{details.open_wed}}</h1>
-      <h1>{{details.open_thu}}</h1>
-      <h1>{{details.open_fri}}</h1>
-      <h1>{{details.open_sat}}</h1>
+      <h1>{{details.hour_open.toUpperCase()}} - {{details.hour_closed.toUpperCase()}}</h1>
+      <h1>WEDNESDAY THROUGH SUNDAY</h1>
+<!--      <h1>{{details.open_sun}}</h1>      <h1>{{details.open_sun}}</h1>
+      <h1>{{details.open_mon}}</h1>      <h1>{{details.open_mon}}</h1>
+      <h1>{{details.open_tue}}</h1>      <h1>{{details.open_tue}}</h1>
+      <h1>{{details.open_wed}}</h1>      <h1>{{details.open_wed}}</h1>
+      <h1>{{details.open_thu}}</h1>      <h1>{{details.open_thu}}</h1>
+      <h1>{{details.open_fri}}</h1>      <h1>{{details.open_fri}}</h1>
+      <h1>{{details.open_sat}}</h1>      <h1>{{details.open_sat}}</h1> -->
 
+<br>
 </div>
 </div>
 
 
 
- <template>      
+ <template id="tapAndList">    
+
+   <div class="brewery-information"> 
+    <h1 id="ontap">ON TAP</h1>
+    <br>
+   </div>  
       <v-app id="inspire">
         <v-data-table
           :headers="headers"
@@ -85,7 +79,7 @@
           >
   
           <template v-slot:expanded-item="{ headers, item }">
-            <td :colspan="headers.length">
+            <td :colspan="headers.length" id="expander">
               <div>
               <div>
                  <p class="text-info">
@@ -104,6 +98,25 @@
         </v-data-table>
       </v-app>
     </template>
+
+    <v-btn
+          color="#1B5E20"
+          dark
+          v-bind="attrs"
+          v-on="on"
+          id="register"
+        >
+          ADD A BEER
+        </v-btn>
+            <v-btn
+          color="#1B5E20"
+          dark
+          v-bind="attrs"
+          v-on="on"
+          id="register"
+        >
+          UPDATE BREWERY INFORMATION
+        </v-btn> 
  
  </div>
 </template>
@@ -177,6 +190,8 @@ import BeerService from '@/services/BeerService';
 <style scoped>
 #inspire {
   font-family: "Archivo Narrow";
+  max-width: 450px;
+  margin: auto;
 
 }
 #beer-image {
@@ -189,15 +204,14 @@ import BeerService from '@/services/BeerService';
 
 #text-center {
   height: 30px;
-  float: center;
   margin-top: 15px;
 }
 
 .brewery-information{
+    font-family: "Syncopate";
     color: white;
     font-size: 15px;
     position: relative;
-    margin: auto;
 }
 
 .brewery-address-etc{
@@ -218,34 +232,27 @@ import BeerService from '@/services/BeerService';
 .text-info{
   font-family: "Archivo Narrow";
   font-size: 15px;
-  float: right;
   padding-top: 40px;
 }
-
-#maPetiteLemke {
-  float: right;
-}
-
 
 .week-hours {
   font-family: "Archivo Narrow";
   font-size: 12px;
   height: 40px;
   left: 87.75%;
-  position: absolute;
+  position: relative;
 }
 
-#jeffs-pic {
-  position:absolute;
+#bar-image {
+margin: auto;
 }
-  
+
 #history {
   font-family: "Archivo Narrow";
-  position: absolute;
+  position: relative;
   font-size: 12px;
   color: white;
 
 }
-
 
 </style>

@@ -106,8 +106,6 @@ body{
   position: fixed; 
   top: 0; 
   left: 0; 
-  position: absolute;
-	
   /* Preserve aspet ratio */
   min-width: 100%;
   min-height: 100%;
@@ -122,7 +120,6 @@ body{
 
 .theHeader {
     grid-area: header;
-    background-color: rgb(145, 88, 3);   
     padding: 10px;
     color: white;
     display: flex;
@@ -131,7 +128,6 @@ body{
 
 .container {
   grid-area: container;
-  background-color: rgb(255, 255, 255);
   justify-content: top;
   align-items: top;
   text-align: center;
@@ -153,7 +149,6 @@ body{
 
 footer {
   grid-area: footer;
-  background-color: rgb(145, 88, 3);  
   padding: 10px;
   margin-bottom: 0px;
   grid-row-start: 3;
