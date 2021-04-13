@@ -1,6 +1,7 @@
 drop table if exists userbreweries cascade;
 drop table if exists userbrewerydetails cascade;
-drop table if exists beers cascade; 
+drop table if exists beers cascade;
+drop table if exists reviews cascade;
 
 
 CREATE TABLE userbreweries
@@ -58,20 +59,6 @@ active character varying(1) not null,
 constraint fk_obdb_id foreign key (obdb_id) references userbreweries(obdb_id)
 );
 
-insert into userbreweries (obdb_id, name, street, city, state, postal_code, website_url, phone, username) values ('jeffs-tavern-and-brewhouse', 'Jeff''s Tavern & Brewhouse', '1 Cedar Point Drive', 'Sandusky', 'Ohio', '44870', null, '4405551234', 'tester');
-insert into userbreweries (obdb_id, name, street, city, state, postal_code, website_url, phone, username) values ('pub-louis', 'Pub Louis', '1250 Pacific Ave #101', 'Tacoma', 'Washington', '98402', null, '4405551234', 'tester');
-insert into userbreweries (obdb_id, name, street, city, state, postal_code, website_url, phone, username) values ('briannas-wing-and-dance', 'Brianna''s Wings & Dancehall', '300 Parkside Ave', 'Buffalo', 'New York', '14214', null, '4405551234', 'tester');
-
-insert into beers (obdb_id, beer_name, brewery, description, image, abv, beer_type, active) values ('jeffs-tavern-and-brewhouse', 'Nitro Coconut Truffle', 'Southern Tier Brewing Company', 'Ale with sea salt, dark chocolate, and natural chocolate & coconut flavors.', 'https://i.imgur.com/ygrWulF.png', '10%', 'Imperial Milk Stout', 'Y');
-insert into beers (obdb_id, beer_name, brewery, description, image, abv, beer_type, active) values ('jeffs-tavern-and-brewhouse', 'Blueberry Maple Stout', 'Saugatuck Brewing Company', 'Rich, sweet stout with classic malt characteristics with a bold, unique twist of blueberry and maple.', 'https://i.imgur.com/UXQrafg.png', '4.3%', 'Sour Ale', 'Y');
-insert into beers (obdb_id, beer_name, brewery, description, image, abv, beer_type, active) values ('jeffs-tavern-and-brewhouse', 'Who Cooks For You', 'Jackie O''s Pub & Brewery', 'Double dry hopped pale ale with fruity, juicy flavors.', 'https://i.imgur.com/hakv1XA.jpg', '5.5%', 'Hazy Pale Ale', 'Y');
-
-
-
-insert into userbrewerydetails (obdb_id, history, image_url, hour_open, hour_closed, open_sun, open_mon, open_tue, open_wed, open_thu, open_fri, open_sat) values ('jeffs-tavern-and-brewhouse', 'Jeff''s Tavern & Brewhouse has been a Sandusky staple for over a century. Come try the tasty Woodstock Express cocktail. Or the Corkscrew, if you''re into pain.', 'https://meltbarandgrilled.com/wp-content/gallery/gallery-location-melt-cedar-point/MELT_LOCATION_CEDAR_POINT_004.jpg', '11:00 AM', '11:00 PM', true, false, false, true, true, true, true);
-
-drop table if exists reviews cascade;
-
 CREATE TABLE reviews
 (
 review_id serial primary key unique,
@@ -81,3 +68,15 @@ star_rating int,
 username character varying (255),
 constraint fk_beer_id foreign key (beer_id) references beers(beer_id)
 );
+
+insert into userbreweries (obdb_id, name, street, city, state, postal_code, website_url, phone, username) values ('jeffs-tavern-and-brewhouse', 'Jeff''s Tavern & Brewhouse', '1 Cedar Point Drive', 'Sandusky', 'Ohio', '44870', null, '4405551234', 'tester');
+insert into userbreweries (obdb_id, name, street, city, state, postal_code, website_url, phone, username) values ('pub-louis', 'Pub Louis', '1250 Pacific Ave #101', 'Tacoma', 'Washington', '98402', null, '4405551234', 'tester');
+insert into userbreweries (obdb_id, name, street, city, state, postal_code, website_url, phone, username) values ('briannas-wing-and-dance', 'Brianna''s Wings & Dancehall', '300 Parkside Ave', 'Buffalo', 'New York', '14214', null, '4405551234', 'tester');
+
+insert into beers (obdb_id, beer_name, brewery, description, image, abv, beer_type, active) values ('jeffs-tavern-and-brewhouse', 'Nitro Coconut Truffle', 'Southern Tier Brewing Company', 'Ale with sea salt, dark chocolate, and natural chocolate & coconut flavors.', 'https://i.imgur.com/ygrWulF.png', '10%', 'Imperial Milk Stout', 'Y');
+insert into beers (obdb_id, beer_name, brewery, description, image, abv, beer_type, active) values ('jeffs-tavern-and-brewhouse', 'Blueberry Maple Stout', 'Saugatuck Brewing Company', 'Rich, sweet stout with classic malt characteristics with a bold, unique twist of blueberry and maple.', 'https://i.imgur.com/UXQrafg.png', '4.3%', 'Sour Ale', 'Y');
+insert into beers (obdb_id, beer_name, brewery, description, image, abv, beer_type, active) values ('jeffs-tavern-and-brewhouse', 'Who Cooks For You', 'Jackie O''s Pub & Brewery', 'Double dry hopped pale ale with fruity, juicy flavors.', 'https://i.imgur.com/hakv1XA.jpg', '5.5%', 'Hazy Pale Ale', 'Y');
+
+insert into userbrewerydetails (obdb_id, history, image_url, hour_open, hour_closed, open_sun, open_mon, open_tue, open_wed, open_thu, open_fri, open_sat) values ('jeffs-tavern-and-brewhouse', 'Jeff''s Tavern & Brewhouse has been a Sandusky staple for over a century. Come try the tasty Woodstock Express cocktail. Or the Corkscrew, if you''re into pain.', 'https://meltbarandgrilled.com/wp-content/gallery/gallery-location-melt-cedar-point/MELT_LOCATION_CEDAR_POINT_004.jpg', '11:00 AM', '11:00 PM', true, false, false, true, true, true, true);
+
+insert into reviews (beer_id, review_text, star_rating, username) values (1, 'This was a very tasty beer.', 4, 'mistertester');

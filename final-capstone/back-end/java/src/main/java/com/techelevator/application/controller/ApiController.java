@@ -38,10 +38,11 @@ public class ApiController {
 	private ReviewsDAO reviewsDAO;
 	
 
-	public ApiController(BreweryDAO breweryDAO, BeerDAO beerDAO, BreweryDetailsDAO breweryDetailsDAO) {
+	public ApiController(BreweryDAO breweryDAO, BeerDAO beerDAO, BreweryDetailsDAO breweryDetailsDAO, ReviewsDAO reviewsDAO) {
 		this.breweryDAO = breweryDAO;
 		this.beerDAO = beerDAO;
 		this.breweryDetailsDAO = breweryDetailsDAO;
+		this.reviewsDAO = reviewsDAO;
 	}
 	
 	@RequestMapping(path = "/breweries/{obdbId}", method = RequestMethod.GET)
@@ -164,10 +165,9 @@ public class ApiController {
 	}
 	
 	@RequestMapping(path = "/reviews/{beerId}", method = RequestMethod.GET)
-	public List<Reviews> getReviewsbyBeerId(@PathVariable String beerId) {
-	    return reviewsDAO.getReviewbyBeerId(beerId);
+	public List<Reviews> getReviewsByBeerId(@PathVariable("beerId") int beerId) {
+	    return reviewsDAO.getReviewsByBeerId(beerId);
 	}
-	
 	
 	
 /********************************************************************************************************************* 

@@ -11,6 +11,13 @@ public class Reviews {
 		
 	}
 	
+	public Reviews(int beer_id, String review_text, int star_rating, String username) {
+		this.beer_id = beer_id;
+		this.review_text = review_text;
+		this.star_rating = star_rating;
+		this.username = username;
+	}
+	
 	public Reviews(int review_id, int beer_id, String review_text, int star_rating, String username) {
 		this.review_id = review_id;
 		this.beer_id = beer_id;

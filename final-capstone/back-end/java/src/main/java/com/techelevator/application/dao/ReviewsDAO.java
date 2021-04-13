@@ -7,7 +7,7 @@ import com.techelevator.application.model.Reviews;
 public interface ReviewsDAO {
 
 	
-	List<Reviews> getReviewbyBeerId(String id);
+	List<Reviews> getReviewsByBeerId(int id);
 	
 	void addReview(Reviews newReview);
 	
