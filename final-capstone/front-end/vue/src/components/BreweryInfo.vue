@@ -26,6 +26,7 @@
   <v-img v-bind:src="details.image_url" max-height="175"
   max-width="900" id="bar-image"></v-img>
   </div>
+  
   <br>
 
 <div v-for="details in detailResults" v-bind:key="details.obdb_id" id="history">
@@ -51,6 +52,55 @@
 <br>
 </div>
 </div>
+
+
+
+
+ <div v-if="this.results[0].username == this.$store.state.user.username"    id="brewerybuttons">
+   <div id="editbrewery">
+      <v-dialog
+        v-model="editdialog"
+        persistent
+        max-width="600px"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+          id="singlebutton"
+            color="#558B2F"
+            dark
+            v-bind="attrs"
+            v-on="on"
+          >
+            Edit Brewery Details
+          </v-btn>
+
+        </template>
+        <v-card>
+          <v-card-title>
+            <span class="headline">Edit Brewery Details</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-row>
+              </v-row>
+            </v-container>
+            <small>*indicates required field</small>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="#558B2F"
+              text
+              @click="editdialog = false"
+            >
+              Close
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+</div>
+</div>s
+
 
 
 
@@ -524,6 +574,17 @@
         </v-data-table>
       </v-app>
     </template>
+
+            <v-btn
+          color="#1B5E20"
+          dark
+          v-bind="attrs"
+          v-on="on"
+          id="register"
+        >
+          UPDATE BREWERY INFORMATION
+        </v-btn> 
+ 
  </div>
 </template>
 
@@ -547,6 +608,7 @@ import BeerService from '@/services/BeerService';
 
     data (){
         return{
+          editdialog: false,
           deleteId: "",
           ddItems: [
         { type: 'Yes', ddValue: 'Y' },
