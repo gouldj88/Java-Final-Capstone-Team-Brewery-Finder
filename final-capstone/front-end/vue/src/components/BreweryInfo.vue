@@ -82,9 +82,352 @@
           <v-card-text>
             <v-container>
               <v-row>
+
+
+
+
+
+
+
+
+
+
+<div v-if="this.results[0].username == this.$store.state.user.username">
+   <div id="image" v-for="brewery in results" v-bind:key="brewery.obdb_id">
+      <v-dialog
+        v-model="imagedialog"
+        persistent
+        max-width="350px"
+      >
+        <template v-slot:activator="{ on, attrs }">
+
+          <v-btn
+          id="singlebutton"
+            color="#558B2F"
+            dark
+            v-bind="attrs"
+            v-on="on"
+          >
+            Image URL
+          </v-btn>
+        </template>
+        <v-card>
+          <v-card-title>
+            <span class="headline">Image URL</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-row>
+
+                <v-col
+                cols="12"
+                md="12"
+              >
+                <v-text-field
+                  label="New Image URL"
+                  v-model="newImage.image_url"
+                  required
+                ></v-text-field>
+              </v-col>
+
+
               </v-row>
             </v-container>
-            <small>*indicates required field</small>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="red"
+              text
+              @click="imagedialog = false"
+            >
+              Close
+            </v-btn>
+            <v-btn
+              color="#558B2F"
+              text
+              @click="updateImage"
+            >
+              Save
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div v-if="this.results[0].username == this.$store.state.user.username">
+   <div id="history" v-for="brewery in results" v-bind:key="brewery.obdb_id">
+      <v-dialog
+        v-model="historydialog"
+        persistent
+        max-width="350px"
+      >
+        <template v-slot:activator="{ on, attrs }">
+
+          <v-btn
+          id="singlebutton"
+            color="#558B2F"
+            dark
+            v-bind="attrs"
+            v-on="on"
+          >
+            Brewery History
+          </v-btn>
+        </template>
+        <v-card>
+          <v-card-title>
+            <span class="headline">Brewery History</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-row>
+
+                <v-col
+                cols="12"
+                md="12"
+              >
+                <v-text-field
+                  label="New Brewery History"
+                  v-model="newHistory.history"
+                  required
+                ></v-text-field>
+              </v-col>
+
+
+              </v-row>
+            </v-container>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="red"
+              text
+              @click="historydialog = false"
+            >
+              Close
+            </v-btn>
+            <v-btn
+              color="#558B2F"
+              text
+              @click="updateHistory"
+            >
+              Save
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+</div>
+</div>
+
+
+
+
+
+
+
+
+<div v-if="this.results[0].username == this.$store.state.user.username">
+   <div id="houropen" v-for="brewery in results" v-bind:key="brewery.obdb_id">
+      <v-dialog
+        v-model="houropendialog"
+        persistent
+        max-width="350px"
+      >
+        <template v-slot:activator="{ on, attrs }">
+
+          <v-btn
+          id="singlebutton"
+            color="#558B2F"
+            dark
+            v-bind="attrs"
+            v-on="on"
+          >
+            Hour Open
+          </v-btn>
+        </template>
+        <v-card>
+          <v-card-title>
+            <span class="headline">Hour Open</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-row>
+
+                <v-col
+                cols="12"
+                md="12"
+              >
+                <v-text-field
+                  label="New Hour Open"
+                  v-model="newHourOpen.hour_open"
+                  required
+                ></v-text-field>
+              </v-col>
+
+
+              </v-row>
+            </v-container>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="red"
+              text
+              @click="houropendialog = false"
+            >
+              Close
+            </v-btn>
+            <v-btn
+              color="#558B2F"
+              text
+              @click="updateHourOpen"
+            >
+              Save
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div v-if="this.results[0].username == this.$store.state.user.username">
+   <div id="hourclosed" v-for="brewery in results" v-bind:key="brewery.obdb_id">
+      <v-dialog
+        v-model="hourcloseddialog"
+        persistent
+        max-width="350px"
+      >
+        <template v-slot:activator="{ on, attrs }">
+
+          <v-btn
+          id="lastbutton"
+            color="#558B2F"
+            dark
+            v-bind="attrs"
+            v-on="on"
+          >
+            Hour Closed
+          </v-btn>
+        </template>
+        <v-card>
+          <v-card-title>
+            <span class="headline">Hour Closed</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-row>
+
+                <v-col
+                cols="12"
+                md="12"
+              >
+                <v-text-field
+                  label="New Hour Closed"
+                  v-model="newHourClosed.hour_closed"
+                  required
+                ></v-text-field>
+              </v-col>
+
+
+              </v-row>
+            </v-container>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="red"
+              text
+              @click="hourcloseddialog = false"
+            >
+              Close
+            </v-btn>
+            <v-btn
+              color="#558B2F"
+              text
+              @click="updateHourClosed"
+            >
+              Save
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </v-row>
+            </v-container>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -99,7 +442,7 @@
         </v-card>
       </v-dialog>
 </div>
-</div>s
+</div>
 
 
 
@@ -608,6 +951,31 @@ import BeerService from '@/services/BeerService';
 
     data (){
         return{
+
+          newImage: {
+            obdb_id: this.$route.params.id,
+            image_url: ""
+          },
+
+          newHistory: {
+            obdb_id: this.$route.params.id,
+            history: ""
+          },
+
+          newHourOpen: {
+            obdb_id: this.$route.params.id,
+            hour_open: ""
+          },
+
+          newHourClosed: {
+            obdb_id: this.$route.params.id,
+            hour_closed: ""
+          },
+
+          imagedialog: false,
+          historydialog: false,
+          houropendialog: false,
+          hourcloseddialog: false,
           editdialog: false,
           deleteId: "",
           ddItems: [
@@ -659,6 +1027,110 @@ import BeerService from '@/services/BeerService';
     },
 
     methods: {
+
+      updateImage(){            
+          this.imagedialog = false;
+          this.editdialog = false
+      BreweryServices.updateBreweryImage(this.newImage).then(response => {
+        console.log(response);
+        this.$fire({
+          title: "Success!",
+          text: "Your image URL has been updated.",
+          type: "success",
+          timer: 300000
+            }).then(r => {
+             console.log(r);
+            location.reload();
+            })
+            })
+        .catch((error) => {
+        console.log(error);
+        this.$fire({
+          title: "Something went wrong!",
+          text: "Verify that your server is running or please try again later.",
+          type: "error",
+          timer: 300000
+        })
+      }
+    )},
+
+      updateHistory(){            
+          this.historydialog = false;
+          this.editdialog = false
+      BreweryServices.updateBreweryHistory(this.newHistory).then(response => {
+        console.log(response);
+        this.$fire({
+          title: "Success!",
+          text: "Your brewery history has been updated.",
+          type: "success",
+          timer: 300000
+            }).then(r => {
+             console.log(r);
+            location.reload();
+            })
+            })
+        .catch((error) => {
+        console.log(error);
+        this.$fire({
+          title: "Something went wrong!",
+          text: "Verify that your server is running or please try again later.",
+          type: "error",
+          timer: 300000
+        })
+      }
+    )},
+
+    updateHourOpen(){            
+          this.houropendialog = false;
+          this.editdialog = false
+      BreweryServices.updateBreweryHourOpen(this.newHourOpen).then(response => {
+        console.log(response);
+        this.$fire({
+          title: "Success!",
+          text: "Your brewery opening hours have been updated.",
+          type: "success",
+          timer: 300000
+            }).then(r => {
+             console.log(r);
+            location.reload();
+            })
+            })
+        .catch((error) => {
+        console.log(error);
+        this.$fire({
+          title: "Something went wrong!",
+          text: "Verify that your server is running or please try again later.",
+          type: "error",
+          timer: 300000
+        })
+      }
+    )},
+
+      updateHourClosed(){            
+          this.hourcloseddialog = false;
+          this.editdialog = false
+      BreweryServices.updateBreweryHourClosed(this.newHourClosed).then(response => {
+        console.log(response);
+        this.$fire({
+          title: "Success!",
+          text: "Your brewery closing hours have been updated.",
+          type: "success",
+          timer: 300000
+            }).then(r => {
+             console.log(r);
+            location.reload();
+            })
+            })
+        .catch((error) => {
+        console.log(error);
+        this.$fire({
+          title: "Something went wrong!",
+          text: "Verify that your server is running or please try again later.",
+          type: "error",
+          timer: 300000
+        })
+      }
+    )},
 
           addReview(){            
           this.reviewdialog = false;
