@@ -102,9 +102,9 @@
               </div>
 
               <v-divider></v-divider>
+
 <div id="review-container">
 
-    <v-row justify="center">
       <v-dialog
         v-model="dialog"
         persistent
@@ -112,12 +112,14 @@
       >
         <template v-slot:activator="{ on, attrs }">
           <v-btn
-            color="primary"
+            color="#33691E"
+            id="review-button"
             dark
+            outlined
             v-bind="attrs"
             v-on="on"
           >
-            ADD REVIEW
+            REVIEW THIS BEER
           </v-btn>
         </template>
         <v-card>
@@ -157,7 +159,6 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-    </v-row>
 
 <template>
   <v-simple-table>
@@ -279,20 +280,22 @@ import BeerService from '@/services/BeerService';
         .catch((error) => {
         console.log(error);
         this.$fire({
-          title: "Something went wrong!",
-          text: "Please double-check your review or try again later.",
+          title: "You're not logged in!",
+          text: "Please login or register for a Beer Lover account.",
           type: "error",
           timer: 300000
         })
       }
     )},
-
+      tokenCheck() {
+      return this.$store.state.token;
+    },
 
       userCheck() {
       return this.$store.state.user.authorities[0].name;
       },
 
-     usernameCheck(){
+      usernameCheck(){
       return this.$store.state.user.username;
       },
 
@@ -407,6 +410,11 @@ margin: auto;
 #review-container {
  position: relative;
  padding: 9px;
+}
+
+#review-button{
+  margin-top: 7px;
+  margin-bottom: 5px;
 }
 
 </style>

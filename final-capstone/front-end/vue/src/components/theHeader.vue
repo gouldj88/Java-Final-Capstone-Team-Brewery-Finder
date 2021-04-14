@@ -8,8 +8,12 @@
            </div>
           </router-link>
 
-        <div id="whoareyou" v-if="tokenCheck && $route.name =='home' && userCheck !== 'ROLE_ADMIN'">
-            Welcome back, {{this.$store.state.user.username}}.
+        <div id="whoareyou" v-if="tokenCheck && $route.name =='home' && userCheck == 'ROLE_USER'">
+            Welcome back, Beer Lover {{this.$store.state.user.username}}.
+        </div>
+
+        <div id="whoareyou" v-if="tokenCheck && $route.name =='home' && userCheck == 'ROLE_BREWER'">
+            Welcome back, Brewer {{this.$store.state.user.username}}.
         </div>
 
         <div id="whoareyou-admin" v-if="tokenCheck && $route.name =='home' && userCheck == 'ROLE_ADMIN'">
@@ -100,6 +104,42 @@
 
     </v-menu>
     </form>
+
+<form id="registerbutton-admin" v-if="tokenCheck && $route.name =='home' && userCheck == 'ROLE_ADMIN'">
+          <v-btn
+          color="#1B5E20"
+          dark
+          v-bind="attrs"
+          v-on="on"
+          id="register-2"
+        >
+          DELETE BREWERY
+        </v-btn>
+      </form>
+
+      <form id="registerbutton-admin" v-if="tokenCheck && $route.name =='home' && userCheck == 'ROLE_BREWER'">
+          <v-btn
+          color="#1B5E20"
+          dark
+          v-bind="attrs"
+          v-on="on"
+          id="register-3"
+        >
+          REQUEST BREWERY OWNERSHIP
+        </v-btn>
+      </form>
+
+      <form id="registerbutton-admin" v-if="tokenCheck && $route.name =='home' && userCheck == 'ROLE_BREWER'">
+          <v-btn
+          color="#1B5E20"
+          dark
+          v-bind="attrs"
+          v-on="on"
+          id="register-4"
+        >
+          EDIT EXISTING BREWERY
+        </v-btn>
+      </form>
 
 
 
@@ -301,7 +341,6 @@ export default {
             }).then(r => {
              console.log(r);
              location.reload();
-
             })
             })
         .catch((error) => {
@@ -389,7 +428,8 @@ export default {
   font-family: "Fira Sans";
   position: relative;
   text-align: center;
-  padding-top: 52px;
+  padding-top: 51px;
+  padding-left: 150px;
   color: white;
 }
 
@@ -405,6 +445,27 @@ export default {
   position: absolute;
   top: 5.5%;
   left: 3%;
+}
+
+#register-2{
+  font-family: "Fira Sans";
+  position: absolute;
+  top: 5.5%;
+  left: 14%;
+}
+
+#register-3{
+  font-family: "Fira Sans";
+  position: absolute;
+  top: 5%;
+  left: 22%;
+}
+
+#register-4{
+  font-family: "Fira Sans";
+  position: absolute;
+  top: 5%;
+  left: 42%;
 }
 
 #hopimg{

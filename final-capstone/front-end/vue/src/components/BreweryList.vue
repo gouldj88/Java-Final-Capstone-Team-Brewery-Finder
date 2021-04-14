@@ -142,12 +142,12 @@ data () {
         results: [],
         headers: [
         {
-          text: 'Brewery',
+          text: '',
           align: 'start',
           sortable: false,
-          value: 'name'
+          value: 'username'
         },
-        { text: '', value: 'username'},
+        { text: 'Brewery', value: 'name'},
         { text: 'Address', value: 'street' },
         { text: 'City', value: 'city' },
         { text: 'State', value: 'state' },
@@ -271,5 +271,9 @@ width: 40%;
   position: relative;
   margin: auto;
 }
+
+a { 
+  text-decoration: none; }
+
 
 </style>
