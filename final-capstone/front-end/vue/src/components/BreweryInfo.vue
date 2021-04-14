@@ -61,11 +61,12 @@
     <br>
    </div>
 
+<v-row id="brewerbuttons">
   <div v-if="this.results[0].username == this.$store.state.user.username">
    <div id="addbeer" v-for="brewery in results" v-bind:key="brewery.obdb_id">
     <v-row justify="center">
       <v-dialog
-        v-model="dialog"
+        v-model="adddialog"
         persistent
         max-width="600px"
       >
@@ -168,7 +169,7 @@
             <v-btn
               color="red"
               text
-              @click="dialog = false"
+              @click="adddialog = false"
             >
               Close
             </v-btn>
@@ -188,6 +189,70 @@
 </div>
 </div>
 
+<div v-if="this.results[0].username == this.$store.state.user.username">
+   <div id="removebeer" v-for="brewery in results" v-bind:key="brewery.obdb_id">
+    <v-row justify="center">
+      <v-dialog
+        v-model="deletedialog"
+        persistent
+        max-width="600px"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            color="#558B2F"
+            dark
+            v-bind="attrs"
+            v-on="on"
+          >
+            Remove Beer
+          </v-btn>
+        </template>
+        <v-card>
+          <v-card-title>
+            <span class="headline">Add New Beer</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-row>
+
+          <v-radio-group v-model="radioGroup">
+            <v-radio
+             v-for="beer in beerResults"
+            :key="beer"
+            :label="beer.name"
+            :value="n"
+           ></v-radio>
+          </v-radio-group>
+
+
+              </v-row>
+            </v-container>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="red"
+              text
+              @click="deletedialog = false"
+            >
+              Close
+            </v-btn>
+            <v-btn
+              color="#558B2F"
+              text
+              @click="removeBeer"
+            >
+              Save
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-row>
+    <br>
+    <br>
+</div>
+</div>
+</v-row>
 
 
 
@@ -241,7 +306,7 @@
 <div id="review-container">
 
       <v-dialog
-        v-model="dialog"
+        v-model="reviewdialog"
         persistent
         max-width="600px"
       >
@@ -280,7 +345,7 @@
             <v-btn
               color="blue darken-1"
               text
-              @click="dialog = false"
+              @click="reviewdialog = false"
             >
               Close
             </v-btn>
@@ -381,7 +446,9 @@ import BeerService from '@/services/BeerService';
             star_rating: "",
             username: this.$store.state.user.username,
        },
-            dialog: false,
+            adddialog: false,
+            reviewdialog: false,
+            deletedialog: false,
             results: [],
             beerResults: [],
             detailResults:[],
@@ -404,7 +471,7 @@ import BeerService from '@/services/BeerService';
     methods: {
 
           addReview(){            
-          this.dialog = false;
+          this.reviewdialog = false;
       BeerService.addBeerReview(this.newReview).then(response => {
         console.log(response);
         this.$fire({
@@ -444,7 +511,7 @@ import BeerService from '@/services/BeerService';
       },
 
       addBeer(){
-        this.dialog = false;
+        this.adddialog = false;
         BeerService.addBeer(this.newBeer).then(response => {
         console.log(response);
         this.$fire({
@@ -564,10 +631,19 @@ margin: auto;
 }
 
 #addbeer {
-  padding-top: 10px;
-  display: table;
-  margin: auto;
+padding-left: 10px;
+padding-right: 10px;
 }
+
+#removebeer {
+padding-left: 30px;
+padding-right: 10px;
+}
+
+#brewerbuttons {
+  margin-top: 10px;
+}
+
 
 #beerimageandinfo {
   padding-bottom: 30px;
