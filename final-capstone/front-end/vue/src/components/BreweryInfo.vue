@@ -59,7 +59,142 @@
    <div class="brewery-information"> 
     <h1 id="ontap">ON TAP</h1>
     <br>
-   </div>  
+   </div>
+
+  <div v-if="this.results[0].username == this.$store.state.user.username">
+   <div id="addbeer" v-for="brewery in results" v-bind:key="brewery.obdb_id">
+    <v-row justify="center">
+      <v-dialog
+        v-model="dialog"
+        persistent
+        max-width="600px"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            color="#558B2F"
+            dark
+            v-bind="attrs"
+            v-on="on"
+          >
+            Add New Beer
+          </v-btn>
+        </template>
+        <v-card>
+          <v-card-title>
+            <span class="headline">Add New Beer</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col
+                  cols="12"
+                  md="6"
+                >
+                  <v-text-field
+                    label="Beer Name*"
+                    v-model="newBeer.name"
+                    required
+                  ></v-text-field>
+                </v-col>
+                <v-col
+                  cols="12"
+                  md="6"
+                >
+                  <v-text-field
+                    label="Brewery Name*"
+                    v-model="newBeer.brewery"
+                    required
+                  ></v-text-field>
+                </v-col>
+                <v-col
+                  cols="12"
+                  md="12"
+                >
+                  <v-text-field
+                    label="Beer Description*"
+                    v-model="newBeer.description"
+                    required
+                  ></v-text-field>
+                </v-col>
+                <v-col
+                  cols="12"
+                  md="12"
+                >
+                  <v-text-field
+                    label="Brewery Image URL*"
+                    v-model="newBeer.image"
+                    required
+                  ></v-text-field>
+                </v-col>
+                  <v-col
+                  cols="12"
+                  md="4"
+                >
+                  <v-text-field
+                    label="ABV*"
+                   v-model="newBeer.abv"
+                    required
+                  ></v-text-field>
+                </v-col>
+                 <v-col
+                  cols="12"
+                  md="4"
+                >
+                  <v-text-field
+                    label="Beer Type*"
+                   v-model="newBeer.type"
+                    required
+                  ></v-text-field>
+                </v-col>
+                <v-col
+                  cols="12"
+                  sm="4"
+                >
+                  <v-select
+                    :items="ddItems"
+                    item-text="type"
+                    item-value="ddValue"
+                    v-model="newBeer.active"
+                    label="Active*"
+                    required
+                  ></v-select>
+                </v-col>
+              </v-row>
+            </v-container>
+            <small>*indicates required field</small>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="red"
+              text
+              @click="dialog = false"
+            >
+              Close
+            </v-btn>
+            <v-btn
+              color="#558B2F"
+              text
+              @click="addBeer"
+            >
+              Save
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-row>
+    <br>
+    <br>
+</div>
+</div>
+
+
+
+
+
+
+
+
       <v-app id="inspire">
         <v-data-table
           :headers="headers"
@@ -192,15 +327,6 @@
       </v-app>
     </template>
 
-    <v-btn
-          color="#1B5E20"
-          dark
-          v-bind="attrs"
-          v-on="on"
-          id="register"
-        >
-          ADD A BEER
-        </v-btn>
             <v-btn
           color="#1B5E20"
           dark
@@ -234,7 +360,21 @@ import BeerService from '@/services/BeerService';
 
     data (){
         return{
-          currentBeerId: 0,
+          ddItems: [
+        { type: 'Yes', ddValue: 'Y' },
+        { type: 'No', ddValue: 'N' }
+      ],
+        newBeer: {
+        obdb_id: this.$route.params.id,
+        name: "",
+        brewery: "",
+        description: "",
+        image: "",
+        abv: "",
+        type: "",
+        active: ""
+       },  
+          currentBrewery: "",
           newReview: {
             beer_id: "",
             review_text: "",
@@ -291,7 +431,7 @@ import BeerService from '@/services/BeerService';
       return this.$store.state.token;
     },
 
-      userCheck() {
+      userRoleCheck() {
       return this.$store.state.user.authorities[0].name;
       },
 
@@ -302,6 +442,32 @@ import BeerService from '@/services/BeerService';
       breweryOwnerCheck(){
       return this.results[0].username;
       },
+
+      addBeer(){
+        this.dialog = false;
+        BeerService.addBeer(this.newBeer).then(response => {
+        console.log(response);
+        this.$fire({
+          title: "Success!",
+          text: "Your new beer has been added.",
+          type: "success",
+          timer: 300000
+            }).then(r => {
+             console.log(r);
+            location.reload();
+            })
+            })
+        .catch((error) => {
+        console.log(error);
+        this.$fire({
+          title: "Something went wrong!",
+          text: "Please check your new beer information and try again.",
+          type: "error",
+          timer: 300000
+        })
+      }
+    )
+  },
 
       getBeerReviews({item}){
         this.newReview.beer_id = item.beer_id;
@@ -395,6 +561,12 @@ margin: auto;
   max-width: 700px;
   margin: auto;
 
+}
+
+#addbeer {
+  padding-top: 10px;
+  display: table;
+  margin: auto;
 }
 
 #beerimageandinfo {
