@@ -61,10 +61,41 @@
     <br>
    </div>
 
-<v-row id="brewerbuttons">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- BREWER BUTTONS START HERE -->
+
+
+
+
+
+
+
+
+
+
+
+
+ <template>
+   <v-row
+   id="brewerybuttons"
+    align="center"
+    justify="space-around"
+  >
+
   <div v-if="this.results[0].username == this.$store.state.user.username">
    <div id="addbeer" v-for="brewery in results" v-bind:key="brewery.obdb_id">
-    <v-row justify="center">
       <v-dialog
         v-model="adddialog"
         persistent
@@ -72,6 +103,7 @@
       >
         <template v-slot:activator="{ on, attrs }">
           <v-btn
+          id="singlebutton"
             color="#558B2F"
             dark
             v-bind="attrs"
@@ -79,6 +111,7 @@
           >
             Add New Beer
           </v-btn>
+
         </template>
         <v-card>
           <v-card-title>
@@ -183,15 +216,15 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-    </v-row>
-    <br>
-    <br>
 </div>
 </div>
 
+
+
+
+
 <div v-if="this.results[0].username == this.$store.state.user.username">
    <div id="removebeer" v-for="brewery in results" v-bind:key="brewery.obdb_id">
-    <v-row justify="center">
       <v-dialog
         v-model="deletedialog"
         persistent
@@ -199,6 +232,7 @@
       >
         <template v-slot:activator="{ on, attrs }">
           <v-btn
+          id="singlebutton"
             color="#558B2F"
             dark
             v-bind="attrs"
@@ -247,9 +281,6 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-    </v-row>
-    <br>
-    <br>
 </div>
 </div>
 
@@ -257,14 +288,15 @@
 
 <div v-if="this.results[0].username == this.$store.state.user.username">
    <div id="activebeer" v-for="brewery in results" v-bind:key="brewery.obdb_id">
-    <v-row justify="center">
       <v-dialog
         v-model="activedialog"
         persistent
         max-width="350px"
       >
         <template v-slot:activator="{ on, attrs }">
+
           <v-btn
+          id="lastbutton"
             color="#558B2F"
             dark
             v-bind="attrs"
@@ -323,14 +355,33 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-    </v-row>
-    <br>
-    <br>
 </div>
 </div>
-
 
 </v-row>
+</template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- END OF BREWER BUTTONS-->
+
+
+
+
+
+
+
 
 
 
@@ -473,17 +524,6 @@
         </v-data-table>
       </v-app>
     </template>
-
-            <v-btn
-          color="#1B5E20"
-          dark
-          v-bind="attrs"
-          v-on="on"
-          id="register"
-        >
-          UPDATE BREWERY INFORMATION
-        </v-btn> 
- 
  </div>
 </template>
 
@@ -770,18 +810,21 @@ margin: auto;
 
 }
 
-#addbeer {
-padding-left: 10px;
-padding-right: 10px;
+
+#brewerybuttons {
+  font-family: "Archivo Narrow";
+  position: relative;
+  margin-bottom: 18px;
+  justify-content: center;
 }
 
-#removebeer {
-padding-left: 30px;
-padding-right: 10px;
+#singlebutton {
+  margin-top: 5px;
+  margin-right: 10px;
 }
 
-#brewerbuttons {
-  margin-top: 10px;
+#lastbutton{
+  margin-top: 5px;
 }
 
 
