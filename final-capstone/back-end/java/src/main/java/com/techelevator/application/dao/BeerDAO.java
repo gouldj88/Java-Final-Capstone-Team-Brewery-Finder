@@ -11,6 +11,8 @@ public interface BeerDAO {
 	List<Beer> getSingleBeerInfo(String beerId);
 		
 	void addABeer(Beer formData);
+	
+	void updateBeerStatus (Beer formData);
 
 	void deleteABeer(String beerId);
 }

@@ -195,7 +195,7 @@
       <v-dialog
         v-model="deletedialog"
         persistent
-        max-width="600px"
+        max-width="250px"
       >
         <template v-slot:activator="{ on, attrs }">
           <v-btn
@@ -209,18 +209,18 @@
         </template>
         <v-card>
           <v-card-title>
-            <span class="headline">Add New Beer</span>
+            <span class="headline">Remove A Beer</span>
           </v-card-title>
           <v-card-text>
             <v-container>
               <v-row>
 
-          <v-radio-group v-model="radioGroup">
+          <v-radio-group v-model="deleteId">
             <v-radio
              v-for="beer in beerResults"
             :key="beer"
             :label="beer.name"
-            :value="n"
+            :value="beer.beer_id"
            ></v-radio>
           </v-radio-group>
 
@@ -240,7 +240,7 @@
             <v-btn
               color="#558B2F"
               text
-              @click="removeBeer"
+              @click="deleteBeer"
             >
               Save
             </v-btn>
@@ -252,7 +252,89 @@
     <br>
 </div>
 </div>
+
+
+
+<div v-if="this.results[0].username == this.$store.state.user.username">
+   <div id="activebeer" v-for="brewery in results" v-bind:key="brewery.obdb_id">
+    <v-row justify="center">
+      <v-dialog
+        v-model="activedialog"
+        persistent
+        max-width="350px"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            color="#558B2F"
+            dark
+            v-bind="attrs"
+            v-on="on"
+          >
+            Update Beer Status
+          </v-btn>
+        </template>
+        <v-card>
+          <v-card-title>
+            <span class="headline">Update Beer Status</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-row>
+
+          <v-radio-group v-model="beerStatus.beer_id">
+            <v-radio
+             v-for="beer in beerResults"
+            :key="beer"
+            :label="beer.name"
+            :value="beer.beer_id"
+           ></v-radio>
+          </v-radio-group>
+
+                    <v-select
+                    :items="ddItems"
+                    color="#558B2F"
+                    item-text="type"
+                    item-value="ddValue"
+                    v-model="beerStatus.active"
+                    label="Active*"
+                    required
+                  ></v-select>
+
+
+              </v-row>
+            </v-container>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="red"
+              text
+              @click="activedialog = false"
+            >
+              Close
+            </v-btn>
+            <v-btn
+              color="#558B2F"
+              text
+              @click="updateBeerStatus"
+            >
+              Save
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-row>
+    <br>
+    <br>
+</div>
+</div>
+
+
 </v-row>
+
+
+
+
 
 
 
@@ -425,6 +507,7 @@ import BeerService from '@/services/BeerService';
 
     data (){
         return{
+          deleteId: "",
           ddItems: [
         { type: 'Yes', ddValue: 'Y' },
         { type: 'No', ddValue: 'N' }
@@ -440,12 +523,17 @@ import BeerService from '@/services/BeerService';
         active: ""
        },  
           currentBrewery: "",
+          beerStatus: {
+            beer_id: "",
+            active: ""
+          },
           newReview: {
             beer_id: "",
             review_text: "",
             star_rating: "",
             username: this.$store.state.user.username,
        },
+            activedialog: false,
             adddialog: false,
             reviewdialog: false,
             deletedialog: false,
@@ -494,6 +582,58 @@ import BeerService from '@/services/BeerService';
         })
       }
     )},
+
+      deleteBeer(){            
+          this.deletedialog = false;
+      BeerService.deleteBeer(this.deleteId).then(response => {
+        console.log(response);
+        this.$fire({
+          title: "Success!",
+          text: "The beer has been removed and your tap list updated.",
+          type: "success",
+          timer: 300000
+            }).then(r => {
+             console.log(r);
+            location.reload();
+            })
+            })
+        .catch((error) => {
+        console.log(error);
+        this.$fire({
+          title: "Something went wrong!",
+          text: "Verify that your server is running or please try again later.",
+          type: "error",
+          timer: 300000
+        })
+      }
+    )},
+
+    updateBeerStatus(){            
+          this.updatedialog = false;
+      BeerService.updateBeerStatus(this.beerStatus).then(response => {
+        console.log(response);
+        this.$fire({
+          title: "Success!",
+          text: "Your beer status has been updated.",
+          type: "success",
+          timer: 300000
+            }).then(r => {
+             console.log(r);
+            location.reload();
+            })
+            })
+        .catch((error) => {
+        console.log(error);
+        this.$fire({
+          title: "Something went wrong!",
+          text: "Verify that your server is running or please try again later.",
+          type: "error",
+          timer: 300000
+        })
+      }
+    )},
+
+
       tokenCheck() {
       return this.$store.state.token;
     },

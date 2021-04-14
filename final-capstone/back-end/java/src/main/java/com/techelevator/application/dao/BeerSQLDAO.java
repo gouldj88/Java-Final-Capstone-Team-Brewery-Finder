@@ -54,9 +54,17 @@ public class BeerSQLDAO implements BeerDAO {
 		jdbcTemplate.update(myNewBeer, formData.getObdb_id(), formData.getName(), formData.getBrewery(), formData.getDescription(), formData.getImage(), formData.getAbv(), formData.getType(), formData.getActive());
 	}
 	
+	public void updateBeerStatus (Beer formData) {
+		String myNewStatus = "update beers set active = ? where beer_id = ?";
+		jdbcTemplate.update(myNewStatus, formData.getActive(), Integer.parseInt(formData.getBeer_id()));
+	}
+
+	
 	public void deleteABeer(String beerId) {
 		Integer convertedId = Integer.parseInt(beerId);
+		String reviewDeleter = "delete from reviews where beer_id = ?";
 		String beerDeleter = "delete from beers where beer_id = ?";
+		jdbcTemplate.update(reviewDeleter, convertedId);
 		jdbcTemplate.update(beerDeleter, convertedId);
 	}
 	

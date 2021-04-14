@@ -92,6 +92,11 @@ public class ApiController {
 	    beerDAO.addABeer(formData);
 	}
 	
+	@RequestMapping(path = "/beers/maintenance/updateBeerStatus", method = RequestMethod.POST)
+	public void updateBeerStatus(@RequestBody Beer formData) {
+	    beerDAO.updateBeerStatus(formData);
+	}
+	
 	@RequestMapping(path = "/beers/maintenance/deleteBeer/{beerId}", method = RequestMethod.POST)
 	public void deleteABeer(@PathVariable String beerId) {
 	    beerDAO.deleteABeer(beerId);

@@ -18,6 +18,10 @@ export default {
         return http.post('/beers/maintenance/addBeer', newBeer);
       },
 
+      updateBeerStatus(newStatus) {
+        return http.post('/beers/maintenance/updateBeerStatus', newStatus);
+      },
+
       deleteBeer(beerId) {
           return http.post(`/beers/maintenance/deleteBeer/${beerId}`)
       },
