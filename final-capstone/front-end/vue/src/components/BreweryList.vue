@@ -52,6 +52,7 @@
           class="elevation-1"
           >
 
+
             <template v-slot:[`item.name`]="{ item }">
 
               <div v-if="item.website_url !== null">  
@@ -66,8 +67,8 @@
             </template>
 
 
-    <template v-slot:[`item.username`]="{ item }">
-
+          <template v-slot:[`item.username`]="{ item }">
+      
             <router-link :to="{ name: 'breweryinfo', params: { id: item.obdb_id }}" @click.native="scrollToTop">
               <v-btn
               v-if="item.username !== null"
@@ -82,7 +83,13 @@
             </router-link>
 
 
+
+
+
+
+
            <v-tooltip top color="#212121" nudge-right="326" nudge-bottom="10">
+           <template v-slot:activator="{ on, attrs }">
             <v-btn
               v-if="item.username == null"
               small
@@ -92,13 +99,13 @@
               v-on="on"
               v-bind="attrs"
               dark
+              @click.stop="dialog = true"
               >
               UNCLAIMED
             </v-btn>
+           </template>
            <span>Is this your brewery? Sign up for a Brewer account and claim your Brewery Profile.</span>
             </v-tooltip>
-
-
      </template>
      
 
@@ -119,6 +126,58 @@
         </v-data-table>
       </v-app>
     </template>  
+
+<template>
+ 
+   <v-dialog
+        v-model="dialog"
+        persistent
+        max-width="350px">
+
+        <v-card>
+          <v-card-title>
+            <span class="headline">Assign Brewer Account</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-row>
+
+                <v-col
+                cols="12"
+                md="12"
+              >
+                <v-text-field
+                  label="Brewer Username"
+                  v-model="assignedUser"
+                  required
+                ></v-text-field>
+              </v-col>
+
+
+              </v-row>
+            </v-container>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="red"
+              text
+              @click="dialog = false"
+            >
+              Close
+            </v-btn>
+            <v-btn
+              color="#558B2F"
+              text
+              @click="assignBrewer"
+            >
+              Save
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
+</template>
   </v-container>
   </div>
 </template>
@@ -131,7 +190,9 @@ name: 'brewery-info',
 
 data () {
     return {
+        assignedUser: "",
         dialog: false,
+        userRole: "",
         googleMapsAPI: "https://www.google.com/maps/embed/v1/place?key=AIzaSyCA0ZsJtAez-gVSYp1Z8Blv5N1iFiLu1Ug&q=",
         singleExpand: true,
         resultsNotHidden: false,
@@ -141,6 +202,22 @@ data () {
         selectedValue: 1,
         expanded: [],
         results: [],
+        templateDetails:
+        {
+          obdb_id: "",
+          history: "Edit this section to explain to readers some of the history of your brewery.",
+          image_url: "http://www.ll-mm.com/images/placeholders/image-placeholder.jpg",
+          hour_open: "12:00 AM",
+          hour_closed: "12:00 AM",
+          open_sun: true,
+          open_mon: true,
+          open_tue: true,
+          open_thur: true,
+          open_fri: true,
+          open_sat: true
+        },
+
+
         headers: [
         {
           text: '',
@@ -148,12 +225,12 @@ data () {
           sortable: false,
           value: 'username'
         },
-        { text: 'Brewery', value: 'name'},
-        { text: 'Address', value: 'street' },
+        { text: 'Brewery', value: 'name', width: "24%"},
+        { text: 'Address', value: 'street'},
         { text: 'City', value: 'city' },
         { text: 'State', value: 'state' },
         { text: 'Zip Code', value: 'postal_code' },
-        { text: 'Phone', value: 'phone'}
+        { text: 'Phone', value: 'phone', width: "14%"}
       ],
         dropdown: { type: '', ddValue: '1' },
         ddItems: [
@@ -164,7 +241,69 @@ data () {
       ],
     }
 },
+
+computed:  {
+
+roleCheck() {
+      return this.$store.state.user.authorities[0].name;
+    }
+
+},
+
 methods: {
+
+      assignBrewer({item}){            
+          this.dialog = false
+          this.templateDetails.obdb_id = item.obdb_id;
+      BreweryServices.updateBreweryHistory(this.newHistory).then(response => {
+        console.log(response);
+        this.$fire({
+          title: "Success!",
+          text: "Your brewery history has been updated.",
+          type: "success",
+          timer: 300000
+            }).then(r => {
+             console.log(r);
+            
+            {            
+          this.dialog = false
+          this.templateDetails.obdb_id = item.obdb_id;
+      BreweryServices.updateBreweryHistory(this.newHistory).then(response => {
+        console.log(response);
+        this.$fire({
+          title: "Success!",
+          text: "Your brewery history has been updated.",
+          type: "success",
+          timer: 300000
+            }).then(r => {
+             console.log(r);
+            location.reload();
+            })
+            })
+        .catch((error) => {
+        console.log(error);
+        this.$fire({
+          title: "Something went wrong!",
+          text: "Verify that your server is running or please try again later.",
+          type: "error",
+          timer: 300000
+        })
+      }
+    )}
+
+
+            })
+            })
+        .catch((error) => {
+        console.log(error);
+        this.$fire({
+          title: "Something went wrong!",
+          text: "Verify that your server is running or please try again later.",
+          type: "error",
+          timer: 300000
+        })
+      }
+    )},
 
   scrollToTop() {
       window.scrollTo(0,0);
