@@ -28,7 +28,7 @@ username character varying(30)
 
 CREATE TABLE userbrewerydetails
 (
-obdb_id character varying(255) primary key unique,
+obdb_id character varying(255) not null,
 history character varying(255) not null,
 image_url character varying(255) not null,
 hour_open character varying(255) not null,
@@ -39,8 +39,7 @@ open_tue boolean default false not null,
 open_wed boolean default false not null,
 open_thu boolean default false not null,
 open_fri boolean default false not null,
-open_sat boolean default false not null,
-constraint fk_obdb_id foreign key (obdb_id) references userbreweries(obdb_id)
+open_sat boolean default false not null
 );
 
 

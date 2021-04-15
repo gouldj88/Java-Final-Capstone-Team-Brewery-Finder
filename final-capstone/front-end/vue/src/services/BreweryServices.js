@@ -39,10 +39,11 @@ export default {
       },
 
 
+      
       assignBrewer(updateDetails) {
         return http.post('/breweries/assignBrewer', updateDetails);
       },
-      
+
 
 
       updateBreweryHistory(updateDetails) {
