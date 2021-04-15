@@ -401,8 +401,8 @@ width: 40%;
 }
 
 #profilebuttontext{
-  padding-top: 3px;
-  padding-left: 2px;
+  padding-top: 2px;
+  padding-left: 3px;
   text-decoration: none;
 
 }

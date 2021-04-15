@@ -3,7 +3,6 @@ drop table if exists userbrewerydetails cascade;
 drop table if exists beers cascade;
 drop table if exists reviews cascade;
 
-
 CREATE TABLE userbreweries
 (
 obdb_id character varying(255) primary key unique,
