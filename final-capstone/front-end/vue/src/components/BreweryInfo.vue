@@ -451,7 +451,6 @@
 
    <div class="brewery-information"> 
     <h1 id="ontap">ON TAP</h1>
-    <br>
    </div>
 
 
@@ -1290,7 +1289,7 @@ import BeerService from '@/services/BeerService';
 #beer-image {
   margin-left: 20px;
   margin-bottom: 15px;
-  height: 160px;
+  height: 220px;
   float: left;
   position: relative;
   margin-top: 15px;
@@ -1355,6 +1354,7 @@ margin: auto;
 #brewerybuttons {
   font-family: "Archivo Narrow";
   position: relative;
+  margin-top: 6px;
   margin-bottom: 18px;
   justify-content: center;
 }

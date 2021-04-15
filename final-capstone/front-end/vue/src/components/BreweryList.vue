@@ -94,12 +94,22 @@
               >
               UNCLAIMED
             </v-btn>
+
+
+
+
+
+
+            
       </template>
-      <span>Is this your brewery? Sign up for a Brewer account and claim your Brewery Profile.</span>
+      <span>Is this your brewery? Sign up for a Brewer account and request to claim your Brewery Profile.</span>
       </v-tooltip>
 
 
-          </template>
+
+
+
+      </template>
      
 
 

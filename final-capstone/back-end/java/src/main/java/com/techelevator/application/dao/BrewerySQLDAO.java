@@ -85,8 +85,8 @@ public class BrewerySQLDAO implements BreweryDAO {
 	
 	@Override
 	public void createNewBrewery(Brewery formData) {
-		String obdb_id_spaces = formData.getName().replaceAll("\\s","-");
-		String obdb_id_punctuation = obdb_id_spaces.replaceAll("\\p{Punct}", "");
+		String obdb_id_spaces = formData.getName().replaceAll("\\p{Punct}", "");
+		String obdb_id_punctuation = obdb_id_spaces.replaceAll("\\s","-");
 		String obdb_id = obdb_id_punctuation.toLowerCase();
 		String myNewBrewery = "insert into userbreweries (obdb_id, name, street, city, state, postal_code, website_url, phone, username) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		jdbcTemplate.update(myNewBrewery, obdb_id, formData.getName(), formData.getStreet(), formData.getCity(), formData.getState(), formData.getPostal_code(), formData.getWebsite_url(), formData.getPhone(), formData.getUsername());
