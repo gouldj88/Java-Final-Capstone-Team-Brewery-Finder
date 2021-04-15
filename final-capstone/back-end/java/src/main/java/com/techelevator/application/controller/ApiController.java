@@ -75,6 +75,11 @@ public class ApiController {
 	    breweryDAO.createNewBrewery(formBrewery);
 	}
 	
+	@RequestMapping(path = "/breweries/assignBrewer", method = RequestMethod.POST)
+	public void assignBrewer(@RequestBody Brewery formBrewery) {
+	    breweryDAO.assignBrewer(formBrewery);
+	}
+	
 	// Beer Bits
 	
 	@RequestMapping(path = "/breweries/{obdbId}/beerlist", method = RequestMethod.GET)

@@ -99,15 +99,22 @@
               v-on="on"
               v-bind="attrs"
               dark
-              @click.stop="dialog = true"
+              @click.stop="dialog = true; assignDetails.obdb_id = item.obdb_id; templateDetails.obdb_id = item.obdb_id;"
               >
               UNCLAIMED
             </v-btn>
            </template>
            <span>Is this your brewery? Sign up for a Brewer account and claim your Brewery Profile.</span>
             </v-tooltip>
+     
+     
+     
      </template>
      
+
+
+
+
 
 
           <template v-slot:expanded-item="{ headers, item }">
@@ -148,7 +155,7 @@
               >
                 <v-text-field
                   label="Brewer Username"
-                  v-model="assignedUser"
+                  v-model="assignDetails.username"
                   required
                 ></v-text-field>
               </v-col>
@@ -202,6 +209,13 @@ data () {
         selectedValue: 1,
         expanded: [],
         results: [],
+
+        assignDetails:
+        {
+          obdb_id: "",
+          username: ""
+        },
+
         templateDetails:
         {
           obdb_id: "",
@@ -212,7 +226,8 @@ data () {
           open_sun: true,
           open_mon: true,
           open_tue: true,
-          open_thur: true,
+          open_wed: true,
+          open_thu: true,
           open_fri: true,
           open_sat: true
         },
@@ -252,27 +267,23 @@ roleCheck() {
 
 methods: {
 
-      assignBrewer({item}){            
+      assignBrewer(){            
           this.dialog = false
-          this.templateDetails.obdb_id = item.obdb_id;
-      BreweryServices.updateBreweryHistory(this.newHistory).then(response => {
-        console.log(response);
-        this.$fire({
+          BreweryServices.assignBrewer(this.assignDetails).then(response => {
+          console.log(response);
+          this.$fire({
           title: "Success!",
-          text: "Your brewery history has been updated.",
+          text: "This brewery has been assigned.",
           type: "success",
           timer: 300000
             }).then(r => {
              console.log(r);
-            
-            {            
-          this.dialog = false
-          this.templateDetails.obdb_id = item.obdb_id;
-      BreweryServices.updateBreweryHistory(this.newHistory).then(response => {
+             location.reload();      
+      BreweryServices.addBreweryDetails(this.templateDetails).then(response => {
         console.log(response);
         this.$fire({
           title: "Success!",
-          text: "Your brewery history has been updated.",
+          text: "Brewery details have been autopopulated.",
           type: "success",
           timer: 300000
             }).then(r => {
@@ -289,7 +300,7 @@ methods: {
           timer: 300000
         })
       }
-    )}
+    )
 
 
             })

@@ -38,6 +38,13 @@ export default {
         return http.post('/breweries/addDetails', addDetails);
       },
 
+
+      assignBrewer(updateDetails) {
+        return http.post('/breweries/assignBrewer', updateDetails);
+      },
+      
+
+
       updateBreweryHistory(updateDetails) {
         return http.post('/breweries/addDetails/history', updateDetails);
       },

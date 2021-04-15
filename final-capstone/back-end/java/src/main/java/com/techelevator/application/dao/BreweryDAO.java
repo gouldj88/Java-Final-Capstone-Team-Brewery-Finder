@@ -17,5 +17,7 @@ public interface BreweryDAO {
 	List<Brewery> getSingleBreweryInfo(String obdbId);
 	
 	void createNewBrewery(Brewery formData);
+	
+	void assignBrewer(Brewery formData);
 }
 

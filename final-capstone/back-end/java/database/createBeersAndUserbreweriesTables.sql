@@ -41,7 +41,6 @@ open_thu boolean default false not null,
 open_fri boolean default false not null,
 open_sat boolean default false not null,
 constraint fk_obdb_id foreign key (obdb_id) references userbreweries(obdb_id)
-
 );
 
 

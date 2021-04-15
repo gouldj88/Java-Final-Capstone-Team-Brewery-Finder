@@ -24,6 +24,12 @@ public class BrewerySQLDAO implements BreweryDAO {
     } 
 
     @Override
+    public void assignBrewer(Brewery formData) {
+		String assignBrewer = "update breweries set username = ? where obdb_id = ?";
+		jdbcTemplate.update(assignBrewer, formData.getUsername(), formData.getObdb_id());
+	}
+    
+    @Override
 	public List<Brewery> getSingleBreweryInfo(String obdbId) {
 		List<Brewery> returnedBreweries = new ArrayList();
 		String sqlQuery = "select * from userbreweries where obdb_id = ?";
