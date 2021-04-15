@@ -826,7 +826,7 @@
                   </p>
               </div>
             
-              <p><span id="bflogotext">BreweryFinder</span>&nbsp;Average BeerLover Rating:</p>
+              <p><span id="bflogotext">BreweryFinder</span>&nbsp;Average Beer Lover Rating:</p>
               <v-rating
       v-model="avgStarRating"
       background-color="green lighten-3"
