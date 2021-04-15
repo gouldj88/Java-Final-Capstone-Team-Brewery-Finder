@@ -52,8 +52,7 @@ description character varying(255) default null,
 image character varying(255) default null,
 abv character varying(255) default null,
 beer_type character varying(255) default null,
-active character varying(1) not null,
-constraint fk_obdb_id foreign key (obdb_id) references userbreweries(obdb_id)
+active character varying(1) not null
 );
 
 CREATE TABLE reviews
