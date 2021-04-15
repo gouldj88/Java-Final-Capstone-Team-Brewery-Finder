@@ -66,7 +66,8 @@
             </template>
 
 
-          <template v-slot:[`item.username`]="{ item }">
+    <template v-slot:[`item.username`]="{ item }">
+
             <router-link :to="{ name: 'breweryinfo', params: { id: item.obdb_id }}" @click.native="scrollToTop">
               <v-btn
               v-if="item.username !== null"
@@ -80,8 +81,8 @@
             </v-btn>
             </router-link>
 
-    <v-tooltip top color="#212121" nudge-right="326" nudge-bottom="10">
-      <template v-slot:activator="{ on, attrs }">
+
+           <v-tooltip top color="#212121" nudge-right="326" nudge-bottom="10">
             <v-btn
               v-if="item.username == null"
               small
@@ -94,22 +95,11 @@
               >
               UNCLAIMED
             </v-btn>
+           <span>Is this your brewery? Sign up for a Brewer account and claim your Brewery Profile.</span>
+            </v-tooltip>
 
 
-
-
-
-
-            
-      </template>
-      <span>Is this your brewery? Sign up for a Brewer account and request to claim your Brewery Profile.</span>
-      </v-tooltip>
-
-
-
-
-
-      </template>
+     </template>
      
 
 
@@ -141,6 +131,7 @@ name: 'brewery-info',
 
 data () {
     return {
+        dialog: false,
         googleMapsAPI: "https://www.google.com/maps/embed/v1/place?key=AIzaSyCA0ZsJtAez-gVSYp1Z8Blv5N1iFiLu1Ug&q=",
         singleExpand: true,
         resultsNotHidden: false,

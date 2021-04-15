@@ -107,7 +107,7 @@
 
 <form id="registerbutton-admin" v-if="tokenCheck && $route.name =='home' && userCheck == 'ROLE_ADMIN'">
           <v-btn
-          color="#1B5E20"
+          color="#90A4AE"
           dark
           v-bind="attrs"
           v-on="on"
@@ -119,7 +119,7 @@
 
       <form id="registerbutton-admin" v-if="tokenCheck && $route.name =='home' && userCheck == 'ROLE_BREWER'">
           <v-btn
-          color="#1B5E20"
+          color="#90A4AE"
           dark
           v-bind="attrs"
           v-on="on"
@@ -131,13 +131,25 @@
 
       <form id="registerbutton-admin" v-if="tokenCheck && $route.name =='home' && userCheck == 'ROLE_BREWER'">
           <v-btn
-          color="#1B5E20"
+          color="#90A4AE"
           dark
           v-bind="attrs"
           v-on="on"
           id="register-4"
         >
           EDIT EXISTING BREWERY
+        </v-btn>
+      </form>
+
+      <form id="registerbutton-admin" v-if="tokenCheck && $route.name =='home' && userCheck == 'ROLE_ADMIN'">
+          <v-btn
+          color="#90A4AE"
+          dark
+          v-bind="attrs"
+          v-on="on"
+          id="register-5"
+        >
+          VIEW BREWERY OWNERSHIP REQUESTS
         </v-btn>
       </form>
 
@@ -428,8 +440,8 @@ export default {
   font-family: "Fira Sans";
   position: relative;
   text-align: center;
-  padding-top: 51px;
-  padding-left: 150px;
+  padding-top: 42px;
+  padding-left: 500px;
   color: white;
 }
 
@@ -466,6 +478,13 @@ export default {
   position: absolute;
   top: 5%;
   left: 42%;
+}
+
+#register-5{
+  font-family: "Fira Sans";
+  position: absolute;
+  top: 5.4%;
+  left: 26.5%;
 }
 
 #hopimg{
