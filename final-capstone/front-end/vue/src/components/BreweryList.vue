@@ -261,6 +261,10 @@ computed:  {
 
 roleCheck() {
       return this.$store.state.user.authorities[0].name;
+    },
+
+    tokenCheck() {
+      return this.$store.state.token;
     }
 
 },
@@ -269,6 +273,7 @@ methods: {
 
       assignBrewer(){            
           this.dialog = false
+          if (this.tokenCheck && this.$store.state.user.authorities[0].name == 'ROLE_ADMIN') {
           BreweryServices.assignBrewer(this.assignDetails).then(response => {
           console.log(response);
           this.$fire({
@@ -314,7 +319,26 @@ methods: {
           timer: 300000
         })
       }
-    )},
+    )
+    } else {
+
+      this.$fire({
+          title: "Invalid Credentials!",
+          text: "Only Administrator can assign Brewer Profiles.",
+          type: "error",
+          timer: 300000
+            }).then(r => {
+             console.log(r);
+            location.reload();
+            })
+
+
+
+
+    }
+    
+    
+    },
 
   scrollToTop() {
       window.scrollTo(0,0);
