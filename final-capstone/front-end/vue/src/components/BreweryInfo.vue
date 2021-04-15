@@ -704,7 +704,7 @@
           <v-card-text>
             <v-container>
               <v-row>
-
+                            <v-col cols="12">
           <v-radio-group v-model="beerStatus.beer_id">
             <v-radio
              v-for="beer in beerResults"
@@ -713,6 +713,8 @@
             :value="beer.beer_id"
            ></v-radio>
           </v-radio-group>
+                            </v-col>
+                              <v-col cols="12">
 
                     <v-select
                     :items="ddItems"
@@ -723,7 +725,7 @@
                     label="Active*"
                     required
                   ></v-select>
-
+</v-col>
 
               </v-row>
             </v-container>
