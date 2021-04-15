@@ -9,7 +9,7 @@
           </router-link>
 
         <div id="whoareyou" v-if="tokenCheck && $route.name =='home' && userCheck == 'ROLE_USER'">
-            Welcome back, Beer Lover {{this.$store.state.user.username}}.
+            Welcome back, BeerLover {{this.$store.state.user.username}}.
         </div>
 
         <div id="whoareyou" v-if="tokenCheck && $route.name =='home' && userCheck == 'ROLE_BREWER'">

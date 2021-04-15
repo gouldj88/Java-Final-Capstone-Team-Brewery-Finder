@@ -825,7 +825,18 @@
                    {{item.description}}
                   </p>
               </div>
-              </div>
+            
+              <p><span id="bflogotext">BreweryFinder</span>&nbsp;Average BeerLover Rating:</p>
+              <v-rating
+      v-model="avgStarRating"
+      background-color="green lighten-3"
+      color="green"
+      read-only
+      medium
+    ></v-rating>
+    <p>from {{numberOfReviews}} <span v-if="numberOfReviews !== '1'">ratings</span><span v-if="numberOfReviews == '1'">rating</span></p>
+</div>
+
 
               <v-divider></v-divider>
 
@@ -917,17 +928,6 @@
         </v-data-table>
       </v-app>
     </template>
-
-            <v-btn
-          color="#1B5E20"
-          dark
-          v-bind="attrs"
-          v-on="on"
-          id="register"
-        >
-          UPDATE BREWERY INFORMATION
-        </v-btn> 
- 
  </div>
 </template>
 
@@ -971,7 +971,8 @@ import BeerService from '@/services/BeerService';
             obdb_id: this.$route.params.id,
             hour_closed: ""
           },
-
+          avgStarRating: "0",
+          numberOfReviews: "0",
           imagedialog: false,
           historydialog: false,
           houropendialog: false,
@@ -1011,6 +1012,7 @@ import BeerService from '@/services/BeerService';
             beerResults: [],
             detailResults:[],
             reviewResults:[],
+            avgStarResults: [],
             headers: [
         {
           text: 'Beer',
@@ -1251,11 +1253,16 @@ import BeerService from '@/services/BeerService';
   },
 
       getBeerReviews({item}){
-        this.newReview.beer_id = item.beer_id;
+        this.newReview.beer_id = item.beer_id; /* Populate review with beerId when looking at each Beer page */
         BeerService.getBeerReviewsById(item.beer_id).then(response => {
         this.reviewResults = response.data;
         })
-      }
+        BeerService.getAverageStarsById(item.beer_id).then(response => {
+        this.avgStarResults = response.data;
+        this.avgStarRating = this.avgStarResults[0].star_rating;
+        this.numberOfReviews = this.avgStarResults[0].review_text;
+        })
+      },
     },
 
     created() {
@@ -1283,7 +1290,7 @@ import BeerService from '@/services/BeerService';
 #beer-image {
   margin-left: 20px;
   margin-bottom: 15px;
-  height: 110px;
+  height: 160px;
   float: left;
   position: relative;
   margin-top: 15px;
@@ -1380,6 +1387,12 @@ margin: auto;
 #review-button{
   margin-top: 7px;
   margin-bottom: 5px;
+}
+
+#bflogotext {
+    font-family: chango;
+    font-size: 16.5px;
+    color:black;
 }
 
 </style>

@@ -177,7 +177,13 @@ public class ApiController {
 	@RequestMapping(path = "/reviews/maintenance/addReview", method = RequestMethod.POST)
 	public void addReview(@RequestBody Reviews formData) {
 		reviewsDAO.addReview(formData);
+	}	
+
+	@RequestMapping(path = "/reviews/{obdbId}/averageStars", method = RequestMethod.GET)
+	public List<Reviews> getAverageStarsById(@PathVariable int obdbId) {
+	return reviewsDAO.getAverageStarsById(obdbId);
 	}
+
 	
 	
 /********************************************************************************************************************* 

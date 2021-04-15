@@ -34,4 +34,8 @@ export default {
       return http.post('/reviews/maintenance/addReview', review)
   },
 
+      getAverageStarsById(beerId) {
+        return http.get(`/reviews/${beerId}/averageStars`)
+    }
+
   }

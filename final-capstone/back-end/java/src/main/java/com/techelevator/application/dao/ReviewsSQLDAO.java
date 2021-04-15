@@ -22,6 +22,18 @@ public class ReviewsSQLDAO implements ReviewsDAO {
     } 
 	
 	
+	public List<Reviews> getAverageStarsById(int id) {
+		List<Reviews> returnedDetails = new ArrayList();
+		String sqlQuery = "select review_id as review_id, beer_id as beer_id, (select cast(count(star_rating) as varchar) as review_text from reviews where beer_id = ?), (select cast(avg(star_rating) as int) as star_rating from reviews where beer_id = ?), username as username from reviews where beer_id = ?";
+		SqlRowSet theRowSet = jdbcTemplate.queryForRowSet(sqlQuery, id, id, id);
+		while(theRowSet.next()) {
+			Reviews returnedDetail = mapRowToReview(theRowSet);
+			returnedDetails.add(returnedDetail);
+		}
+		return returnedDetails;
+	}
+	
+	
 	public List<Reviews> getReviewsByBeerId(int id) {
 		List<Reviews> returnedDetails = new ArrayList();
 		String sqlQuery = "select * from reviews where beer_id = ?";
