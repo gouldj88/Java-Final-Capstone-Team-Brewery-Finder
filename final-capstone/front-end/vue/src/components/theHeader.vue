@@ -304,6 +304,21 @@ export default {
 
     data() {
       return {
+        templateDetails:
+        {
+          obdb_id: "",
+          history: "Edit this section to explain to readers some of the history of your brewery.",
+          image_url: "http://www.ll-mm.com/images/placeholders/image-placeholder.jpg",
+          hour_open: "12:00 AM",
+          hour_closed: "12:00 AM",
+          open_sun: true,
+          open_mon: true,
+          open_tue: true,
+          open_wed: true,
+          open_thu: true,
+          open_fri: true,
+          open_sat: true
+        },
       invalidCredentials: false,
       registrationErrors: false,
       registrationErrorMsg: 'There were problems registering this user.',
@@ -352,7 +367,40 @@ export default {
           timer: 300000
             }).then(r => {
              console.log(r);
-             location.reload();
+
+            let first = this.newBrewery.name;
+            let punctuationless = first.replace(/[^\w\s]|_/g,"");
+            let spacestohyphens = punctuationless.replace(/\s+/g, '-').toLowerCase();
+            this.templateDetails.obdb_id = spacestohyphens;
+
+            breweryService.addBreweryDetails(this.templateDetails).then(response => {
+        console.log(response);
+        this.$fire({
+          title: "Success!",
+          text: "Brewery details have been autopopulated.",
+          type: "success",
+          timer: 300000
+            }).then(r => {
+             console.log(r);
+            location.reload();
+            })
+            })
+        .catch((error) => {
+        console.log(error);
+        this.$fire({
+          title: "Something went wrong!",
+          text: "Verify that your server is running or please try again later.",
+          type: "error",
+          timer: 300000
+        })
+      }
+    )
+
+
+
+
+
+
             })
             })
         .catch((error) => {

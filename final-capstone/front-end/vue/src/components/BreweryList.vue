@@ -283,7 +283,6 @@ methods: {
           timer: 300000
             }).then(r => {
              console.log(r);
-             location.reload();      
       BreweryServices.addBreweryDetails(this.templateDetails).then(response => {
         console.log(response);
         this.$fire({
